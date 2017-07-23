@@ -14,17 +14,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:text="빵집 찾기"
-            android:layout_weight="0.1"/>
-        <Button
-            android:text="알람"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:id="@+id/button2"
-            android:layout_weight="0.11"/>
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="빵집 찾기"
+                android:layout_weight="0.1"/>
+            <Button
+                android:text="알람"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:id="@+id/button2"
+                android:layout_weight="0.11"/>
     </LinearLayout>
 </LinearLayout>
