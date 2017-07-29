@@ -4,9 +4,8 @@
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.VIBRATE"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="false"
@@ -19,7 +18,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyC88PeVOYwp4HxKrm6pTS-optiHHv4jPSA" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".BarActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".NotificationSomethings" />
-        <activity android:name=".NotificationMainActivity"></activity>
+        <activity android:name=".NotificationMainActivity" />
     </application>
 
 </manifest>

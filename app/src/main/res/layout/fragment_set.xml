@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:text="일반"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:textStyle="bold"
+        />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_setting"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="10dp"
+        android:text="공지사항" />
+
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_setting"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="10dp"
+        android:text="FAQ" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_setting"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="10dp"
+        android:text="건의하기" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="개인정보"
+        android:textStyle="bold"
+        />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_setting"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="10dp"
+        android:text="약관" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_setting"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="10dp"
+        android:text="권한(휴대폰 어플리케이션 설정창 링크" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_setting"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="10dp"
+        android:text="위치서비스" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="문의"
+        android:textStyle="bold"
+        />
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_setting"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="10dp"
+        android:text="제휴문의" />
+
+</LinearLayout>
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >-->
+    <!--<PreferenceCategory-->
+        <!--android:key="keycateappversion"-->
+        <!--android:title="앱버전" >-->
+        <!--<Preference-->
+            <!--android:key="keyappversion"-->
+            <!--android:title="3.0.6" />-->
+    <!--</PreferenceCategory>-->
+    <!--<Preference-->
+        <!--android:key="keyagree"-->
+        <!--android:title="약관 및 취급방침" />-->
+    <!--<PreferenceCategory-->
+        <!--android:key="keycatehelp"-->
+        <!--android:title="문의하기" >-->
+        <!--<Preference-->
+            <!--android:key="keyhelp"-->
+            <!--android:title="도움말" />-->
+        <!--<Preference-->
+            <!--android:key="keycontact"-->
+            <!--android:title="고객센터" />-->
+    <!--</PreferenceCategory>-->
+<!--</PreferenceScreen>-->
