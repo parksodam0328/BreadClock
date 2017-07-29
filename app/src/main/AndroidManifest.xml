@@ -9,7 +9,7 @@
 
     <application
         android:allowBackup="false"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/breadclock_icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -18,7 +18,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyC88PeVOYwp4HxKrm6pTS-optiHHv4jPSA" />
 
-        <activity android:name=".BarActivity">
+        <activity android:name=".SplashActivity"
+            android:theme="@style/SplashTheme"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,6 +29,7 @@
         </activity>
         <activity android:name=".NotificationSomethings" />
         <activity android:name=".NotificationMainActivity" />
+        <activity android:name=".BarActivity"></activity>
     </application>
 
 </manifest>
