@@ -16,7 +16,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 /**
  * Created by kim on 2017-07-29.
  */
-public class MapFragment extends BaseFragment implements OnMapReadyCallback {
+public class MapFragment extends BaseFragment{
     private Fragment fr;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -37,8 +37,4 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback {
         return "지도";
     }
 
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-
-    }
 }
