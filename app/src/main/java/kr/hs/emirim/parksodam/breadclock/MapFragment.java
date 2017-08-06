@@ -24,7 +24,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+<<<<<<< HEAD
 import android.widget.Toast;
+=======
+>>>>>>> 8d35ac1f3771d20741cae69712e3f62bb79acddc
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -35,6 +38,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+<<<<<<< HEAD
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -45,11 +49,14 @@ import java.util.List;
 import java.util.Locale;
 
 import static android.content.Context.LOCATION_SERVICE;
+=======
+>>>>>>> 8d35ac1f3771d20741cae69712e3f62bb79acddc
 
 
 /**
  * Created by kim on 2017-07-29.
  */
+<<<<<<< HEAD
 public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
@@ -555,6 +562,25 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
     }
 
     @Override
+=======
+public class MapFragment extends BaseFragment{
+
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_map, container, false);
+
+        FrameLayout fl = (FrameLayout) view.findViewById(R.id.fl_content);
+
+        com.google.android.gms.maps.MapFragment fragment = new com.google.android.gms.maps.MapFragment();
+
+        SupportMapFragment map = SupportMapFragment.newInstance();
+        FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+        ft.add(R.id.fl_content, map);
+        ft.commit();
+
+        return view;
+    }
+
+>>>>>>> 8d35ac1f3771d20741cae69712e3f62bb79acddc
     public String getTitle() {
         return "지도";
     }
