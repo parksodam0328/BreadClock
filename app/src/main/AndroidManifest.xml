@@ -29,8 +29,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".NotificationSomethings" />
-        <activity android:name=".NotificationMainActivity" />
-        <activity android:name=".MapMarkersFragment"></activity>
+        <activity android:name=".NotificationMainActivity" ></activity>
     </application>
 
 </manifest>
