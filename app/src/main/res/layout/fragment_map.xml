@@ -3,17 +3,6 @@
 android:orientation="vertical" android:layout_width="match_parent"
 android:layout_height="match_parent">
 
-<<<<<<< HEAD
-
-=======
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/fl_content">
-
-    </FrameLayout>
->>>>>>> 8d35ac1f3771d20741cae69712e3f62bb79acddc
-
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         android:name="com.google.android.gms.maps.MapFragment"
         android:id="@+id/map"
@@ -23,9 +12,13 @@ android:layout_height="match_parent">
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/fl_content">
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="빵집찾기" />
 
     </FrameLayout>
-
 
     <TextView
     android:layout_width="wrap_content"

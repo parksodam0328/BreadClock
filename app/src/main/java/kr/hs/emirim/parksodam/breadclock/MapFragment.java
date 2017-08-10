@@ -23,11 +23,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
-<<<<<<< HEAD
 import android.widget.Toast;
-=======
->>>>>>> 8d35ac1f3771d20741cae69712e3f62bb79acddc
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -38,30 +36,32 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-<<<<<<< HEAD
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 
+import noman.googleplaces.NRPlaces;
+import noman.googleplaces.Place;
+import noman.googleplaces.PlaceType;
+import noman.googleplaces.PlacesException;
+import noman.googleplaces.PlacesListener;
+
 import static android.content.Context.LOCATION_SERVICE;
-=======
->>>>>>> 8d35ac1f3771d20741cae69712e3f62bb79acddc
-
-
-/**
- * Created by kim on 2017-07-29.
- */
-<<<<<<< HEAD
 public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
-        LocationListener {
+        LocationListener,
+        PlacesListener {
 
+    LatLng currentPosition;
+    List<Marker> previous_marker = null;
 
     private GoogleApiClient mGoogleApiClient = null;
     private GoogleMap mGoogleMap = null;
@@ -75,7 +75,6 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
     private static final int UPDATE_INTERVAL_MS = 1000;  // 1초
     private static final int FASTEST_UPDATE_INTERVAL_MS = 1000; // 1초
 
-    //private AppCompatActivity mActivity;
     boolean askPermissionOnceAgain = false;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -88,6 +87,16 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         map.getMapAsync(this);
         ft.add(R.id.map, map);
         ft.commit();
+
+        previous_marker = new ArrayList<Marker>();
+
+        Button button = (Button)view.findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPlaceInformation(currentPosition);
+            }
+        });
 
         return view;
     }
@@ -170,8 +179,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
 
         //런타임 퍼미션 요청 대화상자나 GPS 활성 요청 대화상자 보이기전에
         //지도의 초기위치를 서울로 이동
-        setCurrentLocation(null, "위치정보 가져올 수 없음",
-                "위치 퍼미션과 GPS 활성 요부 확인하세요");
+        setCurrentLocation(null, "위치정보 가져올 수 없음");
 
         mGoogleMap.getUiSettings().setCompassEnabled(true);
         //mGoogleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
@@ -220,13 +228,16 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
     @Override
     public void onLocationChanged(Location location) {
 
+        currentPosition
+                = new LatLng( location.getLatitude(), location.getLongitude());
+
         Log.d( TAG, "onLocationChanged");
         String markerTitle = getCurrentAddress(location);
         String markerSnippet = "위도:"+String.valueOf(location.getLatitude())
                 + " 경도:"+String.valueOf(location.getLongitude());
 
         //현재 위치에 마커 생성
-        setCurrentLocation(location, markerTitle, markerSnippet );
+        setCurrentLocation(location, markerTitle);
     }
 
 
@@ -285,8 +296,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         location.setLatitude(DEFAULT_LOCATION.latitude);
         location.setLongitude(DEFAULT_LOCATION.longitude);
 
-        setCurrentLocation(location, "위치정보 가져올 수 없음",
-                "위치 퍼미션과 GPS 활성 요부 확인하세요");
+        setCurrentLocation(location, "위치정보 가져올 수 없음");
     }
 
 
@@ -348,7 +358,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
 
 
 
-    public void setCurrentLocation(Location location, String markerTitle, String markerSnippet) {
+    public void setCurrentLocation(Location location, String markerTitle) {
 
         if (currentMarker != null) currentMarker.remove();
 
@@ -360,10 +370,8 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
             MarkerOptions markerOptions = new MarkerOptions();
             markerOptions.position(currentLocation);
             markerOptions.title(markerTitle);
-            markerOptions.snippet(markerSnippet);
             markerOptions.draggable(true);
-            markerOptions.icon(BitmapDescriptorFactory
-                    .defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
             currentMarker = mGoogleMap.addMarker(markerOptions);
 
             mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
@@ -373,9 +381,8 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(DEFAULT_LOCATION);
         markerOptions.title(markerTitle);
-        markerOptions.snippet(markerSnippet);
         markerOptions.draggable(true);
-        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
         currentMarker = mGoogleMap.addMarker(markerOptions);
 
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(DEFAULT_LOCATION));
@@ -553,35 +560,78 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                     }
                 }
                 else{
-                    setCurrentLocation(null, "위치정보 가져올 수 없음",
-                            "위치 퍼미션과 GPS 활성 요부 확인하세요");
+                    setCurrentLocation(null, "위치정보 가져올 수 없음");
                 }
 
                 break;
         }
     }
 
-    @Override
-=======
-public class MapFragment extends BaseFragment{
 
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_map, container, false);
-
-        FrameLayout fl = (FrameLayout) view.findViewById(R.id.fl_content);
-
-        com.google.android.gms.maps.MapFragment fragment = new com.google.android.gms.maps.MapFragment();
-
-        SupportMapFragment map = SupportMapFragment.newInstance();
-        FragmentTransaction ft = getChildFragmentManager().beginTransaction();
-        ft.add(R.id.fl_content, map);
-        ft.commit();
-
-        return view;
-    }
-
->>>>>>> 8d35ac1f3771d20741cae69712e3f62bb79acddc
     public String getTitle() {
         return "지도";
+    }
+
+    @Override
+    public void onPlacesFailure(PlacesException e) {
+
+    }
+
+    @Override
+    public void onPlacesStart() {
+
+    }
+
+    @Override
+    public void onPlacesSuccess(final List<Place> places) {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                for (noman.googleplaces.Place place : places) {
+
+                    LatLng latLng
+                            = new LatLng(place.getLatitude()
+                            , place.getLongitude());
+
+                    MarkerOptions markerOptions = new MarkerOptions();
+                    markerOptions.position(latLng);
+                    markerOptions.title(place.getName());
+                    markerOptions.snippet(place.getVicinity());
+                    Marker item = mGoogleMap.addMarker(markerOptions);
+                    previous_marker.add(item);
+
+                }
+
+                //중복 마커 제거
+                HashSet<Marker> hashSet = new HashSet<Marker>();
+                hashSet.addAll(previous_marker);
+                previous_marker.clear();
+                previous_marker.addAll(hashSet);
+
+            }
+        });
+
+    }
+
+    @Override
+    public void onPlacesFinished() {
+
+    }
+
+    public void showPlaceInformation(LatLng location)
+    {
+        mGoogleMap.clear();//지도 클리어
+
+        if (previous_marker != null)
+            previous_marker.clear();//지역정보 마커 클리어
+
+        new NRPlaces.Builder()
+                .listener((PlacesListener) getActivity())
+                .key("Places API Web Service 키")
+                .latlng(location.latitude, location.longitude)//현재 위치
+                .radius(1000) //1 킬로미터 내에서 검색
+                .type(PlaceType.BAKERY) //음식점
+                .build()
+                .execute();
     }
 }
