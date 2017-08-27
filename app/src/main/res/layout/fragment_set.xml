@@ -11,7 +11,6 @@
         android:layout_marginBottom="5dp"
         android:textStyle="bold"
         android:visibility="visible"
-
         />
 
     <Button
@@ -23,7 +22,7 @@
         android:paddingLeft="10dp"
         android:text="공지사항"
         android:visibility="visible"
-
+        android:onClick="onClick"
         />
 
     <TextView
@@ -48,6 +47,7 @@
         android:paddingLeft="10dp"
         android:text="버전"
         android:visibility="visible"
+        android:onClick="onClick"
         />
 
 
@@ -58,7 +58,8 @@
         android:background="@drawable/button_setting"
         android:gravity="left|center_vertical"
         android:paddingLeft="10dp"
-        android:text="사용방법" />
+        android:text="사용방법"
+        android:onClick="onClick"/>
 
 
     <TextView
@@ -78,7 +79,8 @@
         android:background="@drawable/button_setting"
         android:gravity="left|center_vertical"
         android:paddingLeft="10dp"
-        android:text="많이 묻는 FAQ" />
+        android:text="많이 묻는 FAQ"
+        android:onClick="onClick"/>
 
     <Button
         android:id="@+id/button7"
@@ -87,7 +89,8 @@
         android:background="@drawable/button_setting"
         android:gravity="left|center_vertical"
         android:paddingLeft="10dp"
-        android:text="제휴문의" />
+        android:text="제휴문의"
+        android:onClick="onClick"/>
 
     <Button
         android:id="@+id/button8"
@@ -96,7 +99,8 @@
         android:background="@drawable/button_setting"
         android:gravity="left|center_vertical"
         android:paddingLeft="10dp"
-        android:text="문의하기" />
+        android:text="문의하기"
+        android:onClick="onClick"/>
 
 
     <TextView
@@ -116,7 +120,8 @@
         android:background="@drawable/button_setting"
         android:gravity="left|center_vertical"
         android:paddingLeft="10dp"
-        android:text="빵클락" />
+        android:text="빵클락"
+        android:onClick="onClick"/>
 
 
 
