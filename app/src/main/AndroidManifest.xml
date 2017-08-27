@@ -20,9 +20,8 @@
             android:value="AIzaSyC88PeVOYwp4HxKrm6pTS-optiHHv4jPSA" />
 
         <activity
-            android:name=".SplashActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme">
+            android:name=".BarActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,10 +29,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".NotificationSomethings" />
-        <activity android:name=".NotificationMainActivity" />
-        <activity android:name=".BarActivity" />
-        <activity android:name=".MapMarkersFragment" />
-        <activity android:name=".NoticeActivity"></activity>
+        <activity android:name=".NoticeActivity" />
+        <activity android:name=".NotificationMainActivity"></activity>
     </application>
-
 </manifest>
