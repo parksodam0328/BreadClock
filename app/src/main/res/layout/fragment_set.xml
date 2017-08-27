@@ -10,6 +10,8 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:textStyle="bold"
+        android:visibility="visible"
+
         />
 
     <Button
@@ -19,7 +21,22 @@
         android:background="@drawable/button_setting"
         android:gravity="left|center_vertical"
         android:paddingLeft="10dp"
-        android:text="공지사항" />
+        android:text="공지사항"
+        android:visibility="visible"
+
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:text="공지사항에 들어갈 내용들........."
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        />
+
 
 
     <Button
@@ -29,7 +46,10 @@
         android:background="@drawable/button_setting"
         android:gravity="left|center_vertical"
         android:paddingLeft="10dp"
-        android:text="FAQ" />
+        android:text="버전"
+        android:visibility="visible"
+        />
+
 
     <Button
         android:id="@+id/button5"
@@ -38,45 +58,7 @@
         android:background="@drawable/button_setting"
         android:gravity="left|center_vertical"
         android:paddingLeft="10dp"
-        android:text="건의하기" />
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:text="개인정보"
-        android:textStyle="bold"
-        />
-
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button_setting"
-        android:gravity="left|center_vertical"
-        android:paddingLeft="10dp"
-        android:text="약관" />
-
-    <Button
-        android:id="@+id/button7"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button_setting"
-        android:gravity="left|center_vertical"
-        android:paddingLeft="10dp"
-        android:text="권한(휴대폰 어플리케이션 설정창 링크" />
-
-    <Button
-        android:id="@+id/button8"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button_setting"
-        android:gravity="left|center_vertical"
-        android:paddingLeft="10dp"
-        android:text="위치서비스" />
+        android:text="사용방법" />
 
 
     <TextView
@@ -90,7 +72,16 @@
         />
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/button6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_setting"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="10dp"
+        android:text="많이 묻는 FAQ" />
+
+    <Button
+        android:id="@+id/button7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button_setting"
@@ -98,28 +89,35 @@
         android:paddingLeft="10dp"
         android:text="제휴문의" />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_setting"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="10dp"
+        android:text="문의하기" />
 
-<!--<?xml version="1.0" encoding="utf-8"?>-->
-<!--<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >-->
-    <!--<PreferenceCategory-->
-        <!--android:key="keycateappversion"-->
-        <!--android:title="앱버전" >-->
-        <!--<Preference-->
-            <!--android:key="keyappversion"-->
-            <!--android:title="3.0.6" />-->
-    <!--</PreferenceCategory>-->
-    <!--<Preference-->
-        <!--android:key="keyagree"-->
-        <!--android:title="약관 및 취급방침" />-->
-    <!--<PreferenceCategory-->
-        <!--android:key="keycatehelp"-->
-        <!--android:title="문의하기" >-->
-        <!--<Preference-->
-            <!--android:key="keyhelp"-->
-            <!--android:title="도움말" />-->
-        <!--<Preference-->
-            <!--android:key="keycontact"-->
-            <!--android:title="고객센터" />-->
-    <!--</PreferenceCategory>-->
-<!--</PreferenceScreen>-->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="소개"
+        android:textStyle="bold"
+        />
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_setting"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="10dp"
+        android:text="빵클락" />
+
+
+
+</LinearLayout>

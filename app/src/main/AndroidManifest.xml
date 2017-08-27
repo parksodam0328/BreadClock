@@ -32,7 +32,8 @@
         <activity android:name=".NotificationSomethings" />
         <activity android:name=".NotificationMainActivity" />
         <activity android:name=".BarActivity" />
-        <activity android:name=".MapMarkersActivity"></activity>
+        <activity android:name=".MapMarkersFragment" />
+        <activity android:name=".NoticeActivity"></activity>
     </application>
 
 </manifest>
