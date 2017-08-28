@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import static kr.hs.emirim.parksodam.breadclock.R.id.button7;
+
 /**
  * Created by kim on 2017-07-29.
  */
@@ -34,17 +36,13 @@ public class SetFragment extends BaseFragment{
                         Intent intent4 = new Intent(getActivity(), FAQActivity.class);
                         startActivity(intent4);
                         break;
-                    case R.id.button7:
+                    case button7:
                         Intent intent5 = new Intent(getActivity(), ContactUsActivity.class);
                         startActivity(intent5);
                         break;
                     case R.id.button8:
-                        Intent intent6 = new Intent(getActivity(), QuestionActivity.class);
+                        Intent intent6 = new Intent(getActivity(), IntroduceActivity.class);
                         startActivity(intent6);
-                        break;
-                    case R.id.button9:
-                        Intent intent7 = new Intent(getActivity(), IntroduceActivity.class);
-                        startActivity(intent7);
                         break;
                 }
             }
@@ -57,12 +55,10 @@ public class SetFragment extends BaseFragment{
         button3.setOnClickListener(onClickListener);
         Button button4 = (Button)view.findViewById(R.id.button6);
         button4.setOnClickListener(onClickListener);
-        Button button5 = (Button)view.findViewById(R.id.button7);
+        Button button5 = (Button)view.findViewById(button7);
         button5.setOnClickListener(onClickListener);
         Button button6 = (Button)view.findViewById(R.id.button8);
         button6.setOnClickListener(onClickListener);
-        Button button7 = (Button)view.findViewById(R.id.button9);
-        button7.setOnClickListener(onClickListener);
 
         return view;
     }

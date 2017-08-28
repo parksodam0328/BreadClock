@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="kr.hs.emirim.parksodam.breadclock.IntroduceActivity">
+    android:orientation="vertical"
+    tools:context="kr.hs.emirim.parksodam.breadclock.IntroduceActivity"
+    android:weightSum="1">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="134dp"
+        android:layout_height="245dp"
+        android:layout_gravity="center"
+        android:layout_weight="0.33"
+        app:srcCompat="@drawable/breadclock_icon" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="빵클락 소개 부분"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp" />
-</android.support.constraint.ConstraintLayout>
+        android:layout_gravity="center"
+        android:layout_weight="0.07"
+        android:gravity="center"
+        android:text="빵클락\n
+http://www.빵클락 홈페이지 주소\n
+made by. 구지원, 김진민, 박소담, 송민아, 최슬비\n" />
+</LinearLayout>

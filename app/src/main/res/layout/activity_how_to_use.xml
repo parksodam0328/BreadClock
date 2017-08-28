@@ -1,15 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="kr.hs.emirim.parksodam.breadclock.HowToUseActivity">
+    android:orientation="vertical"
+    tools:context="kr.hs.emirim.parksodam.breadclock.HowToUseActivity"
+    android:weightSum="1">
+
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="256dp"
+        android:layout_height="167dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="30dp"
+        android:layout_weight="0.21" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="사용방법 부분"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp" />
-</android.support.constraint.ConstraintLayout>
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="1. GPS를 킨 후 자기 주변의 빵집을 확인한다.\n
+2. 시간대 알림을 받고싶은 빵집을 선택한다.\n
+3. 그 빵집의 시간대 알림을 받고싶은 빵을 즐겨찾기한다.\n
+4. 빵의 알림이 오기를 기다린다.\n
+5. 따뜻하고 맛있는 빵을 먹는다.\n
+6. PLAY스토어에 들어가 빵클락 별점을 남긴다."
+         />
+
+</LinearLayout>

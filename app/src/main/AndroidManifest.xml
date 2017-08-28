@@ -35,7 +35,6 @@
         <activity android:name=".FAQActivity" />
         <activity android:name=".HowToUseActivity" />
         <activity android:name=".ContactUsActivity" />
-        <activity android:name=".QuestionActivity" />
         <activity android:name=".IntroduceActivity"></activity>
     </application>
 

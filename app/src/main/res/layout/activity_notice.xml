@@ -12,7 +12,9 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="공지사항부분"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp" />
+        android:text="안녕하세요. 빵 나오는 시간 알림 앱 '빵클락'입니다.\n
+빵클락은 사용자 위치 주변의 빵집을 찾아주고 그 빵집의 빵 나오는 시간을 알림으로 제공해주는 앱입니다.\n
+많은 사람 부탁드려요:)\n"
+        tools:layout_editor_absoluteX="39dp"
+        tools:layout_editor_absoluteY="109dp" />
 </android.support.constraint.ConstraintLayout>

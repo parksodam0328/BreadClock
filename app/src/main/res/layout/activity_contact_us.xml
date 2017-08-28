@@ -1,15 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="kr.hs.emirim.parksodam.breadclock.ContactUsActivity">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="246dp"
+        android:layout_height="118dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        app:srcCompat="@drawable/logoname" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="제휴 문의 부분"
+        android:layout_gravity="center"
+        android:layout_margin="70dp"
+        android:gravity="center"
+        android:text="http://www.빵클락 회원가입 주소\n
+서비스신청을 하고싶은 빵집 사장님들은 사이트에 들어가 회원가입을 해주세요.\n
+간단한 사용법으로 쉽고 간편하게 가입하실 수 있습니다.\n
+자세한 내용은 '자주묻는 FAQ'를 확인해주세요!"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="16dp" />
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
