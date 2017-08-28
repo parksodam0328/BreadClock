@@ -35,7 +35,8 @@
         <activity android:name=".FAQActivity" />
         <activity android:name=".HowToUseActivity" />
         <activity android:name=".ContactUsActivity" />
-        <activity android:name=".IntroduceActivity"></activity>
+        <activity android:name=".IntroduceActivity" />
+        <activity android:name=".ListViewItem"></activity>
     </application>
 
 </manifest>

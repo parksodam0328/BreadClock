@@ -84,9 +84,6 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
 
         SupportMapFragment map = SupportMapFragment.newInstance();
         FragmentTransaction ft = getChildFragmentManager().beginTransaction();
-        map.getMapAsync(this);
-        ft.add(R.id.map, map);
-        ft.commit();
 
         previous_marker = new ArrayList<Marker>();
 
@@ -97,16 +94,77 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                 showPlaceInformation(currentPosition);
             }
         });
-
+        map.getMapAsync(this);
+        ft.add(R.id.map, map);
+        ft.commit();
         return view;
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public String getTitle() {
+        return "지도";
+    }
 
-        //if (mGoogleApiClient != null)
-        // mGoogleApiClient.connect();
+    @Override
+    public void onPlacesFailure(PlacesException e) {
+
+    }
+
+    @Override
+    public void onPlacesStart() {
+
+    }
+
+    @Override
+    public void onPlacesSuccess(final List<Place> places) {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                for (noman.googleplaces.Place place : places) {
+
+                    LatLng latLng
+                            = new LatLng(place.getLatitude()
+                            , place.getLongitude());
+
+                    MarkerOptions markerOptions = new MarkerOptions();
+                    markerOptions.position(latLng);
+                    markerOptions.title(place.getName());
+                    Marker item = mGoogleMap.addMarker(markerOptions);
+                    previous_marker.add(item);
+
+                }
+
+                //중복 마커 제거
+                HashSet<Marker> hashSet = new HashSet<Marker>();
+                hashSet.addAll(previous_marker);
+                previous_marker.clear();
+                previous_marker.addAll(hashSet);
+
+            }
+        });
+
+    }
+
+    public void showPlaceInformation(LatLng location)
+    {
+        mGoogleMap.clear();//지도 클리어
+
+        if (previous_marker != null)
+            previous_marker.clear();//지역정보 마커 클리어
+
+        new NRPlaces.Builder()
+                .listener(this)
+                .key("AIzaSyAocCFlcpTitCBLcc2Dtl8iY2mT7XrhvAk")
+                .latlng(location.latitude, location.longitude)//현재 위치
+                .radius(1000) //1 킬로미터 내에서 검색
+                .type(PlaceType.BAKERY) //음식점
+                .build()
+                .execute();
+    }
+
+    @Override
+    public void onPlacesFinished() {
+
     }
 
     @Override
@@ -233,8 +291,8 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
 
         Log.d( TAG, "onLocationChanged");
         String markerTitle = getCurrentAddress(location);
-        String markerSnippet = "위도:"+String.valueOf(location.getLatitude())
-                + " 경도:"+String.valueOf(location.getLongitude());
+        String markerSnippet = String.valueOf(location.getLatitude())
+                + String.valueOf(location.getLongitude());
 
         //현재 위치에 마커 생성
         setCurrentLocation(location, markerTitle, markerSnippet);
@@ -251,7 +309,6 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         mGoogleApiClient.connect();
 
     }
-
 
     @Override
     public void onConnected(Bundle connectionHint) {
@@ -563,72 +620,5 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
 
                 break;
         }
-    }
-
-
-    public String getTitle() {
-        return "지도";
-    }
-
-    @Override
-    public void onPlacesFailure(PlacesException e) {
-
-    }
-
-    @Override
-    public void onPlacesStart() {
-
-    }
-
-    @Override
-    public void onPlacesSuccess(final List<Place> places) {
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                for (noman.googleplaces.Place place : places) {
-
-                    LatLng latLng
-                            = new LatLng(place.getLatitude()
-                            , place.getLongitude());
-
-                    MarkerOptions markerOptions = new MarkerOptions();
-                    markerOptions.position(latLng);
-                    markerOptions.title(place.getName());
-                    Marker item = mGoogleMap.addMarker(markerOptions);
-                    previous_marker.add(item);
-
-                }
-
-                //중복 마커 제거
-                HashSet<Marker> hashSet = new HashSet<Marker>();
-                hashSet.addAll(previous_marker);
-                previous_marker.clear();
-                previous_marker.addAll(hashSet);
-
-            }
-        });
-
-    }
-
-    @Override
-    public void onPlacesFinished() {
-
-    }
-
-    public void showPlaceInformation(LatLng location)
-    {
-        mGoogleMap.clear();//지도 클리어
-
-        if (previous_marker != null)
-            previous_marker.clear();//지역정보 마커 클리어
-
-        new NRPlaces.Builder()
-                .listener(this)
-                .key("AIzaSyAocCFlcpTitCBLcc2Dtl8iY2mT7XrhvAk")
-                .latlng(location.latitude, location.longitude)//현재 위치
-                .radius(1000) //1 킬로미터 내에서 검색
-                .type(PlaceType.BAKERY) //음식점
-                .build()
-                .execute();
     }
 }
