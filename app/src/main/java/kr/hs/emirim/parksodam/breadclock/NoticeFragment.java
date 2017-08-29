@@ -1,5 +1,6 @@
 package kr.hs.emirim.parksodam.breadclock;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -42,15 +43,17 @@ public class NoticeFragment extends BaseFragment {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView parent, View v, int position, long id) {
+
                 // get item
                 ListViewItem item = (ListViewItem) parent.getItemAtPosition(position);
 
                 String titleStr = item.getTitle();
                 String descStr = item.getDesc();
                 Drawable iconDrawable = item.getIcon();
-            }
+                        Intent intent = new Intent(getActivity(), BreadInformation.class);
+                        startActivity(intent);
+                    }
         });
-
 
         return view;
     }
