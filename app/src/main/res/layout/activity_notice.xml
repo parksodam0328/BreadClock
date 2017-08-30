@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,9 +12,14 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="안녕하세요. 빵 나오는 시간 알림 앱 '빵클락'입니다.\n
-빵클락은 사용자 위치 주변의 빵집을 찾아주고 그 빵집의 빵 나오는 시간을 알림으로 제공해주는 앱입니다.\n
-많은 사랑 부탁드려요:)\n"
-        tools:layout_editor_absoluteX="39dp"
-        tools:layout_editor_absoluteY="109dp" />
-</android.support.constraint.ConstraintLayout>
+        android:layout_gravity="left"
+        android:gravity="left"
+        android:text="
+아직도 식은 빵을 드시나요?\n
+갓 구운 따뜻한 빵을 손쉽게 먹을 수 있는 간단한 방법!\n
+빵 나오는 시간을 알려주는, 빵클락!\n\n
+빵클락이란?\n
+사용자 위치 주변의 빵집을 찾아주고 그 빵집의 빵 나오는 시간을 알림으로 제공해주는 앱입니다.\n
+이로써 사업자는 더 많은 매출을 올릴 수 있고 사용자는 보다 따뜻하고 신선한 빵을 먹을 수 있는 일석이조의 효과를 가지고있습니다.\n
+많은 이용 부탁드립니다:)" />
+</LinearLayout>

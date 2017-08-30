@@ -7,4 +7,10 @@
         android:layout_height="wrap_content"
         android:text="이건 두번째 프래그먼트!!!!!!"
         />
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="43dp"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>
