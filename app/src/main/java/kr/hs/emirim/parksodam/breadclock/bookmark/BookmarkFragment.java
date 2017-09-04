@@ -51,8 +51,8 @@ public class BookmarkFragment extends BaseFragment {
         MyAdapter mMyAdapter = new MyAdapter();
 
 
-        for (int i=0; i<10; i++) {
-            mMyAdapter.addItem(ContextCompat.getDrawable(getActivity(), R.mipmap.ic_launcher), "빵집 이름", "빵 이름");
+        for (int i=0; i<8; i++) {
+            mMyAdapter.addItem(ContextCompat.getDrawable(getActivity(), R.mipmap.basicimg), "빵집 이름", "빵 이름");
         }
 
         /* 리스트뷰에 어댑터 등록 */
