@@ -25,7 +25,7 @@ import kr.hs.emirim.parksodam.breadclock.notice.BreadInformation;
 public class BookmarkFragment extends BaseFragment {
     private ListView mListView;
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_notice, container, false);
+        View view = inflater.inflate(R.layout.fragment_bookmark, container, false);
 
         mListView = (ListView)view.findViewById(R.id.listView);
         dataSetting();
