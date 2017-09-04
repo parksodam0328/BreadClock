@@ -1,13 +1,15 @@
-package kr.hs.emirim.parksodam.breadclock;
+package kr.hs.emirim.parksodam.breadclock.set;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class HowToUseActivity extends AppCompatActivity {
+import kr.hs.emirim.parksodam.breadclock.R;
+
+public class NoticeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_how_to_use);
+        setContentView(R.layout.activity_notice);
     }
 }

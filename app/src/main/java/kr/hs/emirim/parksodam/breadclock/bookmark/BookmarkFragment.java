@@ -1,4 +1,4 @@
-package kr.hs.emirim.parksodam.breadclock;
+package kr.hs.emirim.parksodam.breadclock.bookmark;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,12 +6,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import kr.hs.emirim.parksodam.breadclock.BaseFragment;
+import kr.hs.emirim.parksodam.breadclock.R;
+
 /**
  * Created by kim on 2017-07-29.
  */
 
 
-public class BookmarkFragment extends BaseFragment{
+public class BookmarkFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         //return inflater.inflate(R.layout.fragment_bookmark, container, false);
         View view = inflater.inflate(R.layout.fragment_bookmark, container, false);

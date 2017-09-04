@@ -1,4 +1,4 @@
-package kr.hs.emirim.parksodam.breadclock;
+package kr.hs.emirim.parksodam.breadclock.map;
 
 import android.Manifest;
 import android.annotation.TargetApi;
@@ -47,6 +47,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 
+import kr.hs.emirim.parksodam.breadclock.BaseFragment;
+import kr.hs.emirim.parksodam.breadclock.R;
 import noman.googleplaces.NRPlaces;
 import noman.googleplaces.Place;
 import noman.googleplaces.PlaceType;

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="kr.hs.emirim.parksodam.breadclock.BreadInformation">
+    tools:context="kr.hs.emirim.parksodam.breadclock.notice.BreadInformation">
 
     <ImageView
         android:id="@+id/imageView6"

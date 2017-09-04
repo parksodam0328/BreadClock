@@ -1,4 +1,4 @@
-package kr.hs.emirim.parksodam.breadclock;
+package kr.hs.emirim.parksodam.breadclock.listview;
 
 /**
  * Created by parksodam on 2017-09-03.
@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import kr.hs.emirim.parksodam.breadclock.R;
 
 public class MyAdapter extends BaseAdapter {
 

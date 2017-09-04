@@ -29,15 +29,15 @@
             </intent-filter>
         </activity>
         <activity android:name=".NotificationSomethings" />
-        <activity android:name=".NoticeActivity" />
+        <activity android:name=".set.NoticeActivity" />
         <activity android:name=".NotificationMainActivity" />
-        <activity android:name=".VersionActivity" />
-        <activity android:name=".FAQActivity" />
-        <activity android:name=".HowToUseActivity" />
-        <activity android:name=".ContactUsActivity" />
-        <activity android:name=".IntroduceActivity" />
+        <activity android:name=".set.VersionActivity" />
+        <activity android:name=".set.FAQActivity" />
+        <activity android:name=".set.HowToUseActivity" />
+        <activity android:name=".set.ContactUsActivity" />
+        <activity android:name=".set.IntroduceActivity" />
         <activity android:name=".ListViewItem" />
-        <activity android:name=".BreadInformation"></activity>
+        <activity android:name=".notice.BreadInformation"></activity>
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package kr.hs.emirim.parksodam.breadclock;
+package kr.hs.emirim.parksodam.breadclock.set;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,13 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import kr.hs.emirim.parksodam.breadclock.BaseFragment;
+import kr.hs.emirim.parksodam.breadclock.R;
+
 import static kr.hs.emirim.parksodam.breadclock.R.id.button7;
 
 /**
  * Created by kim on 2017-07-29.
  */
 
-public class SetFragment extends BaseFragment{
+public class SetFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_set, container, false);
         Button.OnClickListener onClickListener = new Button.OnClickListener() {
