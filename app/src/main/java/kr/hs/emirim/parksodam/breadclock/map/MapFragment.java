@@ -2,6 +2,7 @@ package kr.hs.emirim.parksodam.breadclock.map;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -9,6 +10,8 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -157,21 +160,58 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
 
     }
 
-    public void showPlaceInformation(LatLng location)
-    {
-        mGoogleMap.clear();//지도 클리어
+    public void showPlaceInformation(LatLng location) {
+        ConnectivityManager manager = (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo mobile = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        NetworkInfo wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        try {
 
-        if (previous_marker != null)
-            previous_marker.clear();//지역정보 마커 클리어
 
-        new NRPlaces.Builder()
-                .listener(this)
-                .key("AIzaSyAocCFlcpTitCBLcc2Dtl8iY2mT7XrhvAk")
-                .latlng(location.latitude, location.longitude)//현재 위치
-                .radius(1000) //1 킬로미터 내에서 검색
-                .type(PlaceType.BAKERY) //음식점
-                .build()
-                .execute();
+        if(!mobile.isConnected() && !wifi.isConnected()) {
+            // 다이얼로그 바디
+            AlertDialog.Builder alertdialog = new AlertDialog.Builder(getActivity());
+            // 다이얼로그 메세지
+            alertdialog.setMessage("기본 다이얼로그 입니다.");
+
+            // 확인버튼
+            alertdialog.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Toast.makeText(getActivity(), "'확인'버튼을 눌렀습니다.", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            // 취소버튼
+            alertdialog.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Toast.makeText(getActivity(), "'취소'버튼을 눌렀습니다.", Toast.LENGTH_SHORT).show();
+                }
+            });
+            // 메인 다이얼로그 생성
+            AlertDialog alert = alertdialog.create();
+            // 아이콘 설정
+            alert.setIcon(R.mipmap.ic_launcher);
+            // 타이틀
+            alert.setTitle("제목");
+            // 다이얼로그 보기
+            alert.show();
+        }
+        }catch(NullPointerException e){
+            mGoogleMap.clear();//지도 클리어
+
+            if (previous_marker != null)
+                previous_marker.clear();//지역정보 마커 클리어
+
+            new NRPlaces.Builder()
+                    .listener(this)
+                    .key("AIzaSyAocCFlcpTitCBLcc2Dtl8iY2mT7XrhvAk")
+                    .latlng(location.latitude, location.longitude)//현재 위치
+                    .radius(1000) //1 킬로미터 내에서 검색
+                    .type(PlaceType.BAKERY) //음식점
+                    .build().execute();
+        }
     }
 
     @Override
