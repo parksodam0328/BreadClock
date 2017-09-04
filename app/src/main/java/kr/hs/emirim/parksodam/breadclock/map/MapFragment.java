@@ -20,6 +20,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,27 +79,36 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
     private static final int FASTEST_UPDATE_INTERVAL_MS = 18000; // 3분
 
     boolean askPermissionOnceAgain = false;
-
+    private View view;
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_map, container, false);
-        FrameLayout fl = (FrameLayout) view.findViewById(R.id.fl_content);
-        com.google.android.gms.maps.MapFragment fragment = new com.google.android.gms.maps.MapFragment();
 
-        SupportMapFragment map = SupportMapFragment.newInstance();
-        FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+        if (view != null) {
+            ViewGroup parent = (ViewGroup) view.getParent();
+            if (parent != null)
+                parent.removeView(view);
+        }try {
+            view = inflater.inflate(R.layout.fragment_map, container, false);
+        } catch (InflateException e) {
+    /* map is already there, just return view as it is */
+            FrameLayout fl = (FrameLayout) view.findViewById(R.id.fl_content);
+            com.google.android.gms.maps.MapFragment fragment = new com.google.android.gms.maps.MapFragment();
 
-        previous_marker = new ArrayList<Marker>();
+            SupportMapFragment map = SupportMapFragment.newInstance();
+            FragmentTransaction ft = getChildFragmentManager().beginTransaction();
 
-        Button button = (Button)view.findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showPlaceInformation(currentPosition);
-            }
-        });
-        map.getMapAsync(this);
-        ft.add(R.id.map, map);
-        ft.commit();
+            previous_marker = new ArrayList<Marker>();
+
+            Button button = (Button) view.findViewById(R.id.button);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showPlaceInformation(currentPosition);
+                }
+            });
+            map.getMapAsync(this);
+            ft.add(R.id.map, map);
+            ft.commit();
+        }
         return view;
     }
 
