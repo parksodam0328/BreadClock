@@ -36,7 +36,6 @@
         <activity android:name=".set.HowToUseActivity" />
         <activity android:name=".set.ContactUsActivity" />
         <activity android:name=".set.IntroduceActivity" />
-        <activity android:name=".ListViewItem" />
         <activity android:name=".notice.BreadInformation"></activity>
     </application>
 

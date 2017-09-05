@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -27,8 +28,11 @@ import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -53,6 +57,9 @@ import java.util.Locale;
 
 import kr.hs.emirim.parksodam.breadclock.BaseFragment;
 import kr.hs.emirim.parksodam.breadclock.R;
+import kr.hs.emirim.parksodam.breadclock.listview.MyAdapter;
+import kr.hs.emirim.parksodam.breadclock.listview.MyItem;
+import kr.hs.emirim.parksodam.breadclock.notice.BreadInformation;
 import noman.googleplaces.NRPlaces;
 import noman.googleplaces.Place;
 import noman.googleplaces.PlaceType;
@@ -83,17 +90,13 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
 
     boolean askPermissionOnceAgain = false;
     private View view;
+    private ListView mListView;
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        if (view != null) {
-            ViewGroup parent = (ViewGroup) view.getParent();
-            if (parent != null)
-                parent.removeView(view);
-        }try {
+        try {
             view = inflater.inflate(R.layout.fragment_map, container, false);
-        } catch (InflateException e) {
-    /* map is already there, just return view as it is */
+        }catch (InflateException e) {
             FrameLayout fl = (FrameLayout) view.findViewById(R.id.fl_content);
+            RelativeLayout rl = (RelativeLayout) view.findViewById(R.id.rl_contents);
             com.google.android.gms.maps.MapFragment fragment = new com.google.android.gms.maps.MapFragment();
 
             SupportMapFragment map = SupportMapFragment.newInstance();
@@ -101,18 +104,53 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
 
             previous_marker = new ArrayList<Marker>();
 
+            map.getMapAsync(this);
+            ft.add(R.id.map, map);
+            ft.commit();
+        }//catch(NullPointerException e){
             Button button = (Button) view.findViewById(R.id.button);
+            mListView = (ListView) view.findViewById(R.id.listView);
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     showPlaceInformation(currentPosition);
+                    ConnectivityManager manager = (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+                    NetworkInfo mobile = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+                    NetworkInfo wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+                    if (mobile.isConnected() || wifi.isConnected()) {
+                        dataSetting();
+                        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView parent, View v, int position, long id) {
+                                // get item
+                                MyItem item = (MyItem) parent.getItemAtPosition(position);
+                                Intent intent = new Intent(getActivity(), BreadInformation.class);
+                                String titleStr = item.getName();
+                                String descStr = item.getContents();
+                                Drawable iconDrawable = item.getIcon();
+                                startActivity(intent);
+                            }
+                        });
+                    }
                 }
             });
-            map.getMapAsync(this);
-            ft.add(R.id.map, map);
-            ft.commit();
-        }
+       // }
         return view;
+    }
+
+
+
+    private void dataSetting(){
+
+        MyAdapter mMyAdapter = new MyAdapter();
+
+
+        for (int i=0; i<8; i++) {
+            mMyAdapter.addItem(ContextCompat.getDrawable(getActivity(), R.mipmap.basicimg), "빵집 이름", "빵 이름");
+        }
+
+        /* 리스트뷰에 어댑터 등록 */
+        mListView.setAdapter(mMyAdapter);
     }
 
     @Override
@@ -164,53 +202,42 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         ConnectivityManager manager = (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo mobile = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         NetworkInfo wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        try {
+            if(location!=null) {
+                mGoogleMap.clear();//지도 클리어
 
+                if (previous_marker != null)
+                    previous_marker.clear();//지역정보 마커 클리어
 
-        if(!mobile.isConnected() && !wifi.isConnected()) {
-            // 다이얼로그 바디
-            AlertDialog.Builder alertdialog = new AlertDialog.Builder(getActivity());
-            // 다이얼로그 메세지
-            alertdialog.setMessage("기본 다이얼로그 입니다.");
-
-            // 확인버튼
-            alertdialog.setPositiveButton("확인", new DialogInterface.OnClickListener(){
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Toast.makeText(getActivity(), "'확인'버튼을 눌렀습니다.", Toast.LENGTH_SHORT).show();
-                }
-            });
-
-            // 취소버튼
-            alertdialog.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Toast.makeText(getActivity(), "'취소'버튼을 눌렀습니다.", Toast.LENGTH_SHORT).show();
-                }
-            });
-            // 메인 다이얼로그 생성
-            AlertDialog alert = alertdialog.create();
-            // 아이콘 설정
-            alert.setIcon(R.mipmap.ic_launcher);
-            // 타이틀
-            alert.setTitle("제목");
-            // 다이얼로그 보기
-            alert.show();
-        }
-        }catch(NullPointerException e){
-            mGoogleMap.clear();//지도 클리어
-
-            if (previous_marker != null)
-                previous_marker.clear();//지역정보 마커 클리어
-
-            new NRPlaces.Builder()
-                    .listener(this)
-                    .key("AIzaSyAocCFlcpTitCBLcc2Dtl8iY2mT7XrhvAk")
-                    .latlng(location.latitude, location.longitude)//현재 위치
-                    .radius(1000) //1 킬로미터 내에서 검색
-                    .type(PlaceType.BAKERY) //음식점
-                    .build().execute();
+                new NRPlaces.Builder()
+                        .listener(this)
+                        .key("AIzaSyAocCFlcpTitCBLcc2Dtl8iY2mT7XrhvAk")
+                        .latlng(location.latitude, location.longitude)//현재 위치
+                        .radius(1000) //1 킬로미터 내에서 검색
+                        .type(PlaceType.BAKERY) //음식점
+                        .build().execute();
+            }
+            else{
+            if(!mobile.isConnected() && !wifi.isConnected()) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("네트워크 오류");
+                builder.setMessage("네트워크에 연결되어 있지 않아 동기화를 진행할 수 없습니다. 통신 상태를 확인해주세요." );
+                builder.setCancelable(true);
+                builder.setPositiveButton("설정", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent callNetworkSettingIntent
+                                = new Intent(Settings.ACTION_WIFI_SETTINGS);
+                        startActivity(callNetworkSettingIntent);
+                    }
+                });
+                builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id){
+                        dialog.cancel();
+                    }
+                });
+                builder.create().show();
+            }
         }
     }
 
@@ -436,11 +463,29 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                     1);
         } catch (IOException ioException) {
             //네트워크 문제
-            Toast.makeText(getActivity(), "지오코더 서비스 사용불가", Toast.LENGTH_LONG).show();
-            return "지오코더 서비스 사용불가";
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setTitle("네트워크 오류");
+            builder.setMessage("네트워크에 연결되어 있지 않아 동기화를 진행할 수 없습니다. 통신 상태를 확인해주세요." );
+            builder.setCancelable(true);
+            builder.setPositiveButton("설정", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int id) {
+                    Intent callNetworkSettingIntent
+                            = new Intent(Settings.ACTION_WIFI_SETTINGS);
+                    startActivity(callNetworkSettingIntent);
+                }
+            });
+            builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int id){
+                    dialog.cancel();
+                }
+            });
+            builder.create().show();
+            return "네트워크 연결 오류";
         } catch (IllegalArgumentException illegalArgumentException) {
-            Toast.makeText(getActivity(), "잘못된 GPS 좌표", Toast.LENGTH_LONG).show();
-            return "잘못된 GPS 좌표";
+            showDialogForLocationServiceSetting();
+            return "GPS 연결 오류";
 
         }
 
