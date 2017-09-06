@@ -67,13 +67,14 @@ import noman.googleplaces.PlacesException;
 import noman.googleplaces.PlacesListener;
 
 import static android.content.Context.LOCATION_SERVICE;
+
 public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener,
         PlacesListener {
 
-    LatLng currentPosition;
+    LatLng currentPosition = null;
     List<Marker> previous_marker = null;
 
     private GoogleApiClient mGoogleApiClient = null;
@@ -85,8 +86,8 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
     private static final String TAG = "googlemap_example";
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 2002;
-    private static final int UPDATE_INTERVAL_MS = 18000;  // 3분
-    private static final int FASTEST_UPDATE_INTERVAL_MS = 18000; // 3분
+    private static final int UPDATE_INTERVAL_MS = 1000;  // 3분
+    private static final int FASTEST_UPDATE_INTERVAL_MS = 500; // 3분
 
     boolean askPermissionOnceAgain = false;
     private View view;
@@ -94,7 +95,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         try {
             view = inflater.inflate(R.layout.fragment_map, container, false);
-        }catch (InflateException e) {
+
             FrameLayout fl = (FrameLayout) view.findViewById(R.id.fl_content);
             RelativeLayout rl = (RelativeLayout) view.findViewById(R.id.rl_contents);
             com.google.android.gms.maps.MapFragment fragment = new com.google.android.gms.maps.MapFragment();
@@ -107,7 +108,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
             map.getMapAsync(this);
             ft.add(R.id.map, map);
             ft.commit();
-        }//catch(NullPointerException e){
+        }catch (InflateException e) { }
             Button button = (Button) view.findViewById(R.id.button);
             mListView = (ListView) view.findViewById(R.id.listView);
             button.setOnClickListener(new View.OnClickListener() {
@@ -134,7 +135,6 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                     }
                 }
             });
-       // }
         return view;
     }
 
@@ -318,7 +318,8 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         //지도의 초기위치를 서울로 이동
         setCurrentLocation(null, "위치정보 가져올 수 없음",  "위치 퍼미션과 GPS 활성 요부 확인하세요");
 
-        mGoogleMap.getUiSettings().setCompassEnabled(true);
+        mGoogleMap.getUiSettings().setCompassEnabled(true); //나침반
+        map.moveCamera(CameraUpdateFactory.newLatLng(DEFAULT_LOCATION));
         //mGoogleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
 
@@ -359,22 +360,6 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
 
         }
 
-    }
-
-
-    @Override
-    public void onLocationChanged(Location location) {
-
-        currentPosition
-                = new LatLng( location.getLatitude(), location.getLongitude());
-
-        Log.d( TAG, "onLocationChanged");
-        String markerTitle = getCurrentAddress(location);
-        String markerSnippet = String.valueOf(location.getLatitude())
-                + String.valueOf(location.getLongitude());
-
-        //현재 위치에 마커 생성
-        setCurrentLocation(location, markerTitle, markerSnippet);
     }
 
 
@@ -424,16 +409,25 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
             mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
         }
     }
+    @Override
+    public void onLocationChanged(Location location) {
 
+        currentPosition
+                = new LatLng( location.getLatitude(), location.getLongitude());
+
+        Log.d( TAG, "onLocationChanged");
+        String markerTitle = getCurrentAddress(location);
+        String markerSnippet = String.valueOf(location.getLatitude())
+                + String.valueOf(location.getLongitude());
+
+        //현재 위치에 마커 생성
+        setCurrentLocation(location, markerTitle, markerSnippet);
+    }
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
-        Location location = null;
-        location.setLatitude(DEFAULT_LOCATION.latitude);
-        location.setLongitude(DEFAULT_LOCATION.longitude);
-
-        setCurrentLocation(null, "위치정보 가져올 수 없음",  "위치 퍼미션과 GPS 활성 요부 확인하세요");
     }
+
 
 
 
