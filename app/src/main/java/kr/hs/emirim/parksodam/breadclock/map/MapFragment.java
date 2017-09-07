@@ -30,7 +30,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -96,7 +96,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         try {
             view = inflater.inflate(R.layout.fragment_map, container, false);
 
-            FrameLayout fl = (FrameLayout) view.findViewById(R.id.fl_content);
+            //FrameLayout fl = (FrameLayout) view.findViewById(R.id.fl_content);
             RelativeLayout rl = (RelativeLayout) view.findViewById(R.id.rl_contents);
             com.google.android.gms.maps.MapFragment fragment = new com.google.android.gms.maps.MapFragment();
 
@@ -154,6 +154,10 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         mListView.setAdapter(mMyAdapter);
     }
 
+    public void sendInformation(){
+        ImageView
+    }
+
     @Override
     public String getTitle() {
         return "지도";
@@ -197,8 +201,6 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                     Log.e("빵빵:MapFrag", "가져온 정보 : " + m.getTitle());
                 }
                 dataSetting();
-
-
 
             }
         });
