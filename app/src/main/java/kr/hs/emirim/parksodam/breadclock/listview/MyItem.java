@@ -24,9 +24,7 @@ public class MyItem {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setName(String name) {this.name = name; }
 
     public String getContents() {
         return contents;

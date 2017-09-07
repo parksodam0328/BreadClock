@@ -143,10 +143,11 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
     private void dataSetting(){
 
         MyAdapter mMyAdapter = new MyAdapter();
+        Log.e(TAG,"==========================빵집리스트 목록 갱신====================");
+        for(Marker m : previous_marker){
+            Log.e(TAG,"빵집 추가 : "+m.getTitle()+"/ 빵 : ");
 
-
-        for (int i=0; i<8; i++) {
-            mMyAdapter.addItem(ContextCompat.getDrawable(getActivity(), R.mipmap.basicimg), "빵집 이름", "빵 이름");
+            mMyAdapter.addItem(ContextCompat.getDrawable(getActivity(),R.mipmap.basicimg), m.getTitle(), m.getSnippet());
         }
 
         /* 리스트뷰에 어댑터 등록 */
@@ -174,14 +175,14 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
             @Override
             public void run() {
                 for (noman.googleplaces.Place place : places) {
-
+                    Log.e(TAG,"아이콘? "+place.getIcon());
                     LatLng latLng
                             = new LatLng(place.getLatitude()
                             , place.getLongitude());
-
                     MarkerOptions markerOptions = new MarkerOptions();
                     markerOptions.position(latLng);
                     markerOptions.title(place.getName());
+                    markerOptions.snippet(place.getVicinity());
                     Marker item = mGoogleMap.addMarker(markerOptions);
                     previous_marker.add(item);
 
@@ -192,6 +193,12 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                 hashSet.addAll(previous_marker);
                 previous_marker.clear();
                 previous_marker.addAll(hashSet);
+                for(Marker m: hashSet) {
+                    Log.e("빵빵:MapFrag", "가져온 정보 : " + m.getTitle());
+                }
+                dataSetting();
+
+
 
             }
         });
