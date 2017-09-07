@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -30,6 +29,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -57,9 +57,8 @@ import java.util.Locale;
 
 import kr.hs.emirim.parksodam.breadclock.BaseFragment;
 import kr.hs.emirim.parksodam.breadclock.R;
+import kr.hs.emirim.parksodam.breadclock.bookmark.BookmarkFragment;
 import kr.hs.emirim.parksodam.breadclock.listview.MyAdapter;
-import kr.hs.emirim.parksodam.breadclock.listview.MyItem;
-import kr.hs.emirim.parksodam.breadclock.notice.BreadInformation;
 import noman.googleplaces.NRPlaces;
 import noman.googleplaces.Place;
 import noman.googleplaces.PlaceType;
@@ -67,6 +66,10 @@ import noman.googleplaces.PlacesException;
 import noman.googleplaces.PlacesListener;
 
 import static android.content.Context.LOCATION_SERVICE;
+import static kr.hs.emirim.parksodam.breadclock.R.id.iv_img;
+import static kr.hs.emirim.parksodam.breadclock.R.id.iv_image;
+import static kr.hs.emirim.parksodam.breadclock.R.id.tv_contents;
+import static kr.hs.emirim.parksodam.breadclock.R.id.tv_name;
 
 public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
@@ -92,11 +95,12 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
     boolean askPermissionOnceAgain = false;
     private View view;
     private ListView mListView;
+    private ImageView iv_bookmark;
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         try {
             view = inflater.inflate(R.layout.fragment_map, container, false);
 
-            //FrameLayout fl = (FrameLayout) view.findViewById(R.id.fl_content);
+            FrameLayout fl = (FrameLayout) view.findViewById(R.id.fl_content);
             RelativeLayout rl = (RelativeLayout) view.findViewById(R.id.rl_contents);
             com.google.android.gms.maps.MapFragment fragment = new com.google.android.gms.maps.MapFragment();
 
@@ -109,32 +113,64 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
             ft.add(R.id.map, map);
             ft.commit();
         }catch (InflateException e) { }
-            Button button = (Button) view.findViewById(R.id.button);
-            mListView = (ListView) view.findViewById(R.id.listView);
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    showPlaceInformation(currentPosition);
-                    ConnectivityManager manager = (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-                    NetworkInfo mobile = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-                    NetworkInfo wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-                    if (mobile.isConnected() || wifi.isConnected()) {
-                        dataSetting();
-                        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        Button button = (Button) view.findViewById(R.id.button);
+        mListView = (ListView) view.findViewById(R.id.listView);
+        iv_bookmark = (ImageView) view.findViewById(R.id.iv_image);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPlaceInformation(currentPosition);
+                ConnectivityManager manager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo mobile = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+                NetworkInfo wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+                if (mobile.isConnected() || wifi.isConnected()) {
+                    dataSetting();
+
+                    // if (sendInformation() != null) {
+                    mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            // 상세정보 화면으로 이동하기(인텐트 날리기)
+                            // 1. 다음화면을 만든다
+                            // 2. AndroidManifest.xml 에 화면을 등록한다
+                            // 3. Intent 객체를 생성하여 날린다
+                            Intent intent = new Intent(getActivity(), BookmarkFragment.class); // 다음넘어갈 화면
+
+                            // intent 객체에 데이터를 실어서 보내기
+                            // 리스트뷰 클릭시 인텐트 (Intent) 생성하고 position 값을 이용하여 인텐트로 넘길값들을 넘긴다
+                            intent.putExtra("name", tv_name);
+                            intent.putExtra("contents", tv_contents);
+                            intent.putExtra("icon", iv_img);
+                            intent.putExtra("name", iv_image);
+
+                            Log.d(TAG, "빵집 이름");
+                            Log.d(TAG, "위치");
+                            Log.d(TAG, "빵집 사진");
+                            Log.d(TAG, "즐겨찾기 버튼");
+
+                            startActivity(intent);
+                        }
+                    });
+                    try {
+                        iv_bookmark.setOnClickListener(new ImageView.OnClickListener() {
+
                             @Override
-                            public void onItemClick(AdapterView parent, View v, int position, long id) {
-                                // get item
-                                MyItem item = (MyItem) parent.getItemAtPosition(position);
-                                Intent intent = new Intent(getActivity(), BreadInformation.class);
-                                String titleStr = item.getName();
-                                String descStr = item.getContents();
-                                Drawable iconDrawable = item.getIcon();
-                                startActivity(intent);
+                            public void onClick(View v) {
+                                iv_bookmark = (ImageView) getActivity().findViewById(R.id.iv_image);
+                                iv_bookmark.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        iv_bookmark.setImageResource(R.drawable.star);
+                                        Log.d(TAG, "즐겨찾기");
+                                    }
+                                });
                             }
                         });
-                    }
+                    }catch (NullPointerException e){}
+                    //}
                 }
-            });
+            }
+        });
         return view;
     }
 
@@ -147,16 +183,13 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         for(Marker m : previous_marker){
             Log.e(TAG,"빵집 추가 : "+m.getTitle()+"/ 빵 : ");
 
-            mMyAdapter.addItem(ContextCompat.getDrawable(getActivity(),R.mipmap.basicimg), m.getTitle(), m.getSnippet(),ContextCompat.getDrawable(getActivity(),R.drawable.unstar));
+            mMyAdapter.addItem(ContextCompat.getDrawable(getActivity(),R.mipmap.basicimg), m.getTitle(), m.getSnippet(), ContextCompat.getDrawable(getActivity(), R.drawable.unstar));
         }
 
         /* 리스트뷰에 어댑터 등록 */
         mListView.setAdapter(mMyAdapter);
     }
 
-    public void sendInformation(){
-        ImageView
-    }
 
     @Override
     public String getTitle() {
@@ -202,6 +235,8 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                 }
                 dataSetting();
 
+
+
             }
         });
 
@@ -211,21 +246,21 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         ConnectivityManager manager = (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo mobile = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         NetworkInfo wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-            if(location!=null) {
-                mGoogleMap.clear();//지도 클리어
+        if(location!=null) {
+            mGoogleMap.clear();//지도 클리어
 
-                if (previous_marker != null)
-                    previous_marker.clear();//지역정보 마커 클리어
+            if (previous_marker != null)
+                previous_marker.clear();//지역정보 마커 클리어
 
-                new NRPlaces.Builder()
-                        .listener(this)
-                        .key("AIzaSyAocCFlcpTitCBLcc2Dtl8iY2mT7XrhvAk")
-                        .latlng(location.latitude, location.longitude)//현재 위치
-                        .radius(1000) //1 킬로미터 내에서 검색
-                        .type(PlaceType.BAKERY) //음식점
-                        .build().execute();
-            }
-            else{
+            new NRPlaces.Builder()
+                    .listener(this)
+                    .key("AIzaSyAocCFlcpTitCBLcc2Dtl8iY2mT7XrhvAk")
+                    .latlng(location.latitude, location.longitude)//현재 위치
+                    .radius(1000) //1 킬로미터 내에서 검색
+                    .type(PlaceType.BAKERY) //음식점
+                    .build().execute();
+        }
+        else{
             if(!mobile.isConnected() && !wifi.isConnected()) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("네트워크 오류");
