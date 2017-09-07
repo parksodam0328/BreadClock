@@ -44,11 +44,11 @@
         android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:background="@drawable/star_select"
-        android:layout_marginRight="30dp"
-        android:layout_marginEnd="30dp"
         android:layout_alignTop="@+id/iv_img"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:layout_marginRight="25dp"
+        android:layout_marginEnd="25dp"
         android:layout_alignBottom="@+id/iv_img" />
 
 

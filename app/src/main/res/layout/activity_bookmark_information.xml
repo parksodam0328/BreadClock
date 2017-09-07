@@ -9,13 +9,13 @@
 
     <ImageView
         android:id="@+id/imageView6"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
         android:layout_gravity="center"
         app:srcCompat="@drawable/paris"
-        android:layout_marginTop="61dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_above="@+id/textView11"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp" />
 
     <TextView
         android:id="@+id/textView11"
@@ -24,7 +24,8 @@
         android:gravity="center"
         android:text="빵집이름"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignLeft="@+id/textView12"
+        android:layout_alignStart="@+id/textView12" />
 
     <TextView
         android:id="@+id/textView12"
@@ -32,19 +33,20 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="빵집주소"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="18dp"
         android:layout_below="@+id/textView11"
-        android:layout_alignRight="@+id/textView11"
-        android:layout_alignEnd="@+id/textView11" />
+        android:layout_toLeftOf="@+id/imageView6"
+        android:layout_toStartOf="@+id/imageView6" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="볼륨 조절"
-        android:layout_marginTop="32dp"
-        android:layout_below="@+id/textView12"
-        android:layout_alignLeft="@+id/textView11"
-        android:layout_alignStart="@+id/textView11" />
+        android:gravity="center"
+        android:text="빵집주소"
+        android:layout_marginTop="18dp"
+        android:layout_below="@+id/textView11"
+        android:layout_toLeftOf="@+id/imageView6"
+        android:layout_toStartOf="@+id/imageView6" />
 
 </RelativeLayout>
