@@ -11,6 +11,7 @@ public class MyItem {
     private Drawable icon;
     private String name;
     private String contents;
+    private Drawable image;
 
     public Drawable getIcon() {
         return icon;
@@ -34,4 +35,7 @@ public class MyItem {
         this.contents = contents;
     }
 
+    public Drawable getImage() { return image; }
+
+    public void setImage(Drawable image) { this.image = image;}
 }

@@ -14,6 +14,6 @@ public class BookmarkInformation extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bread_information);
+        setContentView(R.layout.activity_bookmark_information);
     }
 }
