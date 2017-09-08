@@ -2,71 +2,66 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
         android:paddingLeft="10dp"
         android:text="일반"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
         android:textStyle="bold"
         android:visibility="visible"
-        />
+        android:layout_height="25dp" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:background="@drawable/button_setting"
         android:gravity="left|center_vertical"
+        android:onClick="onClick"
         android:paddingLeft="10dp"
         android:text="공지사항"
-        android:visibility="visible"
-        android:onClick="onClick"
-        />
+        android:visibility="visible" />
+
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:text="공지사항에 들어갈 내용들........."
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:textStyle="bold"
-        android:visibility="gone"
-        />
-
-
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="#dcdcdc" />
 
     <Button
         android:id="@+id/button4"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:background="@drawable/button_setting"
         android:gravity="left|center_vertical"
+        android:onClick="onClick"
         android:paddingLeft="10dp"
         android:text="버전"
-        android:visibility="visible"
-        android:onClick="onClick"
-        />
+        android:visibility="visible" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="#dcdcdc" />
 
     <Button
         android:id="@+id/button5"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:background="@drawable/button_setting"
         android:gravity="left|center_vertical"
+        android:onClick="onClick"
         android:paddingLeft="10dp"
-        android:text="사용방법"
-        android:onClick="onClick"/>
+        android:text="사용방법" />
 
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="25dp"
         android:paddingLeft="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp"
         android:text="문의"
         android:textStyle="bold"
@@ -75,30 +70,35 @@
     <Button
         android:id="@+id/button6"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:background="@drawable/button_setting"
         android:gravity="left|center_vertical"
+        android:onClick="onClick"
         android:paddingLeft="10dp"
-        android:text="많이 묻는 FAQ"
-        android:onClick="onClick"/>
+        android:text="많이 묻는 FAQ" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="#dcdcdc" />
 
     <Button
         android:id="@+id/button7"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:background="@drawable/button_setting"
         android:gravity="left|center_vertical"
+        android:onClick="onClick"
         android:paddingLeft="10dp"
-        android:text="제휴문의"
-        android:onClick="onClick"/>
+        android:text="제휴문의" />
 
 
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="25dp"
         android:paddingLeft="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp"
         android:text="소개"
         android:textStyle="bold"
@@ -107,12 +107,12 @@
     <Button
         android:id="@+id/button8"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:background="@drawable/button_setting"
         android:gravity="left|center_vertical"
+        android:onClick="onClick"
         android:paddingLeft="10dp"
-        android:text="빵클락"
-        android:onClick="onClick"/>
+        android:text="빵클락" />
 
 
 
