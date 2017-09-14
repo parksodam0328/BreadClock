@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
-android:layout_height="match_parent">
+android:layout_height="match_parent"
+    android:background="#ffffff">
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         android:name="com.google.android.gms.maps.MapFragment"
@@ -24,18 +26,19 @@ android:layout_height="match_parent">
 
 
     <RelativeLayout
+        android:id="@+id/rl_contents"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/rl_contents">
+        android:layout_height="match_parent">
 
         <ListView
             android:id="@+id/listView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/textView"
-            android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView"
             tools:ignore="UnknownIdInLayout">
         </ListView>
-</RelativeLayout>
+
+    </RelativeLayout>
 </LinearLayout>

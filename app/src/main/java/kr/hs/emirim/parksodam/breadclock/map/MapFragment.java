@@ -57,8 +57,8 @@ import java.util.Locale;
 
 import kr.hs.emirim.parksodam.breadclock.BaseFragment;
 import kr.hs.emirim.parksodam.breadclock.R;
-import kr.hs.emirim.parksodam.breadclock.bookmark.BookmarkFragment;
 import kr.hs.emirim.parksodam.breadclock.listview.MyAdapter;
+import kr.hs.emirim.parksodam.breadclock.notice.BreadInformation;
 import noman.googleplaces.NRPlaces;
 import noman.googleplaces.Place;
 import noman.googleplaces.PlaceType;
@@ -66,10 +66,6 @@ import noman.googleplaces.PlacesException;
 import noman.googleplaces.PlacesListener;
 
 import static android.content.Context.LOCATION_SERVICE;
-import static kr.hs.emirim.parksodam.breadclock.R.id.iv_img;
-import static kr.hs.emirim.parksodam.breadclock.R.id.iv_image;
-import static kr.hs.emirim.parksodam.breadclock.R.id.tv_contents;
-import static kr.hs.emirim.parksodam.breadclock.R.id.tv_name;
 
 public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
@@ -115,7 +111,6 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         }catch (InflateException e) { }
         Button button = (Button) view.findViewById(R.id.button);
         mListView = (ListView) view.findViewById(R.id.listView);
-        iv_bookmark = (ImageView) view.findViewById(R.id.iv_image);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,45 +125,18 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                     mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            // 상세정보 화면으로 이동하기(인텐트 날리기)
-                            // 1. 다음화면을 만든다
-                            // 2. AndroidManifest.xml 에 화면을 등록한다
-                            // 3. Intent 객체를 생성하여 날린다
-                            Intent intent = new Intent(getActivity(), BookmarkFragment.class); // 다음넘어갈 화면
-
-                            // intent 객체에 데이터를 실어서 보내기
-                            // 리스트뷰 클릭시 인텐트 (Intent) 생성하고 position 값을 이용하여 인텐트로 넘길값들을 넘긴다
-                            intent.putExtra("name", tv_name);
-                            intent.putExtra("contents", tv_contents);
-                            intent.putExtra("icon", iv_img);
-                            intent.putExtra("name", iv_image);
+                            Intent intent = new Intent(getActivity(), BreadInformation.class); // 다음넘어갈 화면
 
                             Log.d(TAG, "빵집 이름");
                             Log.d(TAG, "위치");
                             Log.d(TAG, "빵집 사진");
                             Log.d(TAG, "즐겨찾기 버튼");
-
                             startActivity(intent);
+
                         }
                     });
-                    try {
-                        iv_bookmark.setOnClickListener(new ImageView.OnClickListener() {
-
-                            @Override
-                            public void onClick(View v) {
-                                iv_bookmark = (ImageView) getActivity().findViewById(R.id.iv_image);
-                                iv_bookmark.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        iv_bookmark.setImageResource(R.drawable.star);
-                                        Log.d(TAG, "즐겨찾기");
-                                    }
-                                });
-                            }
-                        });
-                    }catch (NullPointerException e){}
-                    //}
                 }
+
             }
         });
         return view;
@@ -183,7 +151,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         for(Marker m : previous_marker){
             Log.e(TAG,"빵집 추가 : "+m.getTitle()+"/ 빵 : ");
 
-            mMyAdapter.addItem(ContextCompat.getDrawable(getActivity(),R.mipmap.basicimg), m.getTitle(), m.getSnippet(), ContextCompat.getDrawable(getActivity(), R.drawable.unstar));
+            mMyAdapter.addItem(ContextCompat.getDrawable(getActivity(),R.mipmap.basicimg), m.getTitle(), m.getSnippet(),ContextCompat.getDrawable(getActivity(),R.drawable.star_select));
         }
 
         /* 리스트뷰에 어댑터 등록 */
@@ -214,8 +182,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                 for (noman.googleplaces.Place place : places) {
                     Log.e(TAG,"아이콘? "+place.getIcon());
                     LatLng latLng
-                            = new LatLng(place.getLatitude()
-                            , place.getLongitude());
+                            = new LatLng(place.getLatitude(), place.getLongitude());
                     MarkerOptions markerOptions = new MarkerOptions();
                     markerOptions.position(latLng);
                     markerOptions.title(place.getName());
@@ -258,6 +225,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                     .latlng(location.latitude, location.longitude)//현재 위치
                     .radius(1000) //1 킬로미터 내에서 검색
                     .type(PlaceType.BAKERY) //음식점
+               //    .language("kor","kor_KO")
                     .build().execute();
         }
         else{
