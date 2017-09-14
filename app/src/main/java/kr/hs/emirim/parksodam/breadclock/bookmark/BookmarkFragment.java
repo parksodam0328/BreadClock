@@ -15,7 +15,6 @@ import kr.hs.emirim.parksodam.breadclock.BaseFragment;
 import kr.hs.emirim.parksodam.breadclock.R;
 import kr.hs.emirim.parksodam.breadclock.listview.MyAdapter;
 import kr.hs.emirim.parksodam.breadclock.listview.MyItem;
-import kr.hs.emirim.parksodam.breadclock.notice.BreadInformation;
 
 /**
  * Created by kim on 2017-07-29.
@@ -35,7 +34,7 @@ public class BookmarkFragment extends BaseFragment {
             public void onItemClick(AdapterView parent, View v, int position, long id) {
                 // get item
                 MyItem item = (MyItem) parent.getItemAtPosition(position);
-                Intent intent = new Intent(getActivity(), BreadInformation.class);
+                Intent intent = new Intent(getActivity(), BookmarkInformation.class);
                 String titleStr = item.getName();
                 String descStr = item.getContents();
                 Drawable iconDrawable = item.getIcon();

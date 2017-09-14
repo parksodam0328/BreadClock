@@ -5,10 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import kr.hs.emirim.parksodam.breadclock.R;
 
-/**
- * Created by kim on 2017-09-04.
- */
-
 public class BookmarkInformation extends AppCompatActivity {
 
     @Override
