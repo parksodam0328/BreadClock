@@ -57,8 +57,8 @@ import java.util.Locale;
 
 import kr.hs.emirim.parksodam.breadclock.BaseFragment;
 import kr.hs.emirim.parksodam.breadclock.R;
+import kr.hs.emirim.parksodam.breadclock.bookmark.BookmarkInformation;
 import kr.hs.emirim.parksodam.breadclock.listview.MyAdapter;
-import kr.hs.emirim.parksodam.breadclock.notice.BreadInformation;
 import noman.googleplaces.NRPlaces;
 import noman.googleplaces.Place;
 import noman.googleplaces.PlaceType;
@@ -108,40 +108,45 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
             map.getMapAsync(this);
             ft.add(R.id.map, map);
             ft.commit();
+
         }catch (InflateException e) { }
-        Button button = (Button) view.findViewById(R.id.button);
-        mListView = (ListView) view.findViewById(R.id.listView);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showPlaceInformation(currentPosition);
-                ConnectivityManager manager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-                NetworkInfo mobile = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-                NetworkInfo wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-                if (mobile.isConnected() || wifi.isConnected()) {
-                    dataSetting();
+        try {
+            Button button = (Button) view.findViewById(R.id.button);
+            mListView = (ListView) view.findViewById(R.id.listView);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-                    // if (sendInformation() != null) {
-                    mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            Intent intent = new Intent(getActivity(), BreadInformation.class); // 다음넘어갈 화면
+                    showPlaceInformation(currentPosition);
+                    Log.d(TAG, "연결 될까???");
+                    ConnectivityManager manager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+                    NetworkInfo mobile = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+                    NetworkInfo wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+                    if ((mobile.isConnected() || wifi.isConnected()) && (mobile.isAvailable() || wifi.isAvailable())) {
+                        dataSetting();
 
-                            Log.d(TAG, "빵집 이름");
-                            Log.d(TAG, "위치");
-                            Log.d(TAG, "빵집 사진");
-                            Log.d(TAG, "즐겨찾기 버튼");
-                            startActivity(intent);
+                        // if (sendInformation() != null) {
+                        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                Intent intent = new Intent(getActivity(), BookmarkInformation.class); // 다음넘어갈 화면
 
-                        }
-                    });
+                                Log.d(TAG, "빵집 이름");
+                                Log.d(TAG, "위치");
+                                Log.d(TAG, "빵집 사진");
+                                Log.d(TAG, "즐겨찾기 버튼");
+                                startActivity(intent);
+
+                            }
+                        });
+                    }
+
+
                 }
-
-            }
-        });
+            });
+        }catch (NullPointerException ne){}
         return view;
     }
-
 
 
     private void dataSetting(){
@@ -187,6 +192,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                     markerOptions.position(latLng);
                     markerOptions.title(place.getName());
                     markerOptions.snippet(place.getVicinity());
+                    markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.breadmarker));
                     Marker item = mGoogleMap.addMarker(markerOptions);
                     previous_marker.add(item);
 
@@ -210,6 +216,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
     }
 
     public void showPlaceInformation(LatLng location) {
+        Log.d(TAG,"연결 성공");
         ConnectivityManager manager = (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo mobile = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         NetworkInfo wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
@@ -229,7 +236,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                     .build().execute();
         }
         else{
-            if(!mobile.isConnected() && !wifi.isConnected()) {
+            if((!mobile.isConnected() && !wifi.isConnected())||(!mobile.isAvailable()&& !wifi.isAvailable())) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("네트워크 오류");
                 builder.setMessage("네트워크에 연결되어 있지 않아 동기화를 진행할 수 없습니다. 통신 상태를 확인해주세요." );
@@ -528,7 +535,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
             markerOptions.position(currentLocation);
             markerOptions.title(markerTitle);
             markerOptions.draggable(true);
-            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.locationmarker));
             currentMarker = mGoogleMap.addMarker(markerOptions);
 
             mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
@@ -539,7 +546,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         markerOptions.position(DEFAULT_LOCATION);
         markerOptions.title(markerTitle);
         markerOptions.draggable(true);
-        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
+        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.breadmarker));
         currentMarker = mGoogleMap.addMarker(markerOptions);
 
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(DEFAULT_LOCATION));

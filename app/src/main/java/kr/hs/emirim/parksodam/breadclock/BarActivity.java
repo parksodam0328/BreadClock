@@ -1,9 +1,10 @@
 package kr.hs.emirim.parksodam.breadclock;
 
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 
 import kr.hs.emirim.parksodam.breadclock.bookmark.BookmarkFragment;
 import kr.hs.emirim.parksodam.breadclock.map.MapFragment;
@@ -18,11 +19,16 @@ public class BarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bar);
+        //초기화
+        Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
 
-        TabLayout layout=(TabLayout) findViewById(R.id.tl_main);
+        //툴바 설정
+        setSupportActionBar(toolbar); //툴바를 액션바와 같게 만들어 준다.
+        TabLayout layout = (TabLayout) findViewById(R.id.tl_main);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
-        vp=(ViewPager) findViewById(R.id.vp_main);
+        vp = (ViewPager) findViewById(R.id.vp_main);
         FragmentPagerAdapter adapter = new FragmentPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new MapFragment());
         adapter.addFragment(new BookmarkFragment());

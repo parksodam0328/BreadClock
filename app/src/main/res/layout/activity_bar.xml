@@ -6,6 +6,25 @@
     android:layout_height="match_parent"
     tools:context="kr.hs.emirim.parksodam.breadclock.BarActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="#ff8c00"
+        android:minHeight="48dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            app:srcCompat="@drawable/breadclock"
+            android:gravity="center"
+            android:id="@+id/logo"/>
+
+      </android.support.v7.widget.Toolbar>
+
     <android.support.design.widget.TabLayout
         android:id="@+id/tl_main"
         android:layout_width="match_parent"
@@ -16,15 +35,17 @@
         app:tabSelectedTextColor="#FF0066"
         app:tabIndicatorColor="#FF0066"
         app:tabMode="fixed"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/my_toolbar"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignParentStart="true" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_main"
-        android:layout_below="@id/tl_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tl_main">
 
 
         //expandable listview 써서 펼치기
