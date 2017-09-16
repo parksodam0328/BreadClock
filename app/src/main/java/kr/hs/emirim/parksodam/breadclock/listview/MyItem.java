@@ -11,7 +11,7 @@ public class MyItem {
     private Drawable icon;
     private String name;
     private String contents;
-    private Drawable image;
+    private Drawable star;
 
     public Drawable getIcon() {
         return icon;
@@ -35,7 +35,11 @@ public class MyItem {
         this.contents = contents;
     }
 
-    public Drawable getImage() { return image; }
+    public Drawable getStar() {
+        return star;
+    }
 
-    public void setImage(Drawable image) { this.image = image;}
+    public void setStar(Drawable star) {
+        this.star = star;
+    }
 }

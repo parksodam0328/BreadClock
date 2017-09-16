@@ -52,7 +52,7 @@ public class NoticeFragment extends BaseFragment {
 
 
         for (int i=0; i<10; i++) {
-            mMyAdapter.addItem(ContextCompat.getDrawable(getActivity(), R.mipmap.ic_launcher), "빵집 이름", "빵 이름", (ContextCompat.getDrawable(getActivity(), R.drawable.unstar)));
+            mMyAdapter.addItem(ContextCompat.getDrawable(getActivity(), R.mipmap.ic_launcher), "빵집 이름", "빵 이름" ,ContextCompat.getDrawable(getActivity(),R.drawable.toggle_off));
 
         }
 
