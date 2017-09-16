@@ -40,12 +40,11 @@
         <activity android:name=".NotificationMainActivity" />
         <activity android:name=".set.VersionActivity" />
         <activity android:name=".set.FAQActivity" />
-        <activity android:name=".set.HowToUseActivity" />
         <activity android:name=".set.ContactUsActivity" />
-        <activity android:name=".set.IntroduceActivity" />
+        <activty android:name=".set.HowToUseActivity" />
+        <activiity android:name=".set.IntroduceActivity" />
         <activity android:name=".bookmark.BookmarkInformation" />
         <activity android:name=".notice.BreadInformation" />
-        <activity android:name=".Search"></activity>
     </application>
 
 </manifest>
