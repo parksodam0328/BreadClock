@@ -18,14 +18,10 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/breadclock"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginRight="20dp"
-            app:srcCompat="@drawable/search_icon"/>
+            android:layout_marginLeft="15dp"
+            app:srcCompat="@drawable/breadclock"
+            android:gravity="center"
+            android:id="@+id/logo"/>
 
       </android.support.v7.widget.Toolbar>
 

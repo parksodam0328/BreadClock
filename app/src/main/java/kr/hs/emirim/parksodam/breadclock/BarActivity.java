@@ -26,6 +26,8 @@ public class BarActivity extends AppCompatActivity {
         setSupportActionBar(toolbar); //툴바를 액션바와 같게 만들어 준다.
         TabLayout layout = (TabLayout) findViewById(R.id.tl_main);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+
         vp = (ViewPager) findViewById(R.id.vp_main);
         FragmentPagerAdapter adapter = new FragmentPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new MapFragment());

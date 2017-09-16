@@ -1,10 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="kr.hs.emirim.parksodam.breadclock.set.FAQActivity">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/my_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="#ff8c00"
+            android:minHeight="48dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <ImageView
+                    android:id="@+id/back_icon"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:gravity="left"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/back" />
+
+                <ImageView
+                    android:id="@+id/logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/breadclock" />
+            </LinearLayout>
+        </android.support.v7.widget.Toolbar>
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -24,8 +57,8 @@ A. 사용자 주변의 빵집을 조회하기위해서 GPS 권한 허용이 필�
 
 Q. 빵집 주인인데 어떻게 빵집 알림 등록을 할 수 있을까요?\n
 A. http://www.빵클락주소 로 이동하여 회원가입을 해주세요.\n
-자세한 내용은 설정에 '제휴문의'를 눌러서 확인해주세요!\n\n"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp" />
+자세한 내용은 설정에 '제휴문의'를 눌러서 확인해주세요!\n\n">
 
-</android.support.constraint.ConstraintLayout>
+    </TextView>
+
+</LinearLayout>
