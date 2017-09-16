@@ -1,63 +1,61 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="kr.hs.emirim.parksodam.breadclock.bookmark.BookmarkInformation">
+android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        app:srcCompat="@drawable/paris"
-        android:layout_above="@+id/textView11"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="15dp" />
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="20dp"
+        app:srcCompat="@drawable/paris" />
 
-    <TextView
-        android:id="@+id/textView11"
+    <LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <TextView android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="빵집이름" />
+
+    <TextView android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="빵집주소" />
+
+    <TextView android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="전화번호" />
+
+    <TextView android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="오픈시간" />
+
+
+
+</LinearLayout>
+
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="파리바게트 IFC몰점  (빵집이름)"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/imageView6"
-        android:layout_alignStart="@+id/imageView6" />
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text=" 서울 영등포구 국제금융로 10 (여의도동) IFC몰 L2F  (빵집주소)"
-        android:layout_marginTop="36dp"
-        android:layout_below="@+id/textView11"
-        android:layout_alignLeft="@+id/textView11"
-        android:layout_alignStart="@+id/textView11" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Button1" />
 
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="02-6137-5900  (전화번호)"
-        android:layout_marginTop="35dp"
-        android:layout_below="@+id/textView12"
-        android:layout_alignLeft="@+id/textView12"
-        android:layout_alignStart="@+id/textView12" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Button2" />
 
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="오픈시간"
-        android:layout_marginTop="40dp"
-        android:layout_below="@+id/textView13"
-        android:layout_alignLeft="@+id/textView13"
-        android:layout_alignStart="@+id/textView13" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Button3" />
 
-</RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

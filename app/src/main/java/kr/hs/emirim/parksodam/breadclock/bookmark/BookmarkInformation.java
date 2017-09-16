@@ -13,4 +13,5 @@ public class BookmarkInformation extends AppCompatActivity {
         setContentView(R.layout.activity_bookmark_information);
     }
 
+
 }
