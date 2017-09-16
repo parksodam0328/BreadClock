@@ -51,7 +51,7 @@ public class BookmarkFragment extends BaseFragment {
 
 
         for (int i=0; i<8; i++) {
-            mMyAdapter.addItem(ContextCompat.getDrawable(getActivity(), R.mipmap.basicimg), "빵집 이름", "빵 이름", ContextCompat.getDrawable(getActivity(),R.drawable.toggle_selector));
+            mMyAdapter.addItem(ContextCompat.getDrawable(getActivity(), R.mipmap.basicimg), "빵집 이름", "빵 이름", ContextCompat.getDrawable(getActivity(),R.drawable.bookmark_select));
         }
 
 

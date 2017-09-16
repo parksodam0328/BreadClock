@@ -57,8 +57,8 @@ import java.util.Locale;
 
 import kr.hs.emirim.parksodam.breadclock.BaseFragment;
 import kr.hs.emirim.parksodam.breadclock.R;
+import kr.hs.emirim.parksodam.breadclock.bookmark.BookmarkInformation;
 import kr.hs.emirim.parksodam.breadclock.listview.MyAdapter;
-import kr.hs.emirim.parksodam.breadclock.notice.BreadInformation;
 import noman.googleplaces.NRPlaces;
 import noman.googleplaces.Place;
 import noman.googleplaces.PlaceType;
@@ -108,6 +108,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
             map.getMapAsync(this);
             ft.add(R.id.map, map);
             ft.commit();
+
         }catch (InflateException e) { }
         Button button = (Button) view.findViewById(R.id.button);
         mListView = (ListView) view.findViewById(R.id.listView);
@@ -115,6 +116,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
             @Override
             public void onClick(View v) {
                 showPlaceInformation(currentPosition);
+                Log.d(TAG,"연결 성공");
                 ConnectivityManager manager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
                 NetworkInfo mobile = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
                 NetworkInfo wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
@@ -125,7 +127,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                     mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            Intent intent = new Intent(getActivity(), BreadInformation.class); // 다음넘어갈 화면
+                            Intent intent = new Intent(getActivity(), BookmarkInformation.class); // 다음넘어갈 화면
 
                             Log.d(TAG, "빵집 이름");
                             Log.d(TAG, "위치");
@@ -137,11 +139,11 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                     });
                 }
 
+
             }
         });
         return view;
     }
-
 
 
     private void dataSetting(){
@@ -151,7 +153,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         for(Marker m : previous_marker){
             Log.e(TAG,"빵집 추가 : "+m.getTitle()+"/ 빵 : ");
 
-            mMyAdapter.addItem(ContextCompat.getDrawable(getActivity(),R.mipmap.basicimg), m.getTitle(), m.getSnippet(),ContextCompat.getDrawable(getActivity(),R.drawable.star_select));
+            mMyAdapter.addItem(ContextCompat.getDrawable(getActivity(),R.mipmap.basicimg), m.getTitle(), m.getSnippet(),ContextCompat.getDrawable(getActivity(),R.drawable.bookmark_select));
         }
 
         /* 리스트뷰에 어댑터 등록 */
@@ -187,6 +189,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                     markerOptions.position(latLng);
                     markerOptions.title(place.getName());
                     markerOptions.snippet(place.getVicinity());
+                    markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.breadmarker));
                     Marker item = mGoogleMap.addMarker(markerOptions);
                     previous_marker.add(item);
 
@@ -210,6 +213,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
     }
 
     public void showPlaceInformation(LatLng location) {
+        Log.d(TAG,"연결 성공");
         ConnectivityManager manager = (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo mobile = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         NetworkInfo wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
@@ -528,7 +532,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
             markerOptions.position(currentLocation);
             markerOptions.title(markerTitle);
             markerOptions.draggable(true);
-            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.locationmarker));
             currentMarker = mGoogleMap.addMarker(markerOptions);
 
             mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
@@ -539,7 +543,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         markerOptions.position(DEFAULT_LOCATION);
         markerOptions.title(markerTitle);
         markerOptions.draggable(true);
-        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
+        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.breadmarker));
         currentMarker = mGoogleMap.addMarker(markerOptions);
 
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(DEFAULT_LOCATION));
