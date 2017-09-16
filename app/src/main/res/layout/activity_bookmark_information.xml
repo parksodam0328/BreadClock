@@ -33,10 +33,10 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text=" 서울 영등포구 국제금융로 10 (여의도동) IFC몰 L2F  (빵집주소)"
+        android:layout_marginTop="36dp"
         android:layout_below="@+id/textView11"
         android:layout_alignLeft="@+id/textView11"
-        android:layout_alignStart="@+id/textView11"
-        android:layout_marginTop="36dp" />
+        android:layout_alignStart="@+id/textView11" />
 
     <TextView
         android:id="@+id/textView13"
@@ -59,43 +59,5 @@
         android:layout_below="@+id/textView13"
         android:layout_alignLeft="@+id/textView13"
         android:layout_alignStart="@+id/textView13" />
-
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:srcCompat="@drawable/breadpop_bread1"
-        android:layout_marginTop="18dp"
-        android:layout_below="@+id/textView14"
-        android:layout_alignLeft="@+id/textView14"
-        android:layout_alignStart="@+id/textView14" />
-
-    <ImageButton
-        android:id="@+id/imageButton4"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignLeft="@+id/textView14"
-        android:layout_alignStart="@+id/textView14"
-        android:layout_below="@+id/textView14"
-        android:layout_marginTop="18dp"
-        app:srcCompat="@drawable/breadpop_bread1" />
-
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:srcCompat="@drawable/breadpop_bread1"
-        android:layout_alignTop="@+id/imageButton"
-        android:layout_centerHorizontal="true" />
-
-
-    <ImageButton
-        android:id="@+id/imageButton3"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:srcCompat="@drawable/breadpop_bread1"
-        android:layout_alignTop="@+id/imageButton2"
-        android:layout_alignRight="@+id/imageView6"
-        android:layout_alignEnd="@+id/imageView6" />
 
 </RelativeLayout>
