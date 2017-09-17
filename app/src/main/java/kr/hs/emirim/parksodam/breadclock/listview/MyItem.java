@@ -42,4 +42,6 @@ public class MyItem {
     public void setStar(Drawable star) {
         this.star = star;
     }
+
+
 }
