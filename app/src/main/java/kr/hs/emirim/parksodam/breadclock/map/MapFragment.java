@@ -122,7 +122,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                     ConnectivityManager manager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
                     NetworkInfo mobile = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
                     NetworkInfo wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-                    if ((mobile.isConnected() || wifi.isConnected()) && (mobile.isAvailable() || wifi.isAvailable())) {
+                    if (mobile.isConnected() || wifi.isConnected()) {
                         dataSetting();
 
                         // if (sendInformation() != null) {
@@ -232,11 +232,11 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                     .latlng(location.latitude, location.longitude)//현재 위치
                     .radius(1000) //1 킬로미터 내에서 검색
                     .type(PlaceType.BAKERY) //음식점
-               //    .language("kor","kor_KO")
+                    //    .language("kor","kor_KO")
                     .build().execute();
         }
         else{
-            if((!mobile.isConnected() && !wifi.isConnected())||(!mobile.isAvailable()&& !wifi.isAvailable())) {
+            if(!mobile.isConnected() || !wifi.isConnected()) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("네트워크 오류");
                 builder.setMessage("네트워크에 연결되어 있지 않아 동기화를 진행할 수 없습니다. 통신 상태를 확인해주세요." );
