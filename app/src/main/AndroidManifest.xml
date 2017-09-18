@@ -12,7 +12,7 @@
 
     <application
         android:allowBackup="false"
-        android:icon="@drawable/breadclock_icon"
+        android:icon="@drawable/icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -39,10 +39,9 @@
         <activity android:name=".set.VersionActivity" />
         <activity android:name=".set.FAQActivity" />
         <activity android:name=".set.ContactUsActivity" />
-        <activty android:name=".set.HowToUseActivity" />
-        <activiity android:name=".set.IntroduceActivity" />
+        <activity android:name=".set.HowToUseActivity" />
+        <activity android:name=".set.IntroduceActivity" />
         <activity android:name=".bookmark.BookmarkInformation" />
-<<<<<<< HEAD
         <activity android:name=".notice.AddEditAlarmActivity" />
         <activity
             android:name=".notice.AlarmLandingPageActivity"
@@ -51,10 +50,7 @@
         <receiver android:name=".notice.LoadAlarmsReceiver" />
         <receiver android:name=".notice.AlarmReceiver" />
         <activity android:name=".notice.BreadInformation" ></activity>
-=======
 
-        <activity android:name=".notice.BreadInformation"></activity>
->>>>>>> 84e8ce3b8c2eb075aee43eb8b881214f68a35e9a
     </application>
 
 </manifest>

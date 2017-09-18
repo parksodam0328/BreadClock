@@ -47,7 +47,7 @@
         android:id="@+id/imageView4"
         android:layout_width="148dp"
         android:layout_height="206dp"
-        app:srcCompat="@drawable/breadclock_icon"
+        app:srcCompat="@drawable/icon"
         tools:layout_editor_absoluteY="53dp"
         tools:layout_editor_absoluteX="46dp"
             android:layout_marginLeft="18dp"

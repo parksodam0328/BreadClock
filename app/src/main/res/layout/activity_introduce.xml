@@ -45,11 +45,11 @@
     </LinearLayout>
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="134dp"
+        android:layout_width="180dp"
         android:layout_height="245dp"
         android:layout_gravity="center"
         android:layout_weight="0.33"
-        app:srcCompat="@drawable/breadclock_icon" />
+        app:srcCompat="@drawable/icon" />
 
     <TextView
         android:id="@+id/textView"
