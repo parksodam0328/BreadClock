@@ -9,8 +9,7 @@ import android.widget.Toast;
 
 import kr.hs.emirim.parksodam.breadclock.R;
 
-
-public class BookmarkInformation extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     GridView gridView;
 
@@ -24,12 +23,12 @@ public class BookmarkInformation extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         gridView = (GridView) findViewById(R.id.gridView);
-        GridAdapter adapter=new GridAdapter(BookmarkInformation.this,lettersIcon , letterList);
+        GridAdapter adapter=new GridAdapter(MainActivity.this,lettersIcon , letterList);
 
         gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-                Toast.makeText(BookmarkInformation.this, "Clicked Letter : " + letterList[position], Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Clicked Letter : " + letterList[position], Toast.LENGTH_SHORT).show();
             }
         });
 

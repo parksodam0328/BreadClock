@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="0dp"
+        android:layout_height="600dp"
+        android:orientation="vertical"
+        tools:context="kr.hs.emirim.parksodam.breadclock.bookmark.BookmarkInformation"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="8dp">
+
+
+        <ImageView
+            android:id="@+id/bakeryimage"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:layout_marginBottom="15dp"
+            app:srcCompat="@drawable/paris" />
+
+
+
+    <TextView
+        android:id="@+id/bakeryname"
+        android:layout_width="392dp"
+        android:layout_height="26dp"
+        android:text="빵집이름"
+        android:layout_alignLeft="@id/bakeryimage"
+        android:layout_marginLeft="30dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="265dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/bakeryadd"
+        android:layout_width="391dp"
+        android:layout_height="23dp"
+        android:layout_below="@id/bakeryname"
+        android:layout_alignLeft="@id/bakeryimage"
+        android:layout_marginLeft="30dp"
+        android:text="빵집주소"
+        tools:layout_editor_absoluteY="297dp"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/bakerytel"
+        android:layout_width="385dp"
+        android:layout_height="24dp"
+        android:layout_below="@id/bakeryadd"
+        android:layout_alignLeft="@id/bakeryimage"
+        android:layout_marginLeft="30dp"
+        android:text="전화번호"
+        tools:layout_editor_absoluteY="326dp"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/bakeryopen"
+        android:layout_width="388dp"
+        android:layout_height="24dp"
+        android:layout_below="@id/bakerytel"
+        android:layout_alignLeft="@id/bakeryimage"
+        android:layout_marginLeft="30dp"
+        android:text="오픈시간"
+        tools:layout_editor_absoluteY="362dp"
+        tools:layout_editor_absoluteX="0dp" />
+        <TextView
+            android:id="@+id/breadbookmark"
+            android:layout_width="388dp"
+            android:layout_height="24dp"
+            android:layout_below="@id/bakeryopen"
+            android:layout_alignLeft="@id/bakeryimage"
+            android:layout_marginLeft="30dp"
+            android:text="빵 즐겨찾기( 빵 사진을 누르면 알림에 추가됩니다 )"
+            tools:layout_editor_absoluteY="362dp"
+            tools:layout_editor_absoluteX="0dp" />
+
+    <GridView
+        android:id="@+id/gridView"
+        android:layout_marginLeft="10dp"
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        android:columnWidth="100dp"
+        android:numColumns="auto_fit"
+        android:stretchMode="columnWidth"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="390dp" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

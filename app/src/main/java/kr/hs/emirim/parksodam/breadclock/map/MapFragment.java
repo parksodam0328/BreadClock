@@ -232,7 +232,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                     .latlng(location.latitude, location.longitude)//현재 위치
                     .radius(1000) //1 킬로미터 내에서 검색
                     .type(PlaceType.BAKERY) //음식점
-               //    .language("kor","kor_KO")
+                    //    .language("kor","kor_KO")
                     .build().execute();
         }
         else{
