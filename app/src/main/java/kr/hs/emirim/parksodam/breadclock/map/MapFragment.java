@@ -236,7 +236,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                     .build().execute();
         }
         else{
-            if(!mobile.isConnected() || !wifi.isConnected()) {
+            if(!mobile.isConnected() && !wifi.isConnected()) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("네트워크 오류");
                 builder.setMessage("네트워크에 연결되어 있지 않아 동기화를 진행할 수 없습니다. 통신 상태를 확인해주세요." );
