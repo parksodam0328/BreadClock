@@ -5,7 +5,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-
+import kr.hs.emirim.parksodam.breadclock.Adapter.FragmentPagerAdapter;
 import kr.hs.emirim.parksodam.breadclock.bookmark.BookmarkFragment;
 import kr.hs.emirim.parksodam.breadclock.map.MapFragment;
 import kr.hs.emirim.parksodam.breadclock.notice.NoticeFragment;

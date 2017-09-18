@@ -1,4 +1,4 @@
-package kr.hs.emirim.parksodam.breadclock.listview;
+package kr.hs.emirim.parksodam.breadclock.Adapter;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import kr.hs.emirim.parksodam.breadclock.R;
 
 public class MyAdapter extends BaseAdapter {
-
+   public boolean check=true;
     /* 아이템을 세트로 담기 위한 어레이 */
     private ArrayList<MyItem> mItems = new ArrayList<>();
 
@@ -45,10 +45,10 @@ public class MyAdapter extends BaseAdapter {
         }
 
         /* 'listview_custom'에 정의된 위젯에 대한 참조 획득 */
-        ImageView iv_img = (ImageView) convertView.findViewById(R.id.iv_img);
+        final ImageView iv_img = (ImageView) convertView.findViewById(R.id.iv_img);
         TextView tv_name = (TextView) convertView.findViewById(R.id.tv_name);
         TextView tv_contents = (TextView) convertView.findViewById(R.id.tv_contents);
-        ImageView iv_star = (ImageView) convertView.findViewById(R.id.iv_star);
+        final ImageView iv_star = (ImageView) convertView.findViewById(R.id.iv_star);
 
         /* 각 리스트에 뿌려줄 아이템을 받아오는데 mMyItem 재활용 */
         MyItem myItem = getItem(position);
@@ -58,11 +58,24 @@ public class MyAdapter extends BaseAdapter {
         tv_name.setText(myItem.getName());
         tv_contents.setText(myItem.getContents());
         iv_star.setImageDrawable(myItem.getStar());
-
-        /* (위젯에 대한 이벤트리스너를 지정하고 싶다면 여기에 작성하면된다..)  */
+        /* (위젯에 대한 이벤트리스너를 지정하고 싶다면 여기에 작성하면된다) */
+        iv_star.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    if(check==true) {
+                        iv_star.setImageResource(R.drawable.star);
+                        check=false;
+                    }
+                    else {
+                        iv_star.setImageResource(R.drawable.unstar);
+                        check=true;
+                    }
+            }
+        });
 
         return convertView;
     }
+
 
     /* 아이템 데이터 추가를 위한 함수. 자신이 원하는대로 작성 */
     public void addItem(Drawable img, String name, String contents, Drawable star) {
