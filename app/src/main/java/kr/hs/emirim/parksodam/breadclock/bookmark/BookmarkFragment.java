@@ -45,19 +45,22 @@ public class BookmarkFragment extends BaseFragment {
         return view;
     }
 
-    private void dataSetting(){
+    private void dataSetting() {
 
         MyAdapter mMyAdapter = new MyAdapter();
 
 
-        for (int i=0; i<8; i++) {
-            mMyAdapter.addItem(ContextCompat.getDrawable(getActivity(), R.mipmap.basicimg), "빵집 이름", "빵 이름", ContextCompat.getDrawable(getActivity(),R.drawable.star_select));
+        for (int i = 0; i < 8; i++) {
+            mMyAdapter.addItem(ContextCompat.getDrawable(getActivity(), R.mipmap.basicimg), "빵집 이름", "빵 이름", ContextCompat.getDrawable(getActivity(), R.drawable.star_select));
         }
 
 
         /* 리스트뷰에 어댑터 등록 */
         mListView.setAdapter(mMyAdapter);
+
     }
+
+
 
     @Override
     public String getTitle() {

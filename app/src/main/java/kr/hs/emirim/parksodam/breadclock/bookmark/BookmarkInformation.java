@@ -60,4 +60,5 @@ public class BookmarkInformation extends AppCompatActivity {
         );
 
     }
+
 }
