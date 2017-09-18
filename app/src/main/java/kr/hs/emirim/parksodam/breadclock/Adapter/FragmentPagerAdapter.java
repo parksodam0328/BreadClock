@@ -1,10 +1,11 @@
-package kr.hs.emirim.parksodam.breadclock;
+package kr.hs.emirim.parksodam.breadclock.Adapter;
 
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import kr.hs.emirim.parksodam.breadclock.BaseFragment;
 
 /**
  * Created by kim on 2017-07-29.

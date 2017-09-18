@@ -13,8 +13,8 @@ import android.widget.ListView;
 
 import kr.hs.emirim.parksodam.breadclock.BaseFragment;
 import kr.hs.emirim.parksodam.breadclock.R;
-import kr.hs.emirim.parksodam.breadclock.listview.MyAdapter;
-import kr.hs.emirim.parksodam.breadclock.listview.MyItem;
+import kr.hs.emirim.parksodam.breadclock.Adapter.MyAdapter;
+import kr.hs.emirim.parksodam.breadclock.Adapter.MyItem;
 
 /**
  * Created by kim on 2017-07-29.

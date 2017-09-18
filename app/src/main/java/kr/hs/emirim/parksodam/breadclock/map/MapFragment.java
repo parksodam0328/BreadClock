@@ -58,7 +58,7 @@ import java.util.Locale;
 import kr.hs.emirim.parksodam.breadclock.BaseFragment;
 import kr.hs.emirim.parksodam.breadclock.R;
 import kr.hs.emirim.parksodam.breadclock.bookmark.BookmarkInformation;
-import kr.hs.emirim.parksodam.breadclock.listview.MyAdapter;
+import kr.hs.emirim.parksodam.breadclock.Adapter.MyAdapter;
 import noman.googleplaces.NRPlaces;
 import noman.googleplaces.Place;
 import noman.googleplaces.PlaceType;

@@ -35,20 +35,21 @@
                 android:name="android.app.searchable"
                 android:resource="@menu/action_bar" />
         </activity>
-        <activity android:name=".NotificationSomethings" />
         <activity android:name=".set.NoticeActivity" />
-        <activity android:name=".NotificationMainActivity" />
         <activity android:name=".set.VersionActivity" />
         <activity android:name=".set.FAQActivity" />
         <activity android:name=".set.ContactUsActivity" />
         <activty android:name=".set.HowToUseActivity" />
         <activiity android:name=".set.IntroduceActivity" />
         <activity android:name=".bookmark.BookmarkInformation" />
-<<<<<<< HEAD
-        <activity android:name=".notice.BreadInformation" />
-=======
-        <activity android:name=".notice.BreadInformation"></activity>
->>>>>>> 51f320309c7dfe5111c8269f28788d9dc09e7d01
+        <activity android:name=".notice.AddEditAlarmActivity" />
+        <activity
+            android:name=".notice.AlarmLandingPageActivity"
+            android:theme="@style/AppTheme" />
+        <service android:name=".notice.LoadAlarmsService" />
+        <receiver android:name=".notice.LoadAlarmsReceiver" />
+        <receiver android:name=".notice.AlarmReceiver" />
+        <activity android:name=".notice.BreadInformation" ></activity>
     </application>
 
 </manifest>
