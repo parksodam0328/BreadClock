@@ -75,7 +75,7 @@
         android:gravity="left|center_vertical"
         android:onClick="onClick"
         android:paddingLeft="10dp"
-        android:text="많이 묻는 FAQ" />
+        android:text="많이 묻는 질문" />
 
     <TextView
         android:layout_width="match_parent"

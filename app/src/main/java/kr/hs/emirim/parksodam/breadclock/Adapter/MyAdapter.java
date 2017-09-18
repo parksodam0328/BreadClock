@@ -1,9 +1,5 @@
 package kr.hs.emirim.parksodam.breadclock.Adapter;
 
-/**
- * Created by parksodam on 2017-09-03.
- */
-
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
@@ -96,7 +92,6 @@ public class MyAdapter extends BaseAdapter {
         mItems.add(mItem);
 
     }
-
 
 
 }

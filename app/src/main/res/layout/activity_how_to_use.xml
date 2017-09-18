@@ -59,12 +59,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="1. GPS를 킨 후 자기 주변의 빵집을 확인한다.\n
+        android:text="
+1. GPS를 킨 후 자기 주변의 빵집을 확인한다.\n
 2. 시간대 알림을 받고싶은 빵집을 선택한다.\n
 3. 그 빵집의 시간대 알림을 받고싶은 빵을 즐겨찾기한다.\n
 4. 빵의 알림이 오기를 기다린다.\n
 5. 따뜻하고 맛있는 빵을 먹는다.\n
-6. PLAY스토어에 들어가 빵클락 별점을 남긴다."
-         />
+6. PLAY스토어에 들어가 빵클락 별점을 남긴다.">
 
+    </TextView>
 </LinearLayout>
