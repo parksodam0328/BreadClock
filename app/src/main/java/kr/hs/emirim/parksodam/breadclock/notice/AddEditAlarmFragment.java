@@ -11,10 +11,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import java.util.Calendar;
 
@@ -27,7 +27,7 @@ public final class AddEditAlarmFragment extends Fragment {
 
     private TimePicker mTimePicker;
     private EditText mLabel;
-    private CheckBox mMon, mTues, mWed, mThurs, mFri, mSat, mSun;
+    private ToggleButton mMon, mTues, mWed, mThurs, mFri, mSat, mSun;
 
     public static AddEditAlarmFragment newInstance(Alarm alarm) {
 
@@ -55,13 +55,13 @@ public final class AddEditAlarmFragment extends Fragment {
         mLabel = (EditText) v.findViewById(R.id.edit_alarm_label);
         mLabel.setText(alarm.getLabel());
 
-        mMon = (CheckBox) v.findViewById(R.id.edit_alarm_mon);
-        mTues = (CheckBox) v.findViewById(R.id.edit_alarm_tues);
-        mWed = (CheckBox) v.findViewById(R.id.edit_alarm_wed);
-        mThurs = (CheckBox) v.findViewById(R.id.edit_alarm_thurs);
-        mFri = (CheckBox) v.findViewById(R.id.edit_alarm_fri);
-        mSat = (CheckBox) v.findViewById(R.id.edit_alarm_sat);
-        mSun = (CheckBox) v.findViewById(R.id.edit_alarm_sun);
+        mMon = (ToggleButton) v.findViewById(R.id.edit_alarm_mon);
+        mTues = (ToggleButton) v.findViewById(R.id.edit_alarm_tues);
+        mWed = (ToggleButton) v.findViewById(R.id.edit_alarm_wed);
+        mThurs = (ToggleButton) v.findViewById(R.id.edit_alarm_thurs);
+        mFri = (ToggleButton) v.findViewById(R.id.edit_alarm_fri);
+        mSat = (ToggleButton) v.findViewById(R.id.edit_alarm_sat);
+        mSun = (ToggleButton) v.findViewById(R.id.edit_alarm_sun);
 
         setDayCheckboxes(alarm);
 

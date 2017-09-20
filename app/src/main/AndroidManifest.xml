@@ -42,22 +42,18 @@
         <activity android:name=".set.HowToUseActivity" />
         <activity android:name=".set.IntroduceActivity" />
         <activity android:name=".bookmark.BookmarkInformation" />
-<<<<<<< HEAD
-
-=======
->>>>>>> e4cce6937b414b01126ce4f28eafc9aaa328e731
         <activity android:name=".notice.AddEditAlarmActivity" />
         <activity
             android:name=".notice.AlarmLandingPageActivity"
             android:theme="@style/AppTheme" />
+
         <service android:name=".notice.LoadAlarmsService" />
+
         <receiver android:name=".notice.LoadAlarmsReceiver" />
         <receiver android:name=".notice.AlarmReceiver" />
-        <activity android:name=".notice.BreadInformation" ></activity>
-<<<<<<< HEAD
-=======
 
->>>>>>> e4cce6937b414b01126ce4f28eafc9aaa328e731
+        <activity android:name=".notice.BreadInformation" />
+        <activity android:name=".Adapter.Main2Activity"></activity>
     </application>
 
 </manifest>

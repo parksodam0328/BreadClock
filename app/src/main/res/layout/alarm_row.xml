@@ -60,7 +60,7 @@
             android:layout_width="150dp"
             android:layout_gravity="right"
             android:layout_height="wrap_content"
-            tools:text="M Tu W Th F Sa Su" />
+            tools:text="월   화   수   목   금   토   일" />
 
     </LinearLayout>
 
