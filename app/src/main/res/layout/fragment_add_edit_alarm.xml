@@ -22,49 +22,32 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_marginBottom="@dimen/list_padding_vertical_small"
-            android:text="@string/time"
-            tools:text="Time"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="@dimen/list_padding_vertical_small"
-            android:background="@drawable/divider" />
-
-        <TimePicker
-            android:id="@+id/edit_alarm_time_picker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/breadimg"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
             android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:timePickerMode="spinner"
-            tools:targetApi="lollipop" />
+            android:layout_marginTop="20dp"
+            app:srcCompat="@mipmap/ic_launcher" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="20dp"
+            android:layout_marginTop="5dp"
             android:layout_marginBottom="@dimen/list_padding_vertical_small"
             android:text="빵집 이름"
             android:gravity="center"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="10dp"
-            android:layout_marginBottom="@dimen/list_padding_vertical_small"
+            android:textSize="20dp"
+            android:layout_marginTop="5dp"
             android:text="빵 이름"
             android:gravity="center"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_marginBottom="@dimen/list_padding_vertical_small"
-            android:text="@string/days"
-            tools:text="Days"/>
+
 
         <View
             android:layout_width="match_parent"
@@ -88,6 +71,7 @@
                 android:textOff="일"
                 android:textColor="#FF0000"
                 android:background="#ffffff"
+                android:layout_marginTop="10dp"
                 app:layout_gravity="center_vertical"/>
 
             <ToggleButton
@@ -98,6 +82,7 @@
                 android:text="월"
                 android:textOn="월"
                 android:textOff="월"
+                android:layout_marginTop="10dp"
                 android:background="#ffffff"
                 android:textColor="#000000"
                 app:layout_gravity="center_vertical"/>
@@ -110,6 +95,7 @@
                 android:text="화"
                 android:textOn="화"
                 android:textOff="화"
+                android:layout_marginTop="10dp"
                 android:background="#ffffff"
                 android:textColor="#000000"
                 app:layout_gravity="center_vertical"/>
@@ -122,6 +108,7 @@
                 android:text="수"
                 android:textOn="수"
                 android:textOff="수"
+                android:layout_marginTop="10dp"
                 android:background="#ffffff"
                 android:textColor="#000000"
                 app:layout_gravity="center_vertical"/>
@@ -132,6 +119,7 @@
                 android:text="목"
                 android:textOn="목"
                 android:textOff="목"
+                android:layout_marginTop="10dp"
                 android:background="#ffffff"
                 android:textColor="#000000"
                 android:layout_height="wrap_content"
@@ -146,6 +134,7 @@
                 android:text="금"
                 android:textOn="금"
                 android:textOff="금"
+                android:layout_marginTop="10dp"
                 android:background="#ffffff"
                 android:textColor="#000000"
                 app:layout_gravity="center_vertical"/>
@@ -159,6 +148,7 @@
                 android:text="토"
                 android:textColor="#0000ff"
                 android:textOff="토"
+                android:layout_marginTop="10dp"
                 android:textOn="토"
                 app:layout_gravity="center_vertical" />
 
@@ -171,6 +161,7 @@
             android:id="@+id/imageView5"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:layout_marginTop="10dp"
             app:srcCompat="@drawable/speaker"
             android:layout_marginLeft="10dp"/>
 
@@ -178,47 +169,63 @@
         android:id="@+id/seekBar2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:background="@drawable/seekbar"
         android:layout_gravity="center_vertical"/>
 </LinearLayout>
 <LinearLayout
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/list_padding_vertical_small"
-            android:layout_marginTop="5dp"
-            android:textSize="20dp"
-            android:text="알람음"/>
+            android:layout_marginTop="10dp"
+            android:textSize="15dp"
+            android:layout_marginLeft="5dp"
+            android:text="알람음"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/list_padding_vertical_small"
+            android:layout_marginTop="10dp"
+            android:textSize="10dp"
+            android:layout_marginLeft="200dp"
+            android:text="노래제목"
+            />
+
+</LinearLayout>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_marginBottom="@dimen/list_padding_vertical_small"
-            android:layout_marginTop="5dp"
-            android:textSize="20dp"
-            android:text="알람음"/>
-</LinearLayout>
+            android:layout_marginTop="10dp"
+            android:text="@string/time"
+            tools:text="Time"/>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginBottom="@dimen/list_padding_vertical_small"
             android:background="@drawable/divider" />
 
-        <EditText
-            android:id="@+id/edit_alarm_label"
-            android:layout_width="match_parent"
+        <TimePicker
+            android:id="@+id/edit_alarm_time_picker"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textCapWords"
-            android:maxLength="15"
-            android:textColor="@color/secondary_text"
-            android:textStyle="italic"
-            android:hint="@string/add_label_hint"
-            android:layout_marginBottom="@dimen/activity_vertical_margin" />
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:timePickerMode="spinner"
+            tools:targetApi="lollipop" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/list_padding_vertical_small"
+            android:background="@drawable/divider" />
 
-
-    </LinearLayout>
-
+</LinearLayout>
 </ScrollView>
 </LinearLayout>

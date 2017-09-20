@@ -17,12 +17,10 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.SparseBooleanArray;
 
+import java.util.Calendar;
+
 import kr.hs.emirim.parksodam.breadclock.R;
 import kr.hs.emirim.parksodam.breadclock.model.Alarm;
-import kr.hs.emirim.parksodam.breadclock.notice.AlarmLandingPageActivity;
-import kr.hs.emirim.parksodam.breadclock.notice.AlarmUtils;
-
-import java.util.Calendar;
 
 public final class AlarmReceiver extends BroadcastReceiver {
 
@@ -49,16 +47,17 @@ public final class AlarmReceiver extends BroadcastReceiver {
         builder.setContentTitle(context.getString(R.string.app_name));
         builder.setContentText(alarm.getLabel());
         builder.setTicker(alarm.getLabel());
-        builder.setVibrate(new long[] {1000,500,1000,500,1000,500});
-        builder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
-        builder.setContentIntent(pIntent);
-        builder.setAutoCancel(true);
-        builder.setPriority(Notification.PRIORITY_HIGH);
+        builder.setVibrate(new long[] {1000,500,1000,500,1000,500,1000,500,1000,500});
+        builder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE));
+            builder.setContentIntent(pIntent);
+            builder.setAutoCancel(true);
+            builder.setPriority(Notification.PRIORITY_HIGH);
 
-        manager.notify(id, builder.build());
+            manager.notify(id, builder.build());
 
-        //Reset Alarm manually
-        setReminderAlarm(context, alarm);
+            //Reset Alarm manually
+            setReminderAlarm(context, alarm);
+
     }
 
     //Convenience method for setting a notification

@@ -48,19 +48,13 @@
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
         android:layout_centerVertical="true">
 
-        <TextView
-            android:id="@+id/ar_label"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            tools:text="Get Up" />
 
         <TextView
             android:id="@+id/ar_days"
             android:layout_width="150dp"
             android:layout_gravity="right"
             android:layout_height="wrap_content"
-            tools:text="월   화   수   목   금   토   일" />
+            tools:text="      월   화   수   목   금   토   일" />
 
     </LinearLayout>
 

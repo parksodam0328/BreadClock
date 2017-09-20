@@ -11,7 +11,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -26,7 +25,6 @@ import kr.hs.emirim.parksodam.breadclock.model.Alarm;
 public final class AddEditAlarmFragment extends Fragment {
 
     private TimePicker mTimePicker;
-    private EditText mLabel;
     private ToggleButton mMon, mTues, mWed, mThurs, mFri, mSat, mSun;
 
     public static AddEditAlarmFragment newInstance(Alarm alarm) {
@@ -51,9 +49,6 @@ public final class AddEditAlarmFragment extends Fragment {
 
         mTimePicker = (TimePicker) v.findViewById(R.id.edit_alarm_time_picker);
         ViewUtils.setTimePickerTime(mTimePicker, alarm.getTime());
-
-        mLabel = (EditText) v.findViewById(R.id.edit_alarm_label);
-        mLabel.setText(alarm.getLabel());
 
         mMon = (ToggleButton) v.findViewById(R.id.edit_alarm_mon);
         mTues = (ToggleButton) v.findViewById(R.id.edit_alarm_tues);
@@ -109,8 +104,6 @@ public final class AddEditAlarmFragment extends Fragment {
         time.set(Calendar.MINUTE, ViewUtils.getTimePickerMinute(mTimePicker));
         time.set(Calendar.HOUR_OF_DAY, ViewUtils.getTimePickerHour(mTimePicker));
         alarm.setTime(time.getTimeInMillis());
-
-        alarm.setLabel(mLabel.getText().toString());
 
         alarm.setDay(Alarm.MON, mMon.isChecked());
         alarm.setDay(Alarm.TUES, mTues.isChecked());

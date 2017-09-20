@@ -41,7 +41,7 @@ public final class AlarmsAdapter extends RecyclerView.Adapter<AlarmsAdapter.View
         final Context c = holder.itemView.getContext();
 
         if(mAccentColor == -1) {
-            mAccentColor = ContextCompat.getColor(c, R.color.accent);
+            mAccentColor = ContextCompat.getColor(c, R.color.colorPrimary);
         }
 
         if(mDays == null){
@@ -52,7 +52,6 @@ public final class AlarmsAdapter extends RecyclerView.Adapter<AlarmsAdapter.View
 
         holder.time.setText(AlarmUtils.getReadableTime(alarm.getTime()));
         holder.amPm.setText(AlarmUtils.getAmPm(alarm.getTime()));
-        holder.label.setText(alarm.getLabel());
         holder.days.setText(buildSelectedDays(alarm));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -112,14 +111,13 @@ public final class AlarmsAdapter extends RecyclerView.Adapter<AlarmsAdapter.View
 
     static final class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView time, amPm, label, days;
+        TextView time, amPm, days;
 
         ViewHolder(View itemView) {
             super(itemView);
 
             time = (TextView) itemView.findViewById(R.id.ar_time);
             amPm = (TextView) itemView.findViewById(R.id.ar_am_pm);
-            label = (TextView) itemView.findViewById(R.id.ar_label);
             days = (TextView) itemView.findViewById(R.id.ar_days);
 
         }
