@@ -159,7 +159,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                     markerOptions.position(latLng);
                     markerOptions.title(place.getName());
                     markerOptions.snippet(place.getVicinity());
-                    markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.breadmarker));
+                    markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.bakerymarker));
                     Marker item = mGoogleMap.addMarker(markerOptions);
                     previous_marker.add(item);
                 }
@@ -422,7 +422,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         markerOptions.position(DEFAULT_LOCATION);
         markerOptions.title(markerTitle);
         markerOptions.draggable(true);
-        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.breadmarker));
+        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.bakerymarker));
         currentMarker = mGoogleMap.addMarker(markerOptions);
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(DEFAULT_LOCATION));
         return;
