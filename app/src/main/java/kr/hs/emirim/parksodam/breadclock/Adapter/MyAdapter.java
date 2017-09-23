@@ -60,6 +60,10 @@ public class MyAdapter extends BaseAdapter {
         iv_star.setImageDrawable(myItem.getStar());
         /* (위젯에 대한 이벤트리스너를 지정하고 싶다면 여기에 작성하면된다) */
         iv_star.setOnClickListener(new View.OnClickListener() {
+
+
+
+
             @Override
             public void onClick(View v) {
                     if(check==true) {
