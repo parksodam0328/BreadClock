@@ -168,7 +168,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                     markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.bakerymarker));
                     Marker item = mGoogleMap.addMarker(markerOptions);
                     previous_marker.add(item);
-                    String value= markerOptions.title(place.getName()).toString();
+                    //String value= markerOptions.title(place.getName()).toString();
                 }
 //중복 마커 제거
                 HashSet<Marker> hashSet = new HashSet<Marker>();
