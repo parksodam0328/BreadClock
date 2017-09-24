@@ -6,9 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -59,7 +56,6 @@ import java.util.Locale;
 
 import kr.hs.emirim.parksodam.breadclock.Adapter.MyAdapter;
 import kr.hs.emirim.parksodam.breadclock.BaseFragment;
-import kr.hs.emirim.parksodam.breadclock.Database.BookmarkDatabaseHelper;
 import kr.hs.emirim.parksodam.breadclock.R;
 import kr.hs.emirim.parksodam.breadclock.bookmark.BookmarkInformation;
 import noman.googleplaces.NRPlaces;
@@ -90,11 +86,6 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
     boolean askPermissionOnceAgain = false;
     private View view;
     private ListView mListView;
-    private BookmarkDatabaseHelper helper;
-    String dbName = "bookmark.db";
-    int dbVersion = 1; // 데이터베이스 버전
-    private SQLiteDatabase db;
-    String tag = "SQLite"; // Log 에 사용할 tag
 
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -128,10 +119,6 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                 Intent intent = new Intent(getActivity(), BookmarkInformation.class); // 다음넘어갈 화면
-                                Log.d(TAG, "빵집 이름");
-                                Log.d(TAG, "위치");
-                                Log.d(TAG, "빵집 사진");
-                                Log.d(TAG, "즐겨찾기 버튼");
                                 startActivity(intent);
                             }
                         });
@@ -140,54 +127,9 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
             });
 
         }catch (NullPointerException ne){}
-        try {
-            helper = new BookmarkDatabaseHelper(
-                    getActivity(),  // 현재 화면의 제어권자
-                    dbName,// db 이름
-                    null,  // 커서팩토리-null : 표준커서가 사용됨
-                    dbVersion);       // 버전
-            //db = helper.getWritableDatabase(); // 읽고 쓸수 있는 DB
-            db = helper.getReadableDatabase(); // 읽기 전용 DB select문
-        } catch (SQLiteException e) {
-            e.printStackTrace();
-            Log.e(tag, "데이터베이스를 얻어올 수 없음");
-            getActivity().finish(); // 액티비티 종료
-        }
-        insert (); // insert 문 - 삽입추가
-
-        select(); // select 문 - 조회
-
-        update(); // update 문 - 수정변경
-
-        delete(); // delete 문 - 삭제 행제거
-
-        select();
         return view;
     }
-        void delete() {
-            db.execSQL("delete from BOOKMARK_LIST where _id='chekdofefd';");
-            Log.d(tag, "delete 완료");
-        }
 
-        void update() {
-            db.execSQL("update BOOKMARK_LIST set name='Park' where _id='tyeyrfgds';");
-            Log.d(tag, "update 완료");
-        }
-
-        void select() {
-            Cursor c = db.rawQuery("select * from BOOKMARK_LIST;", null);
-            while(c.moveToNext()) {
-                int id = c.getInt(0);
-                String name = c.getString(1);
-                Log.d(tag,"id:"+id+",name:"+name);
-            }
-        }
-
-        void insert () {
-            db.execSQL("insert into BOOKMARK_LIST (_id, name, loacation, bookmark_check) values('chekdofefd', 'Seo', '관악구 신림동', 1);");
-
-            Log.d(tag, "insert 성공~!");
-        }
 
     private void dataSetting(){
         MyAdapter mMyAdapter = new MyAdapter();
@@ -226,6 +168,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                     markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.bakerymarker));
                     Marker item = mGoogleMap.addMarker(markerOptions);
                     previous_marker.add(item);
+                    String value= markerOptions.title(place.getName()).toString();
                 }
 //중복 마커 제거
                 HashSet<Marker> hashSet = new HashSet<Marker>();

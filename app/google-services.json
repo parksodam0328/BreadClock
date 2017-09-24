@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "904090454581-acf8b4ajsnmld5mk9ilpgp5idjnek5vl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kr.hs.emirim.parksodam.breadclock",
+            "certificate_hash": "ea30aba41363d636352f78be0591a26f39f82991"
+          }
+        },
+        {
           "client_id": "904090454581-7jbujeotg91oan3c61a9bh24bsuu9iir.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

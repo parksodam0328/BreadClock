@@ -15,6 +15,7 @@ import kr.hs.emirim.parksodam.breadclock.R;
 
 public class MyAdapter extends BaseAdapter {
    public boolean check=true;
+
     /* 아이템을 세트로 담기 위한 어레이 */
     private ArrayList<MyItem> mItems = new ArrayList<>();
 
