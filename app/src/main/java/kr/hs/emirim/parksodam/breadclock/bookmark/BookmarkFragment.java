@@ -3,18 +3,27 @@ package kr.hs.emirim.parksodam.breadclock.bookmark;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import kr.hs.emirim.parksodam.breadclock.BaseFragment;
-import kr.hs.emirim.parksodam.breadclock.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import kr.hs.emirim.parksodam.breadclock.Adapter.MyAdapter;
 import kr.hs.emirim.parksodam.breadclock.Adapter.MyItem;
+import kr.hs.emirim.parksodam.breadclock.BaseFragment;
+import kr.hs.emirim.parksodam.breadclock.LoginActivity;
+import kr.hs.emirim.parksodam.breadclock.R;
+
 
 /**
  * Created by kim on 2017-07-29.
@@ -23,8 +32,30 @@ import kr.hs.emirim.parksodam.breadclock.Adapter.MyItem;
 
 public class BookmarkFragment extends BaseFragment {
     private ListView mListView;
+    private FirebaseAuth mAuth;
+    private String TAG ="where is uid??";
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private String bakery;
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_bookmark, container, false);
+        Log.e(TAG,"성공");
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+
+                // Write a message to the database
+                if (mAuth != null) {
+
+
+                } else {
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(intent);
+                }
+                if (mAuthListener != null) {
+                    mAuth.removeAuthStateListener(mAuthListener);
+                }
+            }
+        };
 
         mListView = (ListView)view.findViewById(R.id.listView);
         dataSetting();
@@ -44,7 +75,33 @@ public class BookmarkFragment extends BaseFragment {
         }) ;
         return view;
     }
-
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        updateUI(currentUser);
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
+    private void updateUI(FirebaseUser user) {
+        if (user != null) {
+           Log.e(TAG,"현재 uid : "+user.getUid());
+            mAuth = FirebaseAuth.getInstance();
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            bakery = "베이크팡";
+            DatabaseReference myRef = database.getReference("BreadClockWeb/Bakeries/BasicInfo/"+bakery+"/Favorites/"+user.getUid());
+            myRef.setValue(user.getEmail());
+        } else {
+            Intent intent = new Intent(getActivity(),LoginActivity.class);
+            startActivity(intent);
+        }
+    }
     private void dataSetting() {
 
         MyAdapter mMyAdapter = new MyAdapter();
@@ -67,3 +124,4 @@ public class BookmarkFragment extends BaseFragment {
         return "즐겨찾기";
     }
 }
+
