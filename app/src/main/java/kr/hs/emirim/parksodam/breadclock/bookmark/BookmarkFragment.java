@@ -6,12 +6,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -38,7 +38,7 @@ public class BookmarkFragment extends BaseFragment {
     private String bakery;
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_bookmark, container, false);
-        Log.e(TAG,"성공");
+        mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -78,30 +78,30 @@ public class BookmarkFragment extends BaseFragment {
     @Override
     public void onStart() {
         super.onStart();
+
         // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
-    }
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (mAuthListener != null) {
-            mAuth.removeAuthStateListener(mAuthListener);
-        }
-    }
-    private void updateUI(FirebaseUser user) {
-        if (user != null) {
-           Log.e(TAG,"현재 uid : "+user.getUid());
-            mAuth = FirebaseAuth.getInstance();
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            bakery = "베이크팡";
-            DatabaseReference myRef = database.getReference("BreadClockWeb/Bakeries/BasicInfo/"+bakery+"/Favorites/"+user.getUid());
-            myRef.setValue(user.getEmail());
-        } else {
-            Intent intent = new Intent(getActivity(),LoginActivity.class);
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user == null) {
+            Toast toast = Toast.makeText(getActivity(),"로그인에 실패하였습니다. 다시 로그인 해주세요.",Toast.LENGTH_SHORT);
+            toast.show();
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
             startActivity(intent);
         }
+        else {
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            bakery = "베이크팡";
+            DatabaseReference myRef = database.getReference("BreadClockWeb/Bakeries/BasicInfo/" + bakery + "/Favorites/" + user.getUid());
+            myRef.setValue(user.getDisplayName());
+        }
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mAuth=null;
+        mAuth.signOut();
+        }
+
     private void dataSetting() {
 
         MyAdapter mMyAdapter = new MyAdapter();

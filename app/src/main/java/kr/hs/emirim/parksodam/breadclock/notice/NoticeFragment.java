@@ -1,10 +1,8 @@
 package kr.hs.emirim.parksodam.breadclock.notice;
 
-import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -38,18 +36,6 @@ public class NoticeFragment extends BaseFragment implements LoadAlarmsReceiver.O
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
         rv.setItemAnimator(new DefaultItemAnimator());
 
-        final FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlarmUtils.checkAlarmPermissions(getActivity());
-                final Intent i =
-                        AddEditAlarmActivity.buildAddEditAlarmActivityIntent(
-                                getContext(), AddEditAlarmActivity.ADD_ALARM
-                        );
-                startActivity(i);
-            }
-        });
         return view;
     }
 

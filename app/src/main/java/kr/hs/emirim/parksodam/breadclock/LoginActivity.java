@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity  implements GoogleApiClient
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
         mAuth = FirebaseAuth.getInstance();
 
 
@@ -70,6 +70,8 @@ public class LoginActivity extends AppCompatActivity  implements GoogleApiClient
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
+                Intent intent = new Intent(getApplicationContext(),BarActivity.class);
+                startActivity(intent);
             } else {
                 // Google Sign In failed, update UI appropriately
                 // ...
