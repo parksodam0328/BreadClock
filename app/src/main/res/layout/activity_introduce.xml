@@ -50,15 +50,27 @@
         android:layout_gravity="center"
         android:layout_weight="0.33"
         app:srcCompat="@drawable/icon" />
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:gravity="center"
+        android:text="
+빵클락"
+        android:textColor="#f38722"
+        android:textSize="20dp" />
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_weight="0.07"
         android:gravity="center"
-        android:text="빵클락\n
-http://www.빵클락 홈페이지 주소\n
-made by. 미림여자정보과학고등학교 구지원, 김진민, 박소담, 송민아, 최슬비\n" />
+        android:text="
+https://stac-5db0e.firebaseapp.com\n
+made by. 미림여자정보과학고등학교\n
+구지원, 김진민, 박소담, 송민아, 최슬비\n" />
 </LinearLayout>

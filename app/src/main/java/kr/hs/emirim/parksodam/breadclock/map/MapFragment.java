@@ -1,5 +1,4 @@
 package kr.hs.emirim.parksodam.breadclock.map;
-
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -33,7 +32,6 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -47,25 +45,21 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-
+import com.iamhabib.easy_preference.EasyPreference;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
-
 import kr.hs.emirim.parksodam.breadclock.Adapter.MyAdapter;
 import kr.hs.emirim.parksodam.breadclock.BaseFragment;
 import kr.hs.emirim.parksodam.breadclock.R;
-import kr.hs.emirim.parksodam.breadclock.bookmark.BookmarkInformation;
 import noman.googleplaces.NRPlaces;
 import noman.googleplaces.Place;
 import noman.googleplaces.PlaceType;
 import noman.googleplaces.PlacesException;
 import noman.googleplaces.PlacesListener;
-
 import static android.content.Context.LOCATION_SERVICE;
-
 public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
@@ -87,6 +81,8 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
     private View view;
     private ListView mListView;
 
+    private static String name;
+    private static String location;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         try {
@@ -102,6 +98,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
             ft.commit();
         }catch (InflateException e) { }
         try {
+
             Button button = (Button) view.findViewById(R.id.button);
             mListView = (ListView) view.findViewById(R.id.listView);
             button.setOnClickListener(new View.OnClickListener() {
@@ -113,24 +110,45 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                     NetworkInfo mobile = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
                     NetworkInfo wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
                     if (mobile.isConnected() || wifi.isConnected()) {
-                        dataSetting();
-// if (sendInformation() != null) {
+                        dataSetting(); final Place place = new Place();
                         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                Intent intent = new Intent(getActivity(), BookmarkInformation.class); // 다음넘어갈 화면
-                                startActivity(intent);
+                                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                builder.setTitle("알림");
+                                builder.setMessage("알람을 받으시겠습니까?" );
+                                builder.setCancelable(true);
+                                builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        EasyPreference.with(getActivity())
+                                                .addString(name,place.getName())
+                                                .save();
+
+                                        EasyPreference.with(getActivity())
+                                                .addString(location,place.getVicinity())
+                                                .save();
+
+                                        Log.d(TAG,"이름 저장");
+                                        Log.d(TAG,"위치 저장");
+                                    }
+                                });
+                                builder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int id){
+                                        dialog.cancel();
+                                    }
+                                });
+                                builder.create().show();
                             }
                         });
                     }
                 }
             });
-
         }catch (NullPointerException ne){}
         return view;
     }
-
-
     private void dataSetting(){
         MyAdapter mMyAdapter = new MyAdapter();
         Log.e(TAG,"==========================빵집리스트 목록 갱신====================");
@@ -141,7 +159,6 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
 /* 리스트뷰에 어댑터 등록 */
         mListView.setAdapter(mMyAdapter);
     }
-
     @Override
     public String getTitle() {
         return "지도";
@@ -165,10 +182,12 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                     markerOptions.position(latLng);
                     markerOptions.title(place.getName());
                     markerOptions.snippet(place.getVicinity());
-                    markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.bakerymarker));
+                    markerOptions.icon(BitmapDescriptorFactory.fromResource(R.mipmap.yellowmarkers));
                     Marker item = mGoogleMap.addMarker(markerOptions);
                     previous_marker.add(item);
+
                     //String value= markerOptions.title(place.getName()).toString();
+
                 }
 //중복 마커 제거
                 HashSet<Marker> hashSet = new HashSet<Marker>();
@@ -420,7 +439,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
             markerOptions.position(currentLocation);
             markerOptions.title(markerTitle);
             markerOptions.draggable(true);
-            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.locationmarker));
+            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.mipmap.redmarkers));
             currentMarker = mGoogleMap.addMarker(markerOptions);
             mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
             return;
@@ -429,7 +448,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         markerOptions.position(DEFAULT_LOCATION);
         markerOptions.title(markerTitle);
         markerOptions.draggable(true);
-        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.bakerymarker));
+        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.mipmap.yellowmarkers));
         currentMarker = mGoogleMap.addMarker(markerOptions);
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(DEFAULT_LOCATION));
         return;

@@ -61,7 +61,7 @@
         android:id="@+id/textView7"
         android:layout_width="116dp"
         android:layout_height="45dp"
-        android:text="현재버전 v6.7.3"
+        android:text="현재버전 v1.0"
         android:gravity="center"
         tools:layout_editor_absoluteX="226dp"
         tools:layout_editor_absoluteY="179dp"
@@ -76,7 +76,7 @@
         android:id="@+id/textView8"
         android:layout_width="116dp"
         android:layout_height="45dp"
-        android:text="최신버전 v6.7.3"
+        android:text="최신버전 v1.0"
         android:gravity="center"
 
         tools:layout_editor_absoluteX="226dp"

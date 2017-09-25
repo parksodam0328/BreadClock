@@ -38,27 +38,47 @@
                     app:srcCompat="@drawable/breadclock" />
             </LinearLayout>
         </android.support.v7.widget.Toolbar>
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="
-Q. 빵클락은 어떤 서비스인가요?\n
-A. 빵클락은 생활 속 문제점을 개선하고 일상에 작은 행복을 담기 위한 앱으로, 식은 빵만 먹는 생활 속 문제점을 개선하고자 만든 빵 나오는 시간 알림앱입니다.\n\n
+    <!--<TextView-->
+        <!--android:id="@+id/textView"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="-->
+<!--Q. 빵클락은 어떤 서비스인가요?\n-->
+<!--A. 빵클락은 생활 속 문제점을 개선하고 일상에 작은 행복을 담기 위한 앱으로, 식은 빵만 먹는 생활 속 문제점을 개선하고자 만든 빵 나오는 시간 알림앱입니다.\n\n-->
 
-Q. 빵클락 앱은 무료인가요?\n
-A. 네. 무료로 사용하실 수 있습니다.\n\n
+<!--Q. 빵클락 앱은 무료인가요?\n-->
+<!--A. 네. 무료로 사용하실 수 있습니다.\n\n-->
 
-Q. 앱을 사용하려면 로그인이 필요한가요?\n
-A. 아니요. 사용자는 회원가입과 로그인이 따로 필요하지 않습니다. (:\n\n
+<!--Q. 앱을 사용하려면 로그인이 필요한가요?\n-->
+<!--A. 아니요. 사용자는 회원가입과 로그인이 따로 필요하지 않습니다. (:\n\n-->
 
-Q. 앱을 사용하기 위해서 꼭 GPS가 필요한가요?\n
-A. 사용자 주변의 빵집을 조회하기위해서 GPS 권한 허용이 필요합니다.\n\n
+<!--Q. 앱을 사용하기 위해서 꼭 GPS가 필요한가요?\n-->
+<!--A. 사용자 주변의 빵집을 조회하기위해서 GPS 권한 허용이 필요합니다.\n\n-->
 
-Q. 빵집 주인인데 어떻게 빵집 알림 등록을 할 수 있을까요?\n
-A. http://www.빵클락주소 로 이동하여 회원가입을 해주세요.\n
-자세한 내용은 설정에 '제휴문의'를 눌러서 확인해주세요!\n\n">
+<!--Q. 빵집 주인인데 어떻게 빵집 알림 등록을 할 수 있을까요?\n-->
+<!--A. http://www.빵클락주소 로 이동하여 회원가입을 해주세요.\n-->
+<!--자세한 내용은 설정에 '제휴문의'를 눌러서 확인해주세요!\n\n">-->
 
-    </TextView>
+<!--    </TextView>-->
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        tools:context=".MainActivity">
+
+        <ExpandableListView
+            android:id="@+id/expandableListView"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
+            android:divider="@android:color/darker_gray"
+            android:dividerHeight="0.5dp" />
+
+    </RelativeLayout>
 
 </LinearLayout>
