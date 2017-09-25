@@ -12,6 +12,7 @@ public class MyItem {
     private String name;
     private String contents;
     private Drawable star;
+    private boolean bookmarked = false;
 
     public Drawable getIcon() {
         return icon;
@@ -42,6 +43,10 @@ public class MyItem {
     public void setStar(Drawable star) {
         this.star = star;
     }
+
+    public void setBookmarked(boolean bookmarked) { this.bookmarked = bookmarked; }
+
+    public boolean getBookmarked() { return this.bookmarked; }
 
 
 }

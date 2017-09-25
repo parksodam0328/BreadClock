@@ -43,24 +43,28 @@
         </android.support.v7.widget.Toolbar>
 
     </LinearLayout>
-    <VideoView
-        android:id="@+id/videoView"
-        android:layout_width="256dp"
-        android:layout_height="167dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="30dp"
-        android:layout_weight="0.21" />
 
     <TextView
         android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="40dp"
+        android:textColor="#f38722"
+        android:textSize="20dp"
+        android:text="
+빵클락 사용방법" />
+
+    <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:layout_gravity="left"
+        android:gravity="left"
+        android:layout_marginLeft="40dp"
         android:text="
-빵클락 사용방법
 
 1. GPS를 킨 후 자기 주변의 빵집을 확인한다.\n
 2. 시간대 알림을 받고싶은 빵집을 선택한다.\n

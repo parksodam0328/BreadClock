@@ -41,14 +41,25 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:gravity="left"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
         android:text="
 아직도 식은 빵을 드시나요?\n
 갓 구운 따뜻한 빵을 손쉽게 먹을 수 있는 간단한 방법!\n
-빵 나오는 시간을 알려주는, 빵클락입니다.\n\n
+빵 나오는 시간을 알려주는, 빵클락입니다.\n\n"
+        android:textColor="#f38722"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_gravity="left"
+        android:gravity="left"
+        android:text="
 빵클락이란?\n
 사용자 위치 주변의 빵집을 찾아주고 그 빵집의 빵 나오는 시간을 알림으로 제공해주는 서비스입니다.\n
 \n\n

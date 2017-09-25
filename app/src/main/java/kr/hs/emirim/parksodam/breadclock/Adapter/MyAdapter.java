@@ -1,5 +1,10 @@
 package kr.hs.emirim.parksodam.breadclock.Adapter;
 
+/**
+ * Created by kim on 2017-09-25.
+ */
+
+
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
@@ -14,8 +19,7 @@ import java.util.ArrayList;
 import kr.hs.emirim.parksodam.breadclock.R;
 
 public class MyAdapter extends BaseAdapter {
-   public boolean check=true;
-
+    public boolean check=true;
     /* 아이템을 세트로 담기 위한 어레이 */
     private ArrayList<MyItem> mItems = new ArrayList<>();
 
@@ -64,14 +68,14 @@ public class MyAdapter extends BaseAdapter {
         iv_star.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    if(check==true) {
-                        iv_star.setImageResource(R.drawable.star);
-                        check=false;
-                    }
-                    else {
-                        iv_star.setImageResource(R.drawable.unstar);
-                        check=true;
-                    }
+                if(check==true) {
+                    iv_star.setImageResource(R.mipmap.star);
+                    check=false;
+                }
+                else {
+                    iv_star.setImageResource(R.mipmap.unstar);
+                    check=true;
+                }
             }
         });
 
