@@ -37,10 +37,6 @@ public class LoginActivity extends AppCompatActivity   implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mAuth = FirebaseAuth.getInstance();
-
-
-
         Log.e(TAG, "으악");
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -78,9 +74,7 @@ public class LoginActivity extends AppCompatActivity   implements
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
-
-                Intent intent = new Intent(getApplicationContext(),BarActivity.class);
-
+                Intent intent = new Intent(LoginActivity.this, BarActivity.class);
                 startActivity(intent);
             } else {
                 Log.e(TAG, "실패" + result.getStatus());
@@ -192,7 +186,7 @@ public class LoginActivity extends AppCompatActivity   implements
     public void onClick(View v) {
         int i = v.getId();
 //        if (i == R.id.login_button) {
-            signIn();
+        signIn();
 //        } else if (i == R.id.sign_out_button) {
 //            signOut();
 //        } else if (i == R.id.disconnect_button) {

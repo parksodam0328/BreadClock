@@ -48,7 +48,7 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="55dp"
         android:layout_marginLeft="40dp"
         android:textColor="#f38722"
         android:textStyle="bold"
@@ -58,22 +58,28 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="328dp"
+        android:layout_height="385dp"
         android:layout_alignLeft="@+id/textView"
         android:layout_alignStart="@+id/textView"
         android:layout_gravity="left"
-        android:gravity="left"
         android:layout_marginLeft="40dp"
+        android:layout_marginTop="35dp"
+        android:gravity="left"
         android:text="
 
-1. GPS를 킨 후 자기 주변의 빵집을 확인한다.\n
-2. 시간대 알림을 받고싶은 빵집을 선택한다.\n
-3. 빵집을 즐겨찾기한다.\n
-4. 즐겨찾기한 빵집의 빵 알림이 오기를 기다린다.\n
-5. 따뜻하고 맛있는 빵을 산다.\n
-6. 맛있게 먹는다!
-7. PLAY스토어에 들어가 빵클락 별점을 남긴다 :)">
+1. 구글 계정으로 로그인을 한다.\n\n
+2. GPS를 킨 후 자신의 위치를 확인한다.\n\n
+3. 빵집찾기를 눌러 자기 주변의 빵집을 확인한다.\n\n
+4. 즐겨찾기 하고싶은 빵집을 선택한다.\n\n
+5. 빵집을 즐겨찾기한다.\n\n
+6. 즐겨찾기한 빵집의 빵 알림이 오기를 기다린다.\n\n
+7. 따뜻하고 맛있는 빵을 산다.\n\n
+8. 맛있게 먹는다!\n\n
+9. PLAY스토어에 들어가 빵클락 별점을 남긴다 :)\n\n
+
+자세한 사용방법이 궁금하시다면 PLAY스토어에\n
+댓글을 남겨주세요.">
 
     </TextView>
 </LinearLayout>

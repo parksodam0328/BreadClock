@@ -175,7 +175,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         int i = 0;
         for(Marker m : previous_marker){
             Log.e(TAG,"빵집 추가 : "+m.getTitle()+"/ 빵 : ");
-            BookmarkBakery bb = new BookmarkBakery( mPlaces.get(i).getPlaceId() , m.getTitle(), m.getSnippet(), ""  );
+            BookmarkBakery bb = new BookmarkBakery( mPlaces.get(i).getPlaceId() , m.getTitle(), m.getSnippet(), "@mipmap/bookmarklogo" );
             seachedBakeris.add(bb);
             i++;
             //mMyAdapter.addItem(ContextCompat.getDrawable(getActivity(),R.mipmap.basicimg), m.getTitle(), m.getSnippet(),ContextCompat.getDrawable(getActivity(),R.drawable.star_select));

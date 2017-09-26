@@ -59,7 +59,6 @@ public class MyAdapter extends BaseAdapter {
         final ImageView iv_img = (ImageView) convertView.findViewById(R.id.iv_img);
         TextView tv_name = (TextView) convertView.findViewById(R.id.tv_name);
         TextView tv_contents = (TextView) convertView.findViewById(R.id.tv_contents);
-        final ImageView iv_star = (ImageView) convertView.findViewById(R.id.iv_star);
 
         /* 각 리스트에 뿌려줄 아이템을 받아오는데 mMyItem 재활용 */
         BookmarkBakery bookmarkBakery = getItem(position);
@@ -68,8 +67,8 @@ public class MyAdapter extends BaseAdapter {
         try {
             Picasso.with(context)
                     .load(bookmarkBakery.photo)
-                    .placeholder(R.drawable.basicimg)
-                    .error(R.drawable.basicimg)
+                    .placeholder(R.mipmap.bookmarklogo)
+                    .error(R.mipmap.bookmarklogo)
                     .resize(50, 50)
                     .centerCrop()
                     .into(iv_img);

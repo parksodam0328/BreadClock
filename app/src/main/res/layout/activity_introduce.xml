@@ -45,8 +45,9 @@
     </LinearLayout>
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="180dp"
-        android:layout_height="245dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_gravity="center"
         android:layout_weight="0.33"
         app:srcCompat="@drawable/icon" />
@@ -71,7 +72,11 @@
         android:layout_weight="0.07"
         android:gravity="center"
         android:text="
-https://stac-5db0e.firebaseapp.com\n
-made by. 미림여자정보과학고등학교\n
-구지원, 김진민, 박소담, 송민아, 최슬비\n" />
+사업자용 관리 홈페이지\n
+https://stac-5db0e.firebaseapp.com\n\n
+빵클락 페이스북 페이지\n
+https://www.facebook.com/breadclock \n\n
+made by. 미림여자정보과학고등학교 빵순이\n
+developer. 구지원, 김진민, 박소담
+designer. 송민아, 최슬비\n" />
 </LinearLayout>

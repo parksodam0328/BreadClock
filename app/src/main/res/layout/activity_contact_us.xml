@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,7 +9,8 @@
     android:weightSum="1">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout2">
         <android.support.v7.widget.Toolbar
             android:id="@+id/my_toolbar"
             android:layout_width="match_parent"
@@ -49,21 +50,40 @@
         android:layout_width="246dp"
         android:layout_height="118dp"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp"
         android:layout_weight="0.25"
-        app:srcCompat="@drawable/logoname" />
+        app:srcCompat="@drawable/logoname"
+        android:layout_above="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="35dp" />
+
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="
+https://stac-5db0e.firebaseapp.com"
+        android:textColor="#f38722"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="18dp"
+        android:layout_above="@+id/textView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="299dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="70dp"
-        android:gravity="center"
-        android:text="http://www.빵클락 회원가입 주소\n
-서비스신청을 하고싶은 빵집 사장님들은 사이트에 들어가 회원가입을 해주세요.\n
-간단한 사용법으로 쉽고 간편하게 가입하실 수 있습니다.\n
-자세한 내용은 '자주묻는 질문'을 확인해주세요!"
+        android:text="
+빵집 알림 서비스 신청을 하고싶은 빵집 사장님들은 사이트에 들어가 회원가입을 해주세요.\n
+간단한 회원가입으로 쉽고 간편하게 가입하실 수 있습니다.\n
+자세한 내용은 위 주소의 사이트를 참고해주세요!"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp" />
-</LinearLayout>
+        tools:layout_editor_absoluteY="16dp"
+        android:layout_marginBottom="96dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

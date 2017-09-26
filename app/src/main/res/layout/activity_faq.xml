@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -43,13 +43,17 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginTop="26dp"
         android:textColor="#f38722"
         android:textSize="20dp"
         android:textStyle="bold"
         android:text="
-자주묻는 질문" />
+자주묻는 질문"
+        android:layout_below="@+id/my_toolbar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp" />
 
 
 
@@ -57,11 +61,9 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:text="
+        android:text="\n
 Q. 빵클락은 어떤 서비스인가요?\n
-A. 빵클락은 생활 속 문제점을 개선하고 일상에 작은 행복을 담기 위한 앱으로,\n
-   식은 빵만 먹는 생활 속 문제점을 개선하고자 만든 빵 나오는 시간 알림앱입니다.\n\n
+A. 빵클락은 생활 속 문제점을 개선하고 일상에 작은 행복을 담기 위한 앱으로, 식은 빵만 먹는 생활 속 문제점을 개선하고자 만든 빵 나오는 시간 알림앱입니다.\n\n
 
 Q. 빵클락 앱은 무료인가요?\n
 A. 네. 무료로 사용하실 수 있습니다.\n\n
@@ -74,8 +76,12 @@ A. 사용자 주변의 빵집을 조회하기위해서 GPS 권한 허용이 필�
 
 Q. 빵집 주인인데 어떻게 빵집 알림 등록을 할 수 있을까요?\n
 A. https://stac-5db0e.firebaseapp.com 로 이동하여 회원가입을 해주세요.\n
-   자세한 내용은 설정에 '제휴문의'를 눌러서 확인해주세요!\n\n">
+   자세한 내용은 설정에 '제휴문의'를 눌러서 확인해주세요!\n\n"
+        android:layout_below="@+id/textView"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:layout_marginTop="11dp">
 
     </TextView>
 
-</LinearLayout>
+</RelativeLayout>
