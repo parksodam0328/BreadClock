@@ -34,6 +34,7 @@ public class LoginActivity extends AppCompatActivity   implements
     private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.e(TAG, "들어옴");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -74,8 +75,7 @@ public class LoginActivity extends AppCompatActivity   implements
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
-                Intent intent = new Intent(LoginActivity.this, BarActivity.class);
-                startActivity(intent);
+
             } else {
                 Log.e(TAG, "실패" + result.getStatus());
 
@@ -105,6 +105,8 @@ public class LoginActivity extends AppCompatActivity   implements
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
+                            Intent intent = new Intent(LoginActivity.this, BarActivity.class);
+                            startActivity(intent);
 
                         } else {
                             // If sign in fails, display a message to the user.

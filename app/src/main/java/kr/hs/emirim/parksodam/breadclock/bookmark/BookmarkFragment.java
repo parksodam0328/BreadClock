@@ -67,7 +67,6 @@ public class BookmarkFragment extends BaseFragment {
 
         mListView = (ListView)view.findViewById(R.id.listView);
 
-
         DatabaseReference userBookmarkRef = ((BarActivity) getActivity()).mDatabase.getReference("users/"+ mAuth.getCurrentUser().getUid()+"/bookmarks");
         ValueEventListener userBookmarkListener = new ValueEventListener() {
             @Override
