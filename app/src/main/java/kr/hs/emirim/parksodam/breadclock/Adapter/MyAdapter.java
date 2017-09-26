@@ -6,7 +6,6 @@ package kr.hs.emirim.parksodam.breadclock.Adapter;
 
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,14 +13,21 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 import kr.hs.emirim.parksodam.breadclock.R;
+import kr.hs.emirim.parksodam.breadclock.model.BookmarkBakery;
 
 public class MyAdapter extends BaseAdapter {
     public boolean check=true;
     /* 아이템을 세트로 담기 위한 어레이 */
-    private ArrayList<MyItem> mItems = new ArrayList<>();
+    private ArrayList<BookmarkBakery> mItems = new ArrayList<>();
+
+    public MyAdapter( ArrayList<BookmarkBakery> mItems ){
+        this.mItems = mItems;
+    }
 
     @Override
     public int getCount() {
@@ -29,7 +35,7 @@ public class MyAdapter extends BaseAdapter {
     }
 
     @Override
-    public MyItem getItem(int position) {
+    public BookmarkBakery getItem(int position) {
         return mItems.get(position);
     }
 
@@ -56,48 +62,58 @@ public class MyAdapter extends BaseAdapter {
         final ImageView iv_star = (ImageView) convertView.findViewById(R.id.iv_star);
 
         /* 각 리스트에 뿌려줄 아이템을 받아오는데 mMyItem 재활용 */
-        MyItem myItem = getItem(position);
+        BookmarkBakery bookmarkBakery = getItem(position);
 
         /* 각 위젯에 세팅된 아이템을 뿌려준다 */
-        iv_img.setImageDrawable(myItem.getIcon());
-        tv_name.setText(myItem.getName());
-        tv_contents.setText(myItem.getContents());
-        iv_star.setImageDrawable(myItem.getStar());
+        try {
+            Picasso.with(context)
+                    .load(bookmarkBakery.photo)
+                    .placeholder(R.drawable.basicimg)
+                    .error(R.drawable.basicimg)
+                    .resize(50, 50)
+                    .centerCrop()
+                    .into(iv_img);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        tv_name.setText(bookmarkBakery.name);
+        tv_contents.setText(bookmarkBakery.vicinity);
+        //iv_star.setImageDrawable(bookmarkBakery.getStar());
         /* (위젯에 대한 이벤트리스너를 지정하고 싶다면 여기에 작성하면된다) */
-
-        iv_star.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(check==true) {
-                    iv_star.setImageResource(R.mipmap.star);
-                    check=false;
-                }
-                else {
-                    iv_star.setImageResource(R.mipmap.unstar);
-                    check=true;
-                }
-            }
-        });
+//
+//        iv_star.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if(check==true) {
+//                    iv_star.setImageResource(R.mipmap.star);
+//                    check=false;
+//                }
+//                else {
+//                    iv_star.setImageResource(R.mipmap.unstar);
+//                    check=true;
+//                }
+//            }
+//        });
 
         return convertView;
     }
 
-
-    /* 아이템 데이터 추가를 위한 함수. 자신이 원하는대로 작성 */
-    public void addItem(Drawable img, String name, String contents, Drawable star) {
-
-        MyItem mItem = new MyItem();
-
-        /* MyItem에 아이템을 setting한다. */
-        mItem.setIcon(img);
-        mItem.setName(name);
-        mItem.setContents(contents);
-        mItem.setStar(star);
-
-        /* mItems에 MyItem을 추가한다. */
-        mItems.add(mItem);
-
-    }
+//
+//    /* 아이템 데이터 추가를 위한 함수. 자신이 원하는대로 작성 */
+//    public void addItem(Drawable img, String name, String contents, Drawable star) {
+//
+//        MyItem mItem = new MyItem();
+//
+//        /* MyItem에 아이템을 setting한다. */
+//        mItem.setIcon(img);
+//        mItem.setName(name);
+//        mItem.setContents(contents);
+//        mItem.setStar(star);
+//
+//        /* mItems에 MyItem을 추가한다. */
+//        mItems.add(mItem);
+//
+//    }
 
 
 }

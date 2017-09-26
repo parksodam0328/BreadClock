@@ -1,4 +1,5 @@
 package kr.hs.emirim.parksodam.breadclock.map;
+
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -32,6 +33,7 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -45,26 +47,38 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.iamhabib.easy_preference.EasyPreference;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+
 import kr.hs.emirim.parksodam.breadclock.Adapter.MyAdapter;
+import kr.hs.emirim.parksodam.breadclock.BarActivity;
 import kr.hs.emirim.parksodam.breadclock.BaseFragment;
+import kr.hs.emirim.parksodam.breadclock.LoginActivity;
 import kr.hs.emirim.parksodam.breadclock.R;
+import kr.hs.emirim.parksodam.breadclock.model.BookmarkBakery;
 import noman.googleplaces.NRPlaces;
 import noman.googleplaces.Place;
 import noman.googleplaces.PlaceType;
 import noman.googleplaces.PlacesException;
 import noman.googleplaces.PlacesListener;
+
 import static android.content.Context.LOCATION_SERVICE;
 public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener,
         PlacesListener {
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    List<Place> mPlaces = null;
     LatLng currentPosition = null;
     List<Marker> previous_marker = null;
     private GoogleApiClient mGoogleApiClient = null;
@@ -80,11 +94,12 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
     boolean askPermissionOnceAgain = false;
     private View view;
     private ListView mListView;
-
+    ArrayList<BookmarkBakery> seachedBakeris = new ArrayList<>();
     private static String name;
     private static String location;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        mAuth = FirebaseAuth.getInstance();
         try {
             view = inflater.inflate(R.layout.fragment_map, container, false);
             FrameLayout fl = (FrameLayout) view.findViewById(R.id.fl_content);
@@ -113,15 +128,20 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                         dataSetting(); final Place place = new Place();
                         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
-                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                                builder.setTitle("알림");
-                                builder.setMessage("알람을 받으시겠습니까?" );
+                                builder.setTitle("즐겨찾기");
+                                builder.setMessage("즐겨찾기에 추가하시겠습니까?" );
                                 builder.setCancelable(true);
                                 builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
 
                                     @Override
                                     public void onClick(DialogInterface dialog, int id) {
+                                        BookmarkBakery bb = seachedBakeris.get(position);
+                                        DatabaseReference bookmarkRef = ((BarActivity)getActivity()).mDatabase.getReference("users/"+ mAuth.getCurrentUser().getUid()+"/bookmarks/" + bb.uid);
+                                        Log.e(TAG, "좋아하는 빵집 하나 추가요~ : " + bb.name );
+                                        bookmarkRef.setValue(bb);
+
                                         EasyPreference.with(getActivity())
                                                 .addString(name,place.getName())
                                                 .save();
@@ -150,14 +170,19 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         return view;
     }
     private void dataSetting(){
-        MyAdapter mMyAdapter = new MyAdapter();
+        seachedBakeris.clear();
         Log.e(TAG,"==========================빵집리스트 목록 갱신====================");
+        int i = 0;
         for(Marker m : previous_marker){
             Log.e(TAG,"빵집 추가 : "+m.getTitle()+"/ 빵 : ");
-            mMyAdapter.addItem(ContextCompat.getDrawable(getActivity(),R.mipmap.basicimg), m.getTitle(), m.getSnippet(),ContextCompat.getDrawable(getActivity(),R.drawable.star_select));
+            BookmarkBakery bb = new BookmarkBakery( mPlaces.get(i).getPlaceId() , m.getTitle(), m.getSnippet(), ""  );
+            seachedBakeris.add(bb);
+            i++;
+            //mMyAdapter.addItem(ContextCompat.getDrawable(getActivity(),R.mipmap.basicimg), m.getTitle(), m.getSnippet(),ContextCompat.getDrawable(getActivity(),R.drawable.star_select));
         }
-/* 리스트뷰에 어댑터 등록 */
-        mListView.setAdapter(mMyAdapter);
+        MyAdapter mMyAdapter = new MyAdapter(seachedBakeris);
+        /* 리스트뷰에 어댑터 등록 */
+         mListView.setAdapter(mMyAdapter);
     }
     @Override
     public String getTitle() {
@@ -174,11 +199,13 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                mPlaces = places;
                 for (noman.googleplaces.Place place : places) {
                     Log.e(TAG,"아이콘? "+place.getIcon());
                     LatLng latLng
                             = new LatLng(place.getLatitude(), place.getLongitude());
                     MarkerOptions markerOptions = new MarkerOptions();
+
                     markerOptions.position(latLng);
                     markerOptions.title(place.getName());
                     markerOptions.snippet(place.getVicinity());
@@ -263,6 +290,9 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
     public void onStop() {
         if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
             mGoogleApiClient.disconnect();
+        }
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
         }
         super.onStop();
     }
@@ -589,6 +619,24 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                     setCurrentLocation(null, "위치정보 가져올 수 없음", "위치 퍼미션과 GPS 활성 요부 확인하세요");
                 }
                 break;
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        updateUI(currentUser);
+    }
+
+    private void updateUI(FirebaseUser user) {
+        if (user != null) {
+            Log.e(TAG,"현재 uid : "+user.getUid());
+            mAuth = FirebaseAuth.getInstance();
+        } else {
+            Intent intent = new Intent(getActivity(),LoginActivity.class);
+            startActivity(intent);
         }
     }
 }

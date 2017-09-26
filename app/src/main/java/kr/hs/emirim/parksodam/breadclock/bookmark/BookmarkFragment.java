@@ -1,28 +1,30 @@
 package kr.hs.emirim.parksodam.breadclock.bookmark;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 import kr.hs.emirim.parksodam.breadclock.Adapter.MyAdapter;
-import kr.hs.emirim.parksodam.breadclock.Adapter.MyItem;
+import kr.hs.emirim.parksodam.breadclock.BarActivity;
 import kr.hs.emirim.parksodam.breadclock.BaseFragment;
 import kr.hs.emirim.parksodam.breadclock.LoginActivity;
 import kr.hs.emirim.parksodam.breadclock.R;
+import kr.hs.emirim.parksodam.breadclock.model.BookmarkBakery;
 
 
 /**
@@ -36,7 +38,13 @@ public class BookmarkFragment extends BaseFragment {
     private String TAG ="where is uid??";
     private FirebaseAuth.AuthStateListener mAuthListener;
     private String bakery;
+
+    ArrayList<BookmarkBakery> mBookmarkBakeries = new ArrayList<>();
+    MyAdapter mMyAdapter;
+
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
         View view = inflater.inflate(R.layout.fragment_bookmark, container, false);
         Log.e(TAG,"성공");
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -58,21 +66,46 @@ public class BookmarkFragment extends BaseFragment {
         };
 
         mListView = (ListView)view.findViewById(R.id.listView);
-        dataSetting();
 
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+        DatabaseReference userBookmarkRef = ((BarActivity) getActivity()).mDatabase.getReference("users/"+ mAuth.getCurrentUser().getUid()+"/bookmarks");
+        ValueEventListener userBookmarkListener = new ValueEventListener() {
             @Override
-            public void onItemClick(AdapterView parent, View v, int position, long id) {
-                // get item
-                MyItem item = (MyItem) parent.getItemAtPosition(position);
-                Intent intent = new Intent(getActivity(), BookmarkInformation.class);
-                String titleStr = item.getName();
-                String descStr = item.getContents();
-                Drawable iconDrawable = item.getIcon();
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-                startActivity(intent);
+                mBookmarkBakeries.clear();
+                for(DataSnapshot bookmarkBakerySnapshot:dataSnapshot.getChildren()){
+                    BookmarkBakery bb =  bookmarkBakerySnapshot.getValue(BookmarkBakery.class);
+                    mBookmarkBakeries.add(bb);
+                    Log.e(TAG, "내가 좋아하는 빵집은요 : " + bb.name );
+                }
+                mMyAdapter = new MyAdapter(mBookmarkBakeries);
+                mListView.setAdapter(mMyAdapter);
+                //mListView.invalidate();
             }
-        }) ;
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+        userBookmarkRef.addValueEventListener(userBookmarkListener);
+
+       // dataSetting();
+//
+//        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView parent, View v, int position, long id) {
+//                // get item
+//                MyItem item = (MyItem) parent.getItemAtPosition(position);
+//                Intent intent = new Intent(getActivity(), BookmarkInformation.class);
+//                String titleStr = item.getName();
+//                String descStr = item.getContents();
+//                Drawable iconDrawable = item.getIcon();
+//
+//                startActivity(intent);
+//            }
+//        }) ;
         return view;
     }
     @Override
@@ -93,10 +126,10 @@ public class BookmarkFragment extends BaseFragment {
         if (user != null) {
            Log.e(TAG,"현재 uid : "+user.getUid());
             mAuth = FirebaseAuth.getInstance();
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            bakery = "베이크팡";
-            DatabaseReference myRef = database.getReference("BreadClockWeb/Bakeries/BasicInfo/"+bakery+"/Favorites/"+user.getUid());
-            myRef.setValue(user.getEmail());
+//            FirebaseDatabase database = FirebaseDatabase.getInstance();
+//            bakery = "베이크팡";
+//            DatabaseReference myRef = database.getReference("BreadClockWeb/Bakeries/BasicInfo/"+bakery+"/Favorites/"+user.getUid());
+//            myRef.setValue(user.getEmail());
         } else {
             Intent intent = new Intent(getActivity(),LoginActivity.class);
             startActivity(intent);
@@ -104,12 +137,12 @@ public class BookmarkFragment extends BaseFragment {
     }
     private void dataSetting() {
 
-        MyAdapter mMyAdapter = new MyAdapter();
 
 
-        for (int i = 0; i < 8; i++) {
-            mMyAdapter.addItem(ContextCompat.getDrawable(getActivity(), R.mipmap.basicimg), "빵집 이름", "빵 이름", ContextCompat.getDrawable(getActivity(), R.drawable.star_select));
-        }
+
+//        for (int i = 0; i < 8; i++) {
+//            mMyAdapter.addItem(ContextCompat.getDrawable(getActivity(), R.mipmap.basicimg), "빵집 이름", "빵 이름", ContextCompat.getDrawable(getActivity(), R.drawable.star_select));
+//        }
 
 
         /* 리스트뷰에 어댑터 등록 */

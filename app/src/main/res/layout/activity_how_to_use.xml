@@ -51,6 +51,7 @@
         android:layout_marginTop="40dp"
         android:layout_marginLeft="40dp"
         android:textColor="#f38722"
+        android:textStyle="bold"
         android:textSize="20dp"
         android:text="
 빵클락 사용방법" />

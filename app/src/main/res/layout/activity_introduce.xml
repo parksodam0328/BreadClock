@@ -56,6 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
+        android:textStyle="bold"
         android:text="
 빵클락"
         android:textColor="#f38722"

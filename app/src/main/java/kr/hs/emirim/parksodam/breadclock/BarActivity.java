@@ -6,6 +6,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
+import com.google.firebase.database.FirebaseDatabase;
+
 import kr.hs.emirim.parksodam.breadclock.Adapter.FragmentPagerAdapter;
 import kr.hs.emirim.parksodam.breadclock.bookmark.BookmarkFragment;
 import kr.hs.emirim.parksodam.breadclock.map.MapFragment;
@@ -15,6 +17,8 @@ import kr.hs.emirim.parksodam.breadclock.set.SetFragment;
 public class BarActivity extends AppCompatActivity {
 
     ViewPager vp;
+    public FirebaseDatabase mDatabase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,5 +41,10 @@ public class BarActivity extends AppCompatActivity {
         adapter.addFragment(new SetFragment());
         vp.setAdapter(adapter);
         layout.setupWithViewPager(vp);
+
+
+        mDatabase = FirebaseDatabase.getInstance();
+        mDatabase.setPersistenceEnabled(true);
+
     }
 }

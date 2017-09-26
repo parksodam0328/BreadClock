@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:background="#ff8c00"
+        android:background="#ffffff"
         android:minHeight="48dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            app:srcCompat="@drawable/breadclock"
+            app:srcCompat="@mipmap/breadclockbar"
             android:gravity="center"
             android:id="@+id/logo"/>
 
@@ -47,8 +47,6 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/tl_main">
 
-
-        //expandable listview 써서 펼치기
 
     </android.support.v4.view.ViewPager>
 </RelativeLayout>

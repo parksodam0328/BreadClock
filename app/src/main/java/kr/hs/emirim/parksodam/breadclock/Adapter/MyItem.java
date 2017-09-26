@@ -12,7 +12,6 @@ public class MyItem {
     private String name;
     private String contents;
     private Drawable star;
-    private boolean bookmarked = false;
 
     public Drawable getIcon() {
         return icon;
@@ -26,7 +25,9 @@ public class MyItem {
         return name;
     }
 
-    public void setName(String name) {this.name = name; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getContents() {
         return contents;
@@ -36,17 +37,7 @@ public class MyItem {
         this.contents = contents;
     }
 
-    public Drawable getStar() {
-        return star;
-    }
+    public Drawable getStar() {return star;}
 
-    public void setStar(Drawable star) {
-        this.star = star;
-    }
-
-    public void setBookmarked(boolean bookmarked) { this.bookmarked = bookmarked; }
-
-    public boolean getBookmarked() { return this.bookmarked; }
-
-
+    public void setStar(Drawable star) {this.star = star;}
 }
