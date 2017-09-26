@@ -4,11 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+<<<<<<< HEAD
 import android.util.Log;
+=======
+import android.support.v4.content.ContextCompat;
+>>>>>>> origin/master
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -46,7 +51,7 @@ public class BookmarkFragment extends BaseFragment {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         View view = inflater.inflate(R.layout.fragment_bookmark, container, false);
-        Log.e(TAG,"성공");
+        mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -111,16 +116,16 @@ public class BookmarkFragment extends BaseFragment {
     @Override
     public void onStart() {
         super.onStart();
+
         // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
-    }
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (mAuthListener != null) {
-            mAuth.removeAuthStateListener(mAuthListener);
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user == null) {
+            Toast toast = Toast.makeText(getActivity(),"로그인에 실패하였습니다. 다시 로그인 해주세요.",Toast.LENGTH_SHORT);
+            toast.show();
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
+            startActivity(intent);
         }
+<<<<<<< HEAD
     }
     private void updateUI(FirebaseUser user) {
         if (user != null) {
@@ -133,8 +138,23 @@ public class BookmarkFragment extends BaseFragment {
         } else {
             Intent intent = new Intent(getActivity(),LoginActivity.class);
             startActivity(intent);
+=======
+        else {
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            bakery = "베이크팡";
+            DatabaseReference myRef = database.getReference("BreadClockWeb/Bakeries/BasicInfo/" + bakery + "/Favorites/" + user.getUid());
+            myRef.setValue(user.getDisplayName());
+>>>>>>> origin/master
         }
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mAuth=null;
+        mAuth.signOut();
+        }
+
     private void dataSetting() {
 
 
