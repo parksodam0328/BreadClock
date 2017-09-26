@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#ffffff"
     tools:context="kr.hs.emirim.parksodam.breadclock.set.ContactUsActivity"
     android:weightSum="1">
     <LinearLayout
@@ -16,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:background="#ff8c00"
+            android:background="#ffffff"
             android:minHeight="48dp"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
@@ -27,19 +28,22 @@
 
                 <ImageView
                     android:id="@+id/back_icon"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:gravity="left"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
                     android:layout_gravity="center"
-                    app:srcCompat="@drawable/back" />
+                    android:gravity="left"
+                    app:srcCompat="@drawable/setback" />
 
                 <ImageView
                     android:id="@+id/logo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_gravity="center"
-                    app:srcCompat="@drawable/breadclock" />
+                    android:layout_width="400dp"
+                    android:layout_height="60dp"
+                    android:layout_above="@+id/tl_main"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="7dp"
+                    app:srcCompat="@drawable/llogo" />
             </LinearLayout>
         </android.support.v7.widget.Toolbar>
 
@@ -47,14 +51,14 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="246dp"
-        android:layout_height="118dp"
+        android:layout_width="400dp"
+        android:layout_height="250dp"
         android:layout_gravity="center"
         android:layout_weight="0.25"
-        app:srcCompat="@drawable/logoname"
-        android:layout_above="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="35dp" />
+        app:srcCompat="@drawable/web"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
     <TextView
@@ -67,23 +71,24 @@ https://stac-5db0e.firebaseapp.com"
         android:textSize="20dp"
         android:textStyle="bold"
         android:gravity="center"
-        android:layout_marginBottom="18dp"
+        android:layout_marginBottom="25dp"
         android:layout_above="@+id/textView2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="299dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="center"
+        android:layout_marginBottom="96dp"
+        android:layout_marginLeft="20dp"
         android:text="
 빵집 알림 서비스 신청을 하고싶은 빵집 사장님들은 사이트에 들어가 회원가입을 해주세요.\n
 간단한 회원가입으로 쉽고 간편하게 가입하실 수 있습니다.\n
 자세한 내용은 위 주소의 사이트를 참고해주세요!"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp"
-        android:layout_marginBottom="96dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        tools:layout_editor_absoluteY="16dp" />
 </RelativeLayout>

@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:background="#ff8c00"
+        android:background="#ffffff"
         android:minHeight="48dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
@@ -21,19 +21,22 @@
 
             <ImageView
                 android:id="@+id/back_icon"
-                app:srcCompat="@drawable/back"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:layout_gravity="center"
-                android:gravity="left" />
+                android:gravity="left"
+                app:srcCompat="@drawable/setback" />
 
             <ImageView
                 android:id="@+id/logo"
-                app:srcCompat="@drawable/breadclock"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="15dp" />
+                android:layout_width="400dp"
+                android:layout_height="60dp"
+                android:layout_above="@+id/tl_main"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="7dp"
+                app:srcCompat="@drawable/llogo" />
         </LinearLayout>
     </android.support.v7.widget.Toolbar>
 

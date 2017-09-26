@@ -11,19 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:background="#ff8c00"
+        android:background="#ffffff"
         android:minHeight="48dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            app:srcCompat="@drawable/breadclock"
-            android:gravity="center"
-            android:id="@+id/logo"/>
 
-      </android.support.v7.widget.Toolbar>
+    </android.support.v7.widget.Toolbar>
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tl_main"
@@ -49,4 +42,15 @@
 
 
     </android.support.v4.view.ViewPager>
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="7dp"
+        android:layout_above="@+id/tl_main"
+        android:layout_alignParentTop="true"
+        app:srcCompat="@drawable/llogo"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>
