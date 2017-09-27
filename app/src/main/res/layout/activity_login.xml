@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/webimg"
+    android:background="@drawable/loginbackimg"
     tools:context="kr.hs.emirim.parksodam.breadclock.LoginActivity">
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/login_button"
         android:layout_width="160dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginBottom="29dp"
 
@@ -22,7 +22,9 @@
         android:layout_width="300dp"
         android:layout_height="450dp"
         app:srcCompat="@drawable/whitelogo"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp" />
 
 
 </RelativeLayout>

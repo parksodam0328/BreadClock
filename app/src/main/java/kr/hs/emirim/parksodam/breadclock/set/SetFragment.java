@@ -11,8 +11,6 @@ import android.widget.Button;
 import kr.hs.emirim.parksodam.breadclock.BaseFragment;
 import kr.hs.emirim.parksodam.breadclock.R;
 
-import static kr.hs.emirim.parksodam.breadclock.R.id.button7;
-
 /**
  * Created by kim on 2017-07-29.
  */
@@ -39,7 +37,7 @@ public class SetFragment extends BaseFragment {
                         Intent intent4 = new Intent(getActivity(), FAQActivity.class);
                         startActivity(intent4);
                         break;
-                    case button7:
+                    case R.id.button7:
                         Intent intent5 = new Intent(getActivity(), ContactUsActivity.class);
                         startActivity(intent5);
                         break;
