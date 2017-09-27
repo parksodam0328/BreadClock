@@ -75,39 +75,83 @@ public class BookmarkFragment extends BaseFragment {
 
         mListView = (ListView)view.findViewById(R.id.listView);
         final Place place = new Place();
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("즐겨찾기");
-                builder.setMessage("즐겨찾기를 삭제하시겠습니까?" );
+                builder.setMessage("즐겨찾기를 삭제하시겠습니까?");
                 builder.setCancelable(true);
                 builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         BookmarkBakery bb = seachedBakeris.get(position);
-                        DatabaseReference bookmarkRef = ((BarActivity)getActivity()).mDatabase.getReference("users/"+ mAuth.getCurrentUser().getUid()+"/bookmarks/" + bb.uid);
+                        DatabaseReference bookmarkRef = ((BarActivity) getActivity()).mDatabase.getReference("users/" + mAuth.getCurrentUser().getUid() + "/bookmarks/" + bb.uid);
                         Log.e(TAG, "빵집 삭제 : " + bb.uid);
                         bookmarkRef.setValue(null);
 
                         FirebaseMessaging.getInstance().subscribeToTopic(bb.uid);
                         //Log.e(TAG,bb.uid);
                         EasyPreference.with(getActivity())
-                                .addString(name,place.getName())
+                                .addString(name, place.getName())
                                 .save();
 
                         EasyPreference.with(getActivity())
-                                .addString(location,place.getVicinity())
+                                .addString(location, place.getVicinity())
                                 .save();
 
-                        Log.d(TAG,"이름 저장");
-                        Log.d(TAG,"위치 저장");
+                        Log.d(TAG, "이름 저장");
+                        Log.d(TAG, "위치 저장");
                     }
                 });
                 builder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int id){
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+                builder.create().show();
+                return true;
+            }
+        });
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("알람");
+                builder.setMessage("알람을 추가하시겠습니까?");
+                builder.setCancelable(true);
+                builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        BookmarkBakery bb = seachedBakeris.get(position);
+                        DatabaseReference bookmarkRef = ((BarActivity) getActivity()).mDatabase.getReference("users/" + mAuth.getCurrentUser().getUid() + "/alarms/" + bb.uid);
+                        Log.e(TAG, "알람 추가 : " + bb.uid);
+                        bookmarkRef.setValue(bb);
+
+                        FirebaseMessaging.getInstance().subscribeToTopic(bb.uid);
+                        //Log.e(TAG,bb.uid);
+                        EasyPreference.with(getActivity())
+                                .addString(name, place.getName())
+                                .save();
+
+                        EasyPreference.with(getActivity())
+                                .addString(location, place.getVicinity())
+                                .save();
+
+                        Log.d(TAG, "이름 저장");
+                        Log.d(TAG, "위치 저장");
+                    }
+                });
+                builder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
                     }
                 });

@@ -1,13 +1,16 @@
 package kr.hs.emirim.parksodam.mirimbreadclock.notice;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -16,6 +19,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.iamhabib.easy_preference.EasyPreference;
 
 import java.util.ArrayList;
 
@@ -25,6 +30,7 @@ import kr.hs.emirim.parksodam.mirimbreadclock.BaseFragment;
 import kr.hs.emirim.parksodam.mirimbreadclock.LoginActivity;
 import kr.hs.emirim.parksodam.mirimbreadclock.R;
 import kr.hs.emirim.parksodam.mirimbreadclock.model.BookmarkBakery;
+import noman.googleplaces.Place;
 
 
 /**
@@ -41,6 +47,8 @@ public class NoticeFragment extends BaseFragment {
 
     ArrayList<BookmarkBakery> seachedBakeris = new ArrayList<>();
     MyAdapter mMyAdapter;
+    private static String name;
+    private static String location;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mAuth = FirebaseAuth.getInstance();
@@ -66,8 +74,49 @@ public class NoticeFragment extends BaseFragment {
         };
 
         mListView = (ListView)view.findViewById(R.id.listView);
+        final Place place = new Place();
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-        DatabaseReference userBookmarkRef = ((BarActivity) getActivity()).mDatabase.getReference("users/"+ mAuth.getCurrentUser().getUid()+"/bookmarks");
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("알람");
+                builder.setMessage("알람을 삭제하시겠습니까?");
+                builder.setCancelable(true);
+                builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        BookmarkBakery bb = seachedBakeris.get(position);
+                        DatabaseReference bookmarkRef = ((BarActivity) getActivity()).mDatabase.getReference("users/" + mAuth.getCurrentUser().getUid() + "/alarms/" + bb.uid);
+                        Log.e(TAG, "알람 삭제 : " + bb.uid);
+                        bookmarkRef.setValue(null);
+
+                        FirebaseMessaging.getInstance().subscribeToTopic(bb.uid);
+                        //Log.e(TAG,bb.uid);
+                        EasyPreference.with(getActivity())
+                                .addString(name, place.getName())
+                                .save();
+
+                        EasyPreference.with(getActivity())
+                                .addString(location, place.getVicinity())
+                                .save();
+
+                        Log.d(TAG, "이름 저장");
+                        Log.d(TAG, "위치 저장");
+                    }
+                });
+                builder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+                builder.create().show();
+            }
+        });
+        DatabaseReference userBookmarkRef = ((BarActivity) getActivity()).mDatabase.getReference("users/"+ mAuth.getCurrentUser().getUid()+"/alarms");
         ValueEventListener userBookmarkListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -76,7 +125,7 @@ public class NoticeFragment extends BaseFragment {
                 for(DataSnapshot bookmarkBakerySnapshot:dataSnapshot.getChildren()){
                     BookmarkBakery bb =  bookmarkBakerySnapshot.getValue(BookmarkBakery.class);
                     seachedBakeris.add(bb);
-                    Log.e(TAG, "내가 좋아하는 빵집은요 : " + bb.name );
+                    Log.e(TAG, "알람 추가한 빵집 : " + bb.name );
                 }
                 mMyAdapter = new MyAdapter(seachedBakeris);
                 mListView.setAdapter(mMyAdapter);
