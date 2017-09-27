@@ -1,38 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#ffffff">
+    android:layout_height="match_parent">
 
-    <android.support.design.widget.CoordinatorLayout
+    <ListView
+        android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <kr.hs.emirim.parksodam.mirimbreadclock.notice.EmptyRecyclerView
-            android:id="@+id/recycler"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TextView
-            android:id="@+id/empty_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/empty_view_text" />
-
-        <!--<android.support.design.widget.FloatingActionButton-->
-            <!--android:id="@+id/fab"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="bottom|end"-->
-            <!--android:layout_marginBottom="@dimen/fab_margin_default"-->
-            <!--android:layout_marginEnd="@dimen/fab_margin_default"-->
-            <!--android:layout_marginRight="@dimen/fab_margin_default"-->
-            <!--app:fabSize="auto"-->
-            <!--app:srcCompat="@drawable/ic_alarm_white_24dp" />-->
-
-    </android.support.design.widget.CoordinatorLayout>
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true">
+    </ListView>
+</RelativeLayout>
