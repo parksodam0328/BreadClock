@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffff"
-    tools:context="kr.hs.emirim.parksodam.breadclock.set.HowToUseActivity"
+    tools:context=".set.HowToUseActivity"
     android:weightSum="1">
 
     <LinearLayout

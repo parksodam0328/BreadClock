@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <kr.hs.emirim.parksodam.breadclock.notice.EmptyRecyclerView
+        <kr.hs.emirim.parksodam.mirimbreadclock.notice.EmptyRecyclerView
             android:id="@+id/recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

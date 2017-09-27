@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffff"
-    tools:context="kr.hs.emirim.parksodam.breadclock.set.ContactUsActivity"
+    tools:context=".set.ContactUsActivity"
     android:weightSum="1">
     <LinearLayout
         android:layout_width="match_parent"
@@ -64,7 +64,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="
-https://stac-5db0e.firebaseapp.com"
+빵클락"
         android:textColor="#f38722"
         android:textSize="20dp"
         android:textStyle="bold"
@@ -82,7 +82,7 @@ https://stac-5db0e.firebaseapp.com"
         android:text="
 빵집 알림 서비스 신청을 하고싶은 빵집 사장님들은 사이트에 들어가 회원가입을 해주세요.\n
 간단한 회원가입으로 쉽고 간편하게 가입하실 수 있습니다.\n
-자세한 내용은 위 주소의 사이트를 참고해주세요!"
+자세한 내용은 빵클락 페이스북 페이지를 참고해주세요!"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="16dp"
         android:layout_marginBottom="96dp"

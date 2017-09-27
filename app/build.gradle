@@ -4,7 +4,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.0"
     defaultConfig {
-        applicationId "kr.hs.emirim.parksodam.breadclock"
+        applicationId "kr.hs.emirim.parksodam.mirimbreadclock"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
@@ -33,7 +33,7 @@ dependencies {
     //설정 펼쳐지는것
     compile 'com.google.android.gms:play-services-maps:11.4.0'
     compile 'com.google.android.gms:play-services-location:11.4.0'
-    compile 'com.android.support:appcompat-v7:25.1.0'
+    compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
     compile 'noman.placesapi:placesAPI:1.1.3'

@@ -2,6 +2,6 @@
 <fragment
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/add_alarm_fragment"
-    android:name="kr.hs.emirim.parksodam.breadclock.notice.AddEditAlarmFragment"
+    android:name="kr.hs.emirim.parksodam.mirimbreadclock.notice.AddEditAlarmFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"/>

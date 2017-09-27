@@ -80,6 +80,50 @@
           "status": 2
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:937083530677:android:af3dd016bdc1823b",
+        "android_client_info": {
+          "package_name": "kr.hs.emirim.parksodam.mirimbreadclock"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "937083530677-ahm4qp3jfj2fj2a0uljelvt5k4a39904.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kr.hs.emirim.parksodam.mirimbreadclock",
+            "certificate_hash": "f608c0f1dec8e6c5156be5d8673b7a9a448dd445"
+          }
+        },
+        {
+          "client_id": "937083530677-kf4k587q6lronbchn6v163l4gvr9n25s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqDyEBQYQ53Bwk3wDrzyhIa7PfoDJYDvo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "937083530677-kf4k587q6lronbchn6v163l4gvr9n25s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
     }
   ],
   "configuration_version": "1"

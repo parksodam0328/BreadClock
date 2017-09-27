@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffff"
-    tools:context="kr.hs.emirim.parksodam.breadclock.set.NoticeActivity">
+    tools:context=".set.NoticeActivity">
         <android.support.v7.widget.Toolbar
             android:id="@+id/my_toolbar"
             android:layout_width="match_parent"

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="kr.hs.emirim.parksodam.breadclock">
+    package="kr.hs.emirim.parksodam.mirimbreadclock">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -52,7 +52,6 @@
         <activity android:name=".set.ContactUsActivity" />
         <activity android:name=".set.HowToUseActivity" />
         <activity android:name=".set.IntroduceActivity" />
-        <activity android:name=".bookmark.BookmarkInformation" />
         <activity android:name=".set.NoticeActivity" />
         <activity android:name=".notice.AddEditAlarmActivity" />
         <activity
@@ -63,8 +62,6 @@
 
         <receiver android:name=".notice.LoadAlarmsReceiver" />
         <receiver android:name=".notice.AlarmReceiver" />
-
-        <activity android:name=".notice.BreadInformation" />
 
     </application>
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/loginbackimg"
-    tools:context="kr.hs.emirim.parksodam.breadclock.LoginActivity">
+    tools:context=".LoginActivity">
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/login_button"

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffff"
-    tools:context="kr.hs.emirim.parksodam.breadclock.set.IntroduceActivity"
+    tools:context=".set.IntroduceActivity"
     android:weightSum="1">
     <LinearLayout
         android:layout_width="match_parent"
@@ -75,10 +75,6 @@
         android:layout_weight="0.07"
         android:gravity="center"
         android:text="
-사업자용 관리 홈페이지\n
-https://stac-5db0e.firebaseapp.com\n\n
-빵클락 페이스북 페이지\n
-https://www.facebook.com/breadclock \n\n
 made by. 미림여자정보과학고등학교 빵순이\n
 developer. 구지원, 김진민, 박소담\n
 designer. 송민아, 최슬비\n" />
