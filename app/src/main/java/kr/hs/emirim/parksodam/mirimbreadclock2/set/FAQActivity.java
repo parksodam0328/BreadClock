@@ -20,7 +20,7 @@ public class FAQActivity extends AppCompatActivity {
 
         //툴바 설정
         setSupportActionBar(toolbar); //툴바를 액션바와 같게 만들어 준다.
-        ImageView backimg = (ImageView)findViewById(R.id.back_icon);
+        ImageView backimg = (ImageView) findViewById(R.id.back_icon);
         backimg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

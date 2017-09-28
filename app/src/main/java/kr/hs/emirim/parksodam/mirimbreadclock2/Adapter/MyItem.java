@@ -37,7 +37,11 @@ public class MyItem {
         this.contents = contents;
     }
 
-    public Drawable getStar() {return star;}
+    public Drawable getStar() {
+        return star;
+    }
 
-    public void setStar(Drawable star) {this.star = star;}
+    public void setStar(Drawable star) {
+        this.star = star;
+    }
 }

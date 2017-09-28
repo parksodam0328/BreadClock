@@ -21,11 +21,11 @@ import kr.hs.emirim.parksodam.mirimbreadclock2.R;
 import kr.hs.emirim.parksodam.mirimbreadclock2.model.BookmarkBakery;
 
 public class MyAdapter extends BaseAdapter {
-    public boolean check=true;
+    public boolean check = true;
     /* 아이템을 세트로 담기 위한 어레이 */
     private ArrayList<BookmarkBakery> mItems = new ArrayList<>();
 
-    public MyAdapter( ArrayList<BookmarkBakery> mItems ){
+    public MyAdapter(ArrayList<BookmarkBakery> mItems) {
         this.mItems = mItems;
     }
 
@@ -72,7 +72,7 @@ public class MyAdapter extends BaseAdapter {
                     .resize(50, 50)
                     .centerCrop()
                     .into(iv_img);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         tv_name.setText(bookmarkBakery.name);

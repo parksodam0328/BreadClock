@@ -1,5 +1,6 @@
 package kr.hs.emirim.parksodam.mirimbreadclock2;
 
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -16,9 +17,9 @@ import kr.hs.emirim.parksodam.mirimbreadclock2.set.SetFragment;
 
 public class BarActivity extends AppCompatActivity {
 
-    ViewPager vp;
+    public ViewPager vp;
     public FirebaseDatabase mDatabase;
-
+    private String TAG ="myreceiver : ";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,10 @@ public class BarActivity extends AppCompatActivity {
 
         mDatabase = FirebaseDatabase.getInstance();
         //mDatabase.setPersistenceEnabled(true);
+
+        IntentFilter filter = new IntentFilter("fcm");
+        kr.hs.emirim.parksodam.mirimbreadclock2.notice.MyReceiver receiver = new kr.hs.emirim.parksodam.mirimbreadclock2.notice.MyReceiver();
+        registerReceiver(receiver, filter);
 
     }
 }

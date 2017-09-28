@@ -38,22 +38,21 @@ import noman.googleplaces.Place;
 
 
 public class NoticeFragment extends BaseFragment {
-    private ListView mListView;
-    private FirebaseAuth mAuth;
-    private String TAG ="where is uid??";
-    private FirebaseAuth.AuthStateListener mAuthListener;
-    private String bakery;
-
-    ArrayList<BookmarkBakery> seachedBakeris = new ArrayList<>();
-    MyAdapter mMyAdapter;
     private static String name;
     private static String location;
+    ArrayList<BookmarkBakery> seachedBakeris = new ArrayList<>();
+    MyAdapter mMyAdapter;
+    private ListView mListView;
+    private FirebaseAuth mAuth;
+    private String TAG = "where is uid??";
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private String bakery;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         View view = inflater.inflate(R.layout.fragment_notice, container, false);
-        Log.e(TAG,"성공");
+        Log.e(TAG, "성공");
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -72,7 +71,7 @@ public class NoticeFragment extends BaseFragment {
             }
         };
 
-        mListView = (ListView)view.findViewById(R.id.listView);
+        mListView = (ListView) view.findViewById(R.id.listView);
         final Place place = new Place();
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -115,16 +114,16 @@ public class NoticeFragment extends BaseFragment {
                 builder.create().show();
             }
         });
-        DatabaseReference userBookmarkRef = ((BarActivity) getActivity()).mDatabase.getReference("users/"+ mAuth.getCurrentUser().getUid()+"/alarms");
+        DatabaseReference userBookmarkRef = ((BarActivity) getActivity()).mDatabase.getReference("users/" + mAuth.getCurrentUser().getUid() + "/alarms");
         ValueEventListener userBookmarkListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 seachedBakeris.clear();
-                for(DataSnapshot bookmarkBakerySnapshot:dataSnapshot.getChildren()){
-                    BookmarkBakery bb =  bookmarkBakerySnapshot.getValue(BookmarkBakery.class);
+                for (DataSnapshot bookmarkBakerySnapshot : dataSnapshot.getChildren()) {
+                    BookmarkBakery bb = bookmarkBakerySnapshot.getValue(BookmarkBakery.class);
                     seachedBakeris.add(bb);
-                    Log.e(TAG, "알람 추가한 빵집 : " + bb.name );
+                    Log.e(TAG, "알람 추가한 빵집 : " + bb.name);
                 }
                 mMyAdapter = new MyAdapter(seachedBakeris);
                 mListView.setAdapter(mMyAdapter);
@@ -155,6 +154,7 @@ public class NoticeFragment extends BaseFragment {
 //        }) ;
         return view;
     }
+
     @Override
     public void onStart() {
         super.onStart();
@@ -162,6 +162,7 @@ public class NoticeFragment extends BaseFragment {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
     }
+
     @Override
     public void onStop() {
         super.onStop();
@@ -169,22 +170,22 @@ public class NoticeFragment extends BaseFragment {
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
+
     private void updateUI(FirebaseUser user) {
         if (user != null) {
-            Log.e(TAG,"현재 uid : "+user.getUid());
+            Log.e(TAG, "현재 uid : " + user.getUid());
             mAuth = FirebaseAuth.getInstance();
 //            FirebaseDatabase database = FirebaseDatabase.getInstance();
 //            bakery = "베이크팡";
 //            DatabaseReference myRef = database.getReference("BreadClockWeb/Bakeries/BasicInfo/"+bakery+"/Favorites/"+user.getUid());
 //            myRef.setValue(user.getEmail());
         } else {
-            Intent intent = new Intent(getActivity(),LoginActivity.class);
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
             startActivity(intent);
         }
     }
+
     private void dataSetting() {
-
-
 
 
 //        for (int i = 0; i < 8; i++) {
@@ -196,6 +197,7 @@ public class NoticeFragment extends BaseFragment {
         mListView.setAdapter(mMyAdapter);
 
     }
+
     public String getTitle() {
         return "알람";
     }

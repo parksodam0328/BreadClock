@@ -90,38 +90,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "937083530677-7m1n0uga88ssf22hdd6aj2g2hiklc3j1.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "kr.hs.emirim.parksodam.mirimbreadclock",
-            "certificate_hash": "f608c0f1dec8e6c5156be5d8673b7a9a448dd445"
-          }
-        },
-        {
-          "client_id": "937083530677-0s0v65t213d6f8p5irsm67tapg1e490r.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "kr.hs.emirim.parksodam.mirimbreadclock",
-            "certificate_hash": "ea30aba41363d636352f78be0591a26f39f82991"
-          }
-        },
-        {
-          "client_id": "937083530677-bd5pphbfi3f1aefg9u50tbq84qtqem13.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "kr.hs.emirim.parksodam.mirimbreadclock",
-            "certificate_hash": "9e7eb35c68c2e366f9dd6881162753026d685f93"
-          }
-        },
-        {
-          "client_id": "937083530677-iag4002j2ne5oleto6hhhc4qab4ps7oc.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "kr.hs.emirim.parksodam.mirimbreadclock",
-            "certificate_hash": "e7eac53a7f4f4e0d5b2993f1528c0a2b809e53e9"
-          }
-        },
-        {
           "client_id": "937083530677-kf4k587q6lronbchn6v163l4gvr9n25s.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -136,13 +104,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "937083530677-kf4k587q6lronbchn6v163l4gvr9n25s.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2
@@ -157,30 +120,6 @@
         }
       },
       "oauth_client": [
-        {
-          "client_id": "937083530677-04bcqek0qheoqbocrtbomhiur4dubvdi.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "kr.hs.emirim.parksodam.mirimbreadclock2",
-            "certificate_hash": "f608c0f1dec8e6c5156be5d8673b7a9a448dd445"
-          }
-        },
-        {
-          "client_id": "937083530677-kg9r0hrb08kjan4dphsbmdaf324b07um.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "kr.hs.emirim.parksodam.mirimbreadclock2",
-            "certificate_hash": "e7eac53a7f4f4e0d5b2993f1528c0a2b809e53e9"
-          }
-        },
-        {
-          "client_id": "937083530677-id404urterc3hsajudpqk019jsrh3kjk.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "kr.hs.emirim.parksodam.mirimbreadclock2",
-            "certificate_hash": "ea30aba41363d636352f78be0591a26f39f82991"
-          }
-        },
         {
           "client_id": "937083530677-g6bked2ci187gpvg5vj8p0pd788ha500.apps.googleusercontent.com",
           "client_type": 1,

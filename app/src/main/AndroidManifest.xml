@@ -13,6 +13,7 @@
 
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+
     <meta-data
         android:name="com.google.android.gms.version"
         android:value="@integer/google_play_services_version" />
@@ -31,7 +32,7 @@
 
         <activity
             android:name=".LoginActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="reversePortrait">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,6 +45,7 @@
                 android:resource="@menu/action_bar" />
         </activity>
 
+
         <activity android:name=".BarActivity">
         </activity>
 
@@ -53,15 +55,12 @@
         <activity android:name=".set.HowToUseActivity" />
         <activity android:name=".set.IntroduceActivity" />
         <activity android:name=".set.NoticeActivity" />
-        <activity android:name=".notice.AddEditAlarmActivity" />
         <activity
             android:name=".notice.AlarmLandingPageActivity"
             android:theme="@style/AppTheme" />
 
-        <service android:name=".notice.LoadAlarmsService" />
-
-        <receiver android:name=".notice.LoadAlarmsReceiver" />
-        <receiver android:name=".notice.AlarmReceiver" />
+        <!-- [START firebase_service] -->
+        <!-- [END firebase_service] -->
 
     </application>
 

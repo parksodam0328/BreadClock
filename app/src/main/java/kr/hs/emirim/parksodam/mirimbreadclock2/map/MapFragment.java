@@ -78,14 +78,6 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener,
         PlacesListener {
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
-    ArrayList<Place> mPlaces = new ArrayList<Place>();
-    LatLng currentPosition = null;
-    ArrayList<Marker> previous_marker = null;
-    private GoogleApiClient mGoogleApiClient = null;
-    private GoogleMap mGoogleMap = null;
-    private Marker currentMarker = null;
     //디폴트 위치, Seoul
     private static final LatLng DEFAULT_LOCATION = new LatLng(37.56, 126.97);
     private static final String TAG = "googlemap_example";
@@ -93,13 +85,21 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 2002;
     private static final int UPDATE_INTERVAL_MS = 1000; // 3분
     private static final int FASTEST_UPDATE_INTERVAL_MS = 500; // 3분
-    boolean askPermissionOnceAgain = false;
-    private View view;
-    private ListView mListView;
-    ArrayList<BookmarkBakery> seachedBakeris = new ArrayList<>();
     private static String name;
     private static String location;
     public ViewPager vp;
+    ArrayList<Place> mPlaces = new ArrayList<Place>();
+    LatLng currentPosition = null;
+    ArrayList<Marker> previous_marker = null;
+    boolean askPermissionOnceAgain = false;
+    ArrayList<BookmarkBakery> seachedBakeris = new ArrayList<>();
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private GoogleApiClient mGoogleApiClient = null;
+    private GoogleMap mGoogleMap = null;
+    private Marker currentMarker = null;
+    private View view;
+    private ListView mListView;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mAuth = FirebaseAuth.getInstance();
@@ -114,9 +114,10 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
             map.getMapAsync(this);
             ft.add(R.id.map, map);
             ft.commit();
-        }catch (InflateException e) { }
+        } catch (InflateException e) {
+        }
         try {
-            final int page=3;
+            final int page = 3;
             Button button = (Button) view.findViewById(R.id.button);
             mListView = (ListView) view.findViewById(R.id.listView);
             button.setOnClickListener(new View.OnClickListener() {
@@ -128,14 +129,15 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                     NetworkInfo mobile = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
                     NetworkInfo wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
                     if (mobile.isConnected() || wifi.isConnected()) {
-                        dataSetting(); final Place place = new Place();
+                        dataSetting();
+                        final Place place = new Place();
                         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
 
                                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                                 builder.setTitle("즐겨찾기");
-                                builder.setMessage("즐겨찾기에 추가하시겠습니까?" );
+                                builder.setMessage("즐겨찾기에 추가하시겠습니까?");
                                 builder.setCancelable(true);
                                 builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
 
@@ -144,26 +146,26 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                                         BookmarkBakery bb = seachedBakeris.get(position);
                                         //                                      Toast.makeText(getActivity(), "빵집 아이디 : "+bb.uid,
                                         //                                              Toast.LENGTH_SHORT).show();
-                                        DatabaseReference bookmarkRef = ((BarActivity)getActivity()).mDatabase.getReference("users/"+ mAuth.getCurrentUser().getUid()+"/bookmarks/" + bb.uid);
+                                        DatabaseReference bookmarkRef = ((BarActivity) getActivity()).mDatabase.getReference("users/" + mAuth.getCurrentUser().getUid() + "/bookmarks/" + bb.uid);
                                         Log.e(TAG, "좋아하는 빵집 하나 추가요~ : " + bb.uid);
                                         bookmarkRef.setValue(bb);
                                         FirebaseMessaging.getInstance().subscribeToTopic(bb.uid);
                                         //Log.e(TAG,bb.uid);
                                         EasyPreference.with(getActivity())
-                                                .addString(name,place.getName())
+                                                .addString(name, place.getName())
                                                 .save();
 
                                         EasyPreference.with(getActivity())
-                                                .addString(location,place.getVicinity())
+                                                .addString(location, place.getVicinity())
                                                 .save();
 
-                                        Log.d(TAG,"이름 저장");
-                                        Log.d(TAG,"위치 저장");
+                                        Log.d(TAG, "이름 저장");
+                                        Log.d(TAG, "위치 저장");
                                     }
                                 });
                                 builder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
                                     @Override
-                                    public void onClick(DialogInterface dialog, int id){
+                                    public void onClick(DialogInterface dialog, int id) {
                                         dialog.cancel();
                                     }
                                 });
@@ -173,17 +175,19 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                     }
                 }
             });
-        }catch (NullPointerException ne){}
+        } catch (NullPointerException ne) {
+        }
         return view;
     }
-    private void dataSetting(){
+
+    private void dataSetting() {
         seachedBakeris.clear();
-        Log.e(TAG,"==========================빵집리스트 목록 갱신====================");
-        int i=0;
-        for(Marker m : previous_marker){
-            Log.e(TAG,"빵집 추가 : "+m.getTitle()+"/ 빵 : ");
-            BookmarkBakery bb = new BookmarkBakery( mPlaces.get(i).getPlaceId() , m.getTitle(), m.getSnippet(), "@mipmap/bookmarklogo" );
-            Log.e(TAG,"빵집 아이디 : "+mPlaces.get(i).getPlaceId());
+        Log.e(TAG, "==========================빵집리스트 목록 갱신====================");
+        int i = 0;
+        for (Marker m : previous_marker) {
+            Log.e(TAG, "빵집 추가 : " + m.getTitle() + "/ 빵 : ");
+            BookmarkBakery bb = new BookmarkBakery(mPlaces.get(i).getPlaceId(), m.getTitle(), m.getSnippet(), "@mipmap/bookmarklogo");
+            Log.e(TAG, "빵집 아이디 : " + mPlaces.get(i).getPlaceId());
             seachedBakeris.add(bb);
             i++;
             //mMyAdapter.addItem(ContextCompat.getDrawable(getActivity(),R.mipmap.basicimg), m.getTitle(), m.getSnippet(),ContextCompat.getDrawable(getActivity(),R.drawable.star_select));
@@ -192,32 +196,34 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         /* 리스트뷰에 어댑터 등록 */
         mListView.setAdapter(mMyAdapter);
     }
+
     @Override
     public String getTitle() {
         return "지도";
     }
+
     @Override
     public void onPlacesFailure(PlacesException e) {
     }
+
     @Override
     public void onPlacesStart() {
     }
+
     @Override
     public void onPlacesSuccess(final List<Place> places) {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                mPlaces = (ArrayList<Place>)places;
-
-
+                mPlaces = (ArrayList<Place>) places;
 
 
                 for (noman.googleplaces.Place place : places) {
-                    Log.e(TAG,"아이콘? "+place.getIcon());
+                    Log.e(TAG, "아이콘? " + place.getIcon());
                     LatLng latLng
                             = new LatLng(place.getLatitude(), place.getLongitude());
                     MarkerOptions markerOptions = new MarkerOptions();
-                    Log.e(TAG,"빵집 이름 : "+place.getName() +" " +place.getPlaceId());
+                    Log.e(TAG, "빵집 이름 : " + place.getName() + " " + place.getPlaceId());
                     markerOptions.position(latLng);
                     markerOptions.title(place.getName());
                     markerOptions.snippet(place.getVicinity());
@@ -233,19 +239,20 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                 hashSet.addAll(previous_marker);
                 previous_marker.clear();
                 previous_marker.addAll(hashSet);
-                for(Marker m: hashSet) {
+                for (Marker m : hashSet) {
                     Log.e("빵빵:MapFrag", "가져온 정보 : " + m.getTitle());
                 }
                 dataSetting();
             }
         });
     }
+
     public void showPlaceInformation(LatLng location) {
-        Log.d(TAG,"연결 성공");
-        ConnectivityManager manager = (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        Log.d(TAG, "연결 성공");
+        ConnectivityManager manager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo mobile = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         NetworkInfo wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        if(location!=null) {
+        if (location != null) {
             mGoogleMap.clear();//지도 클리어
             if (previous_marker != null)
                 previous_marker.clear();//지역정보 마커 클리어
@@ -257,12 +264,11 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                     .type(PlaceType.BAKERY) //음식점
 // .language("kor","kor_KO")
                     .build().execute();
-        }
-        else{
-            if(!mobile.isConnected() && !wifi.isConnected()) {
+        } else {
+            if (!mobile.isConnected() && !wifi.isConnected()) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("네트워크 오류");
-                builder.setMessage("네트워크에 연결되어 있지 않아 동기화를 진행할 수 없습니다. 통신 상태를 확인해주세요." );
+                builder.setMessage("네트워크에 연결되어 있지 않아 동기화를 진행할 수 없습니다. 통신 상태를 확인해주세요.");
                 builder.setCancelable(true);
                 builder.setPositiveButton("설정", new DialogInterface.OnClickListener() {
                     @Override
@@ -274,7 +280,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                 });
                 builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int id){
+                    public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
                     }
                 });
@@ -282,13 +288,15 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
             }
         }
     }
+
     @Override
     public void onPlacesFinished() {
     }
+
     @Override
     public void onResume() {
         super.onResume();
-        if (mGoogleApiClient!=null)
+        if (mGoogleApiClient != null)
             mGoogleApiClient.connect();
 //앱 정보에서 퍼미션을 허가했는지를 다시 검사해봐야 한다.
         if (askPermissionOnceAgain) {
@@ -298,6 +306,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
             }
         }
     }
+
     @Override
     public void onStop() {
         if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
@@ -308,6 +317,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         }
         super.onStop();
     }
+
     @Override
     public void onPause() {
 //위치 업데이트 중지
@@ -317,6 +327,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         }
         super.onPause();
     }
+
     @Override
     public void onDestroy() {
         if (mGoogleApiClient != null) {
@@ -330,6 +341,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         }
         super.onDestroy();
     }
+
     @Override
     public void onMapReady(GoogleMap map) {
         Log.d(TAG, "onMapReady");
@@ -346,7 +358,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
             int hasFineLocationPermission = ContextCompat.checkSelfPermission(getActivity(),
                     Manifest.permission.ACCESS_FINE_LOCATION);
             if (hasFineLocationPermission == PackageManager.PERMISSION_DENIED) {
-                ActivityCompat.requestPermissions( getActivity(),
+                ActivityCompat.requestPermissions(getActivity(),
                         new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
                         PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
             } else {
@@ -366,6 +378,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
             mGoogleMap.setMyLocationEnabled(true);
         }
     }
+
     protected synchronized void buildGoogleApiClient() {
         mGoogleApiClient = new GoogleApiClient.Builder(getActivity())
                 .addConnectionCallbacks(this)
@@ -374,9 +387,10 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                 .build();
         mGoogleApiClient.connect();
     }
+
     @Override
     public void onConnected(Bundle connectionHint) {
-        Log.d(TAG,"onConnected");
+        Log.d(TAG, "onConnected");
         if (!checkLocationServicesStatus()) {
             showDialogForLocationServiceSetting();
         }
@@ -391,9 +405,8 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                 LocationServices.FusedLocationApi
                         .requestLocationUpdates(mGoogleApiClient, locationRequest, this);
             }
-        }
-        else{
-            Log.d(TAG,"onConnected : call FusedLocationApi");
+        } else {
+            Log.d(TAG, "onConnected : call FusedLocationApi");
             LocationServices.FusedLocationApi
                     .requestLocationUpdates(mGoogleApiClient, locationRequest, this);
             mGoogleMap.getUiSettings().setCompassEnabled(true);
@@ -401,30 +414,34 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
             mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
         }
     }
+
     @Override
     public void onLocationChanged(Location location) {
         currentPosition
-                = new LatLng( location.getLatitude(), location.getLongitude());
-        Log.d( TAG, "onLocationChanged");
+                = new LatLng(location.getLatitude(), location.getLongitude());
+        Log.d(TAG, "onLocationChanged");
         String markerTitle = getCurrentAddress(location);
         String markerSnippet = String.valueOf(location.getLatitude())
                 + String.valueOf(location.getLongitude());
 //현재 위치에 마커 생성
         setCurrentLocation(location, markerTitle, markerSnippet);
     }
+
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
     }
+
     @Override
     public void onConnectionSuspended(int cause) {
-        if ( cause == CAUSE_NETWORK_LOST )
+        if (cause == CAUSE_NETWORK_LOST)
             Log.e(TAG, "onConnectionSuspended(): Google Play services " +
                     "connection lost. Cause: network lost.");
-        else if (cause == CAUSE_SERVICE_DISCONNECTED )
-            Log.e(TAG,"onConnectionSuspended(): Google Play services " +
+        else if (cause == CAUSE_SERVICE_DISCONNECTED)
+            Log.e(TAG, "onConnectionSuspended(): Google Play services " +
                     "connection lost. Cause: service disconnected");
     }
-    public String getCurrentAddress(Location location){
+
+    public String getCurrentAddress(Location location) {
 //지오코더... GPS를 주소로 변환
         Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
         List<Address> addresses;
@@ -437,7 +454,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
 //네트워크 문제
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setTitle("네트워크 오류");
-            builder.setMessage("네트워크에 연결되어 있지 않아 동기화를 진행할 수 없습니다. 통신 상태를 확인해주세요." );
+            builder.setMessage("네트워크에 연결되어 있지 않아 동기화를 진행할 수 없습니다. 통신 상태를 확인해주세요.");
             builder.setCancelable(true);
             builder.setPositiveButton("설정", new DialogInterface.OnClickListener() {
                 @Override
@@ -449,7 +466,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
             });
             builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
                 @Override
-                public void onClick(DialogInterface dialog, int id){
+                public void onClick(DialogInterface dialog, int id) {
                     dialog.cancel();
                 }
             });
@@ -467,15 +484,17 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
             return address.getAddressLine(0).toString();
         }
     }
-    public boolean checkLocationServicesStatus(){
+
+    public boolean checkLocationServicesStatus() {
         LocationManager locationManager = (LocationManager) getActivity().getSystemService(LOCATION_SERVICE);
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                 || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
     }
+
     public void setCurrentLocation(Location location, String markerTitle, String markerSnippet) {
         if (currentMarker != null) currentMarker.remove();
         if (location != null) {
-            LatLng currentLocation = new LatLng( location.getLatitude(), location.getLongitude());
+            LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
 //마커를 원하는 이미지로 변경해줘야함
             MarkerOptions markerOptions = new MarkerOptions();
             markerOptions.position(currentLocation);
@@ -495,6 +514,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(DEFAULT_LOCATION));
         return;
     }
+
     //여기부터는 런타임 퍼미션 처리을 위한 메소드들
     @TargetApi(Build.VERSION_CODES.M)
     private void checkPermissions() {
@@ -504,20 +524,20 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         int hasFineLocationPermission = ContextCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.ACCESS_FINE_LOCATION);
         if (hasFineLocationPermission == PackageManager
-                .PERMISSION_DENIED && fineLocationRationale )
+                .PERMISSION_DENIED && fineLocationRationale)
             showDialogForPermission("앱을 실행하려면 퍼미션을 허가하셔야합니다.");
         else if (hasFineLocationPermission
-                == PackageManager.PERMISSION_DENIED && !fineLocationRationale ) {
+                == PackageManager.PERMISSION_DENIED && !fineLocationRationale) {
             showDialogForPermissionSetting("퍼미션 거부 + Don't ask again(다시 묻지 않음) " +
                     "체크 박스를 설정한 경우로 설정에서 퍼미션 허가해야합니다.");
-        }
-        else if (hasFineLocationPermission == PackageManager.PERMISSION_GRANTED) {
+        } else if (hasFineLocationPermission == PackageManager.PERMISSION_GRANTED) {
             if (mGoogleApiClient == null) {
                 buildGoogleApiClient();
             }
             mGoogleMap.setMyLocationEnabled(true);
         }
     }
+
     @Override
     public void onRequestPermissionsResult(int permsRequestCode,
                                            @NonNull String[] permissions,
@@ -534,12 +554,12 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                         == PackageManager.PERMISSION_GRANTED) {
                     mGoogleMap.setMyLocationEnabled(true);
                 }
-            }
-            else {
+            } else {
                 checkPermissions();
             }
         }
     }
+
     @TargetApi(Build.VERSION_CODES.M)
     private void showDialogForPermission(String msg) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -548,7 +568,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         builder.setCancelable(false);
         builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                ActivityCompat.requestPermissions( getActivity(),
+                ActivityCompat.requestPermissions(getActivity(),
                         new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
                         PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
             }
@@ -560,6 +580,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         });
         builder.create().show();
     }
+
     private void showDialogForPermissionSetting(String msg) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("알림");
@@ -582,12 +603,13 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         });
         builder.create().show();
     }
+
     //여기부터는 GPS 활성화를 위한 메소드들
     private void showDialogForLocationServiceSetting() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("위치 서비스 비활성화");
         builder.setMessage("앱을 사용하기 위해서는 위치 서비스가 필요합니다.\n"
-                + "위치 설정을 수정하실래요?" );
+                + "위치 설정을 수정하실래요?");
         builder.setCancelable(true);
         builder.setPositiveButton("설정", new DialogInterface.OnClickListener() {
             @Override
@@ -599,12 +621,13 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         });
         builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int id){
+            public void onClick(DialogInterface dialog, int id) {
                 dialog.cancel();
             }
         });
         builder.create().show();
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -622,12 +645,10 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                                     == PackageManager.PERMISSION_GRANTED) {
                                 mGoogleMap.setMyLocationEnabled(true);
                             }
-                        }
-                        else mGoogleMap.setMyLocationEnabled(true);
+                        } else mGoogleMap.setMyLocationEnabled(true);
                         return;
                     }
-                }
-                else{
+                } else {
                     setCurrentLocation(null, "위치정보 가져올 수 없음", "위치 퍼미션과 GPS 활성 요부 확인하세요");
                 }
                 break;
@@ -644,10 +665,10 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
 
     private void updateUI(FirebaseUser user) {
         if (user != null) {
-            Log.e(TAG,"현재 uid : "+user.getUid());
+            Log.e(TAG, "현재 uid : " + user.getUid());
             mAuth = FirebaseAuth.getInstance();
         } else {
-            Intent intent = new Intent(getActivity(),LoginActivity.class);
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
             startActivity(intent);
         }
     }

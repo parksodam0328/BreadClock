@@ -48,17 +48,17 @@ public class SetFragment extends BaseFragment {
                 }
             }
         };
-        Button button1 = (Button)view.findViewById(R.id.button3);
+        Button button1 = (Button) view.findViewById(R.id.button3);
         button1.setOnClickListener(onClickListener);
-        Button button2 = (Button)view.findViewById(R.id.button4);
+        Button button2 = (Button) view.findViewById(R.id.button4);
         button2.setOnClickListener(onClickListener);
-        Button button3 = (Button)view.findViewById(R.id.button5);
+        Button button3 = (Button) view.findViewById(R.id.button5);
         button3.setOnClickListener(onClickListener);
-        Button button4 = (Button)view.findViewById(R.id.button6);
+        Button button4 = (Button) view.findViewById(R.id.button6);
         button4.setOnClickListener(onClickListener);
-        Button button5 = (Button)view.findViewById(R.id.button7);
+        Button button5 = (Button) view.findViewById(R.id.button7);
         button5.setOnClickListener(onClickListener);
-        Button button6 = (Button)view.findViewById(R.id.button8);
+        Button button6 = (Button) view.findViewById(R.id.button8);
         button6.setOnClickListener(onClickListener);
 
         return view;

@@ -32,29 +32,27 @@ import kr.hs.emirim.parksodam.mirimbreadclock2.model.BookmarkBakery;
 import noman.googleplaces.Place;
 
 
-
 /**
  * Created by kim on 2017-07-29.
  */
 
 
 public class BookmarkFragment extends BaseFragment {
-    private ListView mListView;
-    private FirebaseAuth mAuth;
-    private String TAG ="where is uid??";
-    private FirebaseAuth.AuthStateListener mAuthListener;
-    private String bakery;
     private static String name;
     private static String location;
-
     ArrayList<BookmarkBakery> seachedBakeris = new ArrayList<>();
     MyAdapter mMyAdapter;
+    private ListView mListView;
+    private FirebaseAuth mAuth;
+    private String TAG = "where is uid??";
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private String bakery;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         View view = inflater.inflate(R.layout.fragment_bookmark, container, false);
-        Log.e(TAG,"성공");
+        Log.e(TAG, "성공");
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -73,7 +71,7 @@ public class BookmarkFragment extends BaseFragment {
             }
         };
 
-        mListView = (ListView)view.findViewById(R.id.listView);
+        mListView = (ListView) view.findViewById(R.id.listView);
         final Place place = new Place();
         mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
@@ -156,16 +154,16 @@ public class BookmarkFragment extends BaseFragment {
                 builder.create().show();
             }
         });
-        DatabaseReference userBookmarkRef = ((BarActivity) getActivity()).mDatabase.getReference("users/"+ mAuth.getCurrentUser().getUid()+"/bookmarks");
+        DatabaseReference userBookmarkRef = ((BarActivity) getActivity()).mDatabase.getReference("users/" + mAuth.getCurrentUser().getUid() + "/bookmarks");
         ValueEventListener userBookmarkListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 seachedBakeris.clear();
-                for(DataSnapshot bookmarkBakerySnapshot:dataSnapshot.getChildren()){
-                    BookmarkBakery bb =  bookmarkBakerySnapshot.getValue(BookmarkBakery.class);
+                for (DataSnapshot bookmarkBakerySnapshot : dataSnapshot.getChildren()) {
+                    BookmarkBakery bb = bookmarkBakerySnapshot.getValue(BookmarkBakery.class);
                     seachedBakeris.add(bb);
-                    Log.e(TAG, "내가 좋아하는 빵집은요 : " + bb.name );
+                    Log.e(TAG, "내가 좋아하는 빵집은요 : " + bb.name);
                 }
                 mMyAdapter = new MyAdapter(seachedBakeris);
                 mListView.setAdapter(mMyAdapter);
@@ -196,6 +194,7 @@ public class BookmarkFragment extends BaseFragment {
 //        }) ;
         return view;
     }
+
     @Override
     public void onStart() {
         super.onStart();
@@ -203,6 +202,7 @@ public class BookmarkFragment extends BaseFragment {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
     }
+
     @Override
     public void onStop() {
         super.onStop();
@@ -210,22 +210,22 @@ public class BookmarkFragment extends BaseFragment {
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
+
     private void updateUI(FirebaseUser user) {
         if (user != null) {
-            Log.e(TAG,"현재 uid : "+user.getUid());
+            Log.e(TAG, "현재 uid : " + user.getUid());
             mAuth = FirebaseAuth.getInstance();
 //            FirebaseDatabase database = FirebaseDatabase.getInstance();
 //            bakery = "베이크팡";
 //            DatabaseReference myRef = database.getReference("BreadClockWeb/Bakeries/BasicInfo/"+bakery+"/Favorites/"+user.getUid());
 //            myRef.setValue(user.getEmail());
         } else {
-            Intent intent = new Intent(getActivity(),LoginActivity.class);
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
             startActivity(intent);
         }
     }
+
     private void dataSetting() {
-
-
 
 
 //        for (int i = 0; i < 8; i++) {

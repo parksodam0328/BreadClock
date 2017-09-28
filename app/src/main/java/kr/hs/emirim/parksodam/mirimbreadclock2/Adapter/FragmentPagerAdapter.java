@@ -11,23 +11,22 @@ import kr.hs.emirim.parksodam.mirimbreadclock2.BaseFragment;
  * Created by kim on 2017-07-29.
  */
 
-public class FragmentPagerAdapter extends android.support.v4.app.FragmentPagerAdapter{
+public class FragmentPagerAdapter extends android.support.v4.app.FragmentPagerAdapter {
 
     List<BaseFragment> list;
 
     public FragmentPagerAdapter(FragmentManager fm) {
         super(fm);
-        list=new ArrayList<>();
+        list = new ArrayList<>();
     }
 
-    public void addFragment(BaseFragment fragment){
+    public void addFragment(BaseFragment fragment) {
         list.add(fragment);
     }
 
 
     @Override
-    public BaseFragment getItem(int position)
-    {
+    public BaseFragment getItem(int position) {
         return list.get(position);
     }
 
@@ -37,7 +36,7 @@ public class FragmentPagerAdapter extends android.support.v4.app.FragmentPagerAd
     }
 
 
-    public CharSequence getPageTitle(int position){
+    public CharSequence getPageTitle(int position) {
         return getItem(position).getTitle();
     }
 

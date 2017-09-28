@@ -25,13 +25,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-public class LoginActivity extends AppCompatActivity   implements
+public class LoginActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener,
         View.OnClickListener {
-    final public static String TAG="빵클:LoginAct";
+    final public static String TAG = "빵클:LoginAct";
     private static final int RC_SIGN_IN = 9001;
     private GoogleApiClient mGoogleApiClient;
     private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.e(TAG, "들어옴");
@@ -52,7 +53,7 @@ public class LoginActivity extends AppCompatActivity   implements
 
         mAuth = FirebaseAuth.getInstance();
 
-        SignInButton button = (SignInButton)findViewById(R.id.login_button);
+        SignInButton button = (SignInButton) findViewById(R.id.login_button);
         button.setOnClickListener(this);
 //        button.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -63,6 +64,7 @@ public class LoginActivity extends AppCompatActivity   implements
 //        });
 
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
