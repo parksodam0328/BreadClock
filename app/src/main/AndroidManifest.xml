@@ -48,7 +48,7 @@
 
         <activity
             android:name=".BarActivity"
-            android:screenOrientation="sensorPortrait"></activity>
+            android:screenOrientation="sensorPortrait" />
 
         <activity
             android:name=".set.VersionActivity"
@@ -80,7 +80,7 @@
         <service
             android:name=".MyFirebaseMessagingService">
             <intent-filter>
-                <action android:name="kr.hs.emirim.parksodam.mirimbreadclock.fcm"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
         </service>
         <!-- [END firebase_service] -->
