@@ -32,7 +32,7 @@
 
         <activity
             android:name=".LoginActivity"
-            android:screenOrientation="reversePortrait">
+            android:screenOrientation="sensorPortrait">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,20 +46,43 @@
         </activity>
 
 
-        <activity android:name=".BarActivity">
-        </activity>
+        <activity
+            android:name=".BarActivity"
+            android:screenOrientation="sensorPortrait"></activity>
 
-        <activity android:name=".set.VersionActivity" />
-        <activity android:name=".set.FAQActivity" />
-        <activity android:name=".set.ContactUsActivity" />
-        <activity android:name=".set.HowToUseActivity" />
-        <activity android:name=".set.IntroduceActivity" />
-        <activity android:name=".set.NoticeActivity" />
+        <activity
+            android:name=".set.VersionActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".set.FAQActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".set.ContactUsActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".set.HowToUseActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".set.IntroduceActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".set.NoticeActivity"
+            android:screenOrientation="sensorPortrait" />
         <activity
             android:name=".notice.AlarmLandingPageActivity"
+            android:screenOrientation="sensorPortrait"
             android:theme="@style/AppTheme" />
 
+        <service android:name=".notice.LoadAlarmsService" />
+        <receiver android:name=".notice.LoadAlarmsReceiver" />
+
         <!-- [START firebase_service] -->
+        <service
+            android:name=".MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="kr.hs.emirim.parksodam.mirimbreadclock.fcm"/>
+            </intent-filter>
+        </service>
         <!-- [END firebase_service] -->
 
     </application>
