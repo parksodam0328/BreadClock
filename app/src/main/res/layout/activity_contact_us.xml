@@ -8,9 +8,11 @@
     android:background="#ffffff"
     tools:context=".set.ContactUsActivity"
     android:weightSum="1">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <android.support.v7.widget.Toolbar
             android:id="@+id/my_toolbar"
             android:layout_width="match_parent"
@@ -19,16 +21,21 @@
             android:background="#ffffff"
             android:minHeight="48dp"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:weightSum="1"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                >
+                android:layout_weight="0.88">
+
+
                 <ImageView
                     android:id="@+id/back_icon"
-                    android:layout_width="45dp"
+                    android:layout_width="30dp"
                     android:layout_height="45dp"
                     android:layout_gravity="center"
+
                     android:gravity="left"
                     app:srcCompat="@drawable/setback" />
 
@@ -40,8 +47,8 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginLeft="7dp"
                     app:srcCompat="@drawable/llogo" />
+
             </LinearLayout>
         </android.support.v7.widget.Toolbar>
     </LinearLayout>

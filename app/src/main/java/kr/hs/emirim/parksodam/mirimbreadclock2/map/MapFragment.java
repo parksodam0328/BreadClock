@@ -130,6 +130,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                     NetworkInfo wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
                     if (mobile.isConnected() || wifi.isConnected()) {
                         dataSetting();
+
                         final Place place = new Place();
                         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
@@ -181,20 +182,31 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
     }
 
     private void dataSetting() {
-        seachedBakeris.clear();
-        Log.e(TAG, "==========================빵집리스트 목록 갱신====================");
-        int i = 0;
-        for (Marker m : previous_marker) {
-            Log.e(TAG, "빵집 추가 : " + m.getTitle() + "/ 빵 : ");
-            BookmarkBakery bb = new BookmarkBakery(mPlaces.get(i).getPlaceId(), m.getTitle(), m.getSnippet(), "@mipmap/bookmarklogo");
-            Log.e(TAG, "빵집 아이디 : " + mPlaces.get(i).getPlaceId());
-            seachedBakeris.add(bb);
-            i++;
-            //mMyAdapter.addItem(ContextCompat.getDrawable(getActivity(),R.mipmap.basicimg), m.getTitle(), m.getSnippet(),ContextCompat.getDrawable(getActivity(),R.drawable.star_select));
-        }
-        MyAdapter mMyAdapter = new MyAdapter(seachedBakeris);
+        try {
+            seachedBakeris.clear();
+            Log.e(TAG, "==========================빵집리스트 목록 갱신====================");
+
+            int i = 0;
+            for (Marker m : previous_marker) {
+                Log.e(TAG, "빵집 개수 : " + seachedBakeris.size());
+                Log.e(TAG, "빵집 추가 : " + m.getTitle() + "/ 빵 : ");
+                BookmarkBakery bb = new BookmarkBakery(mPlaces.get(i).getPlaceId(), m.getTitle(), m.getSnippet(), "@mipmap/bookmarklogo");
+                Log.e(TAG, "빵집 아이디 : " + mPlaces.get(i).getPlaceId());
+                seachedBakeris.add(bb);
+                Log.e(TAG, "빵집 개수 : " + seachedBakeris.size());
+                i++;
+                //mMyAdapter.addItem(ContextCompat.getDrawable(getActivity(),R.mipmap.basicimg), m.getTitle(), m.getSnippet(),ContextCompat.getDrawable(getActivity(),R.drawable.star_select));
+            }
+
+            MyAdapter mMyAdapter = new MyAdapter(seachedBakeris);
         /* 리스트뷰에 어댑터 등록 */
-        mListView.setAdapter(mMyAdapter);
+            mListView.setAdapter(mMyAdapter);
+        }catch(IndexOutOfBoundsException e){
+            Log.e(TAG, "빵집 개수 : " + seachedBakeris.size());
+            Toast.makeText(getActivity(), "네트워크에 연결되어 있지 않아 동기화를 진행할 수 없습니다. 통신 상태를 확인해주세요.",
+                    Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override
@@ -204,6 +216,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
 
     @Override
     public void onPlacesFailure(PlacesException e) {
+
     }
 
     @Override
@@ -248,11 +261,12 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
     }
 
     public void showPlaceInformation(LatLng location) {
-        Log.d(TAG, "연결 성공");
-        ConnectivityManager manager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo mobile = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-        NetworkInfo wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        if (location != null) {
+//        ConnectivityManager manager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+//        NetworkInfo mobile = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+//        NetworkInfo wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        try {
+            Log.d(TAG, "연결 성공");
+
             mGoogleMap.clear();//지도 클리어
             if (previous_marker != null)
                 previous_marker.clear();//지역정보 마커 클리어
@@ -260,32 +274,30 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                     .listener(this)
                     .key("AIzaSyAocCFlcpTitCBLcc2Dtl8iY2mT7XrhvAk")
                     .latlng(location.latitude, location.longitude)//현재 위치
-                    .radius(1000) //1 킬로미터 내에서 검색
-                    .type(PlaceType.BAKERY) //음식점
-// .language("kor","kor_KO")
+                    .radius(1500) // 1.5킬로미터 내에서 검색
+                    .type(PlaceType.BAKERY) //빵집
+                    .language("ko", "Kor")
                     .build().execute();
-        } else {
-            if (!mobile.isConnected() && !wifi.isConnected()) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("네트워크 오류");
-                builder.setMessage("네트워크에 연결되어 있지 않아 동기화를 진행할 수 없습니다. 통신 상태를 확인해주세요.");
-                builder.setCancelable(true);
-                builder.setPositiveButton("설정", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        Intent callNetworkSettingIntent
-                                = new Intent(Settings.ACTION_WIFI_SETTINGS);
-                        startActivity(callNetworkSettingIntent);
-                    }
-                });
-                builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
-                builder.create().show();
-            }
+        }catch(NullPointerException e){
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setTitle("네트워크 오류");
+            builder.setMessage("네트워크에 연결되어 있지 않아 동기화를 진행할 수 없습니다. 통신 상태를 확인해주세요.");
+            builder.setCancelable(true);
+            builder.setPositiveButton("설정", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int id) {
+                    Intent callNetworkSettingIntent
+                            = new Intent(Settings.ACTION_WIFI_SETTINGS);
+                    startActivity(callNetworkSettingIntent);
+                }
+            });
+            builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.cancel();
+                }
+            });
+            builder.create().show();
         }
     }
 
@@ -609,7 +621,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("위치 서비스 비활성화");
         builder.setMessage("앱을 사용하기 위해서는 위치 서비스가 필요합니다.\n"
-                + "위치 설정을 수정하실래요?");
+                + "위치 설정을 확인해주세요.");
         builder.setCancelable(true);
         builder.setPositiveButton("설정", new DialogInterface.OnClickListener() {
             @Override

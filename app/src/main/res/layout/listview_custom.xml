@@ -2,33 +2,30 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:background="#ffffff"
     android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/tv_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="name.."
-                android:layout_marginLeft="22dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginStart="22dp"
-                android:layout_marginTop="12dp"
-                android:layout_alignTop="@+id/iv_img"
-                android:layout_toRightOf="@+id/iv_img"
-                android:layout_toEndOf="@+id/iv_img" />
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="name.."
+        android:layout_marginLeft="22dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="12dp"
+        android:layout_alignTop="@+id/iv_img"
+        android:layout_toRightOf="@+id/iv_img"
+        android:layout_toEndOf="@+id/iv_img" />
 
     <TextView
+        android:layout_weight="1"
         android:id="@+id/tv_contents"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="contents.."
         android:layout_alignBottom="@+id/iv_img"
         android:layout_alignLeft="@+id/tv_name"
-        android:layout_alignRight="@+id/tv_name"
         android:layout_alignStart="@+id/tv_name"
-        android:layout_marginBottom="12dp"
-        android:layout_weight="1"
-        android:text="contents.." />
+        android:layout_marginBottom="12dp" />
 
     <ImageView
         android:id="@+id/iv_img"
@@ -36,11 +33,23 @@
         android:layout_height="70dp"
         android:layout_marginLeft="19dp"
         android:layout_marginStart="19dp"
-        android:layout_marginTop="8dp"
-        app:srcCompat="@mipmap/bookmarklogo"
+        android:layout_marginTop="16dp"
+        app:srcCompat="@mipmap/ic_launcher"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:id="@+id/iv_image"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/star_select"
+        android:layout_marginRight="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_alignTop="@+id/iv_img"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBottom="@+id/iv_img" />
 
 
 </RelativeLayout>

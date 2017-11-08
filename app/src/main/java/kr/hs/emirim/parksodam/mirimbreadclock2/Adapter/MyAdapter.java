@@ -67,8 +67,8 @@ public class MyAdapter extends BaseAdapter {
         try {
             Picasso.with(context)
                     .load(bookmarkBakery.photo)
-                    .placeholder(R.mipmap.bookmarklogo)
-                    .error(R.mipmap.bookmarklogo)
+                    .placeholder(R.mipmap.basicimg)
+                    .error(R.mipmap.basicimg)
                     .resize(50, 50)
                     .centerCrop()
                     .into(iv_img);

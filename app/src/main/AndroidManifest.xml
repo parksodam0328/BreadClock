@@ -19,6 +19,7 @@
         android:value="@integer/google_play_services_version" />
 
     <application
+        android:largeHeap="true"
         android:allowBackup="false"
         android:icon="@drawable/icon"
         android:label="@string/app_name"
@@ -68,13 +69,13 @@
         <activity
             android:name=".set.NoticeActivity"
             android:screenOrientation="sensorPortrait" />
-        <activity
+        <!--<activity
             android:name=".notice.AlarmLandingPageActivity"
             android:screenOrientation="sensorPortrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme" />-->
 
-        <service android:name=".notice.LoadAlarmsService" />
-        <receiver android:name=".notice.LoadAlarmsReceiver" />
+        <!--<service android:name=".notice.LoadAlarmsService" />-->
+       <!-- <receiver android:name=".notice.LoadAlarmsReceiver" />-->
 
         <!-- [START firebase_service] -->
         <service
