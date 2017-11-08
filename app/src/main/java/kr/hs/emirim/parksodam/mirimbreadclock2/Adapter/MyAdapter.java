@@ -21,7 +21,6 @@ import kr.hs.emirim.parksodam.mirimbreadclock2.R;
 import kr.hs.emirim.parksodam.mirimbreadclock2.model.BookmarkBakery;
 
 public class MyAdapter extends BaseAdapter {
-    public boolean check = true;
     /* 아이템을 세트로 담기 위한 어레이 */
     private ArrayList<BookmarkBakery> mItems = new ArrayList<>();
 
@@ -56,9 +55,10 @@ public class MyAdapter extends BaseAdapter {
         }
 
         /* 'listview_custom'에 정의된 위젯에 대한 참조 획득 */
-        final ImageView iv_img = (ImageView) convertView.findViewById(R.id.iv_img);
+        ImageView iv_img = (ImageView) convertView.findViewById(R.id.iv_img);
         TextView tv_name = (TextView) convertView.findViewById(R.id.tv_name);
         TextView tv_contents = (TextView) convertView.findViewById(R.id.tv_contents);
+
 
         /* 각 리스트에 뿌려줄 아이템을 받아오는데 mMyItem 재활용 */
         BookmarkBakery bookmarkBakery = getItem(position);
@@ -80,7 +80,7 @@ public class MyAdapter extends BaseAdapter {
         //iv_star.setImageDrawable(bookmarkBakery.getStar());
         /* (위젯에 대한 이벤트리스너를 지정하고 싶다면 여기에 작성하면된다) */
 //
-//        iv_star.setOnClickListener(new View.OnClickListener() {
+//        iv_star.
 //            @Override
 //            public void onClick(View v) {
 //                if(check==true) {
@@ -95,8 +95,6 @@ public class MyAdapter extends BaseAdapter {
 //        });
 
         return convertView;
-    }
-
 //
 //    /* 아이템 데이터 추가를 위한 함수. 자신이 원하는대로 작성 */
 //    public void addItem(Drawable img, String name, String contents, Drawable star) {
@@ -112,7 +110,5 @@ public class MyAdapter extends BaseAdapter {
 //        /* mItems에 MyItem을 추가한다. */
 //        mItems.add(mItem);
 //
-//    }
-
-
+    }
 }

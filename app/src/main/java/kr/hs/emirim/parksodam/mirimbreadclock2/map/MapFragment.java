@@ -207,6 +207,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                     Toast.LENGTH_SHORT).show();
         }
 
+
     }
 
     @Override
@@ -266,6 +267,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
 //        NetworkInfo wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         try {
             Log.d(TAG, "연결 성공");
+
 
             mGoogleMap.clear();//지도 클리어
             if (previous_marker != null)
