@@ -123,12 +123,10 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (v!=null && currentPosition!=null) {
                     showPlaceInformation(currentPosition);
                     Log.d(TAG, "연결 될까???");
-                    ConnectivityManager manager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-                    NetworkInfo mobile = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-                    NetworkInfo wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-                    if (mobile.isConnected() || wifi.isConnected()) {
+
                         dataSetting();
 
                         final Place place = new Place();
@@ -174,6 +172,9 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                             }
                         });
                     }
+                    else{
+                        Toast.makeText(getActivity(), "네트워크 오류", Toast.LENGTH_LONG).show();
+                    }
                 }
             });
         } catch (NullPointerException ne) {
@@ -190,7 +191,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
             for (Marker m : previous_marker) {
                 Log.e(TAG, "빵집 개수 : " + seachedBakeris.size());
                 Log.e(TAG, "빵집 추가 : " + m.getTitle() + "/ 빵 : ");
-                BookmarkBakery bb = new BookmarkBakery(mPlaces.get(i).getPlaceId(), m.getTitle(), m.getSnippet(), "@mipmap/bookmarklogo");
+                BookmarkBakery bb = new BookmarkBakery(mPlaces.get(i).getPlaceId(), m.getTitle(), m.getSnippet(), "@mipmap/star");
                 Log.e(TAG, "빵집 아이디 : " + mPlaces.get(i).getPlaceId());
                 seachedBakeris.add(bb);
                 Log.e(TAG, "빵집 개수 : " + seachedBakeris.size());
@@ -262,25 +263,22 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
     }
 
     public void showPlaceInformation(LatLng location) {
-//        ConnectivityManager manager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-//        NetworkInfo mobile = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-//        NetworkInfo wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        try {
-            Log.d(TAG, "연결 성공");
-
-
-            mGoogleMap.clear();//지도 클리어
-            if (previous_marker != null)
-                previous_marker.clear();//지역정보 마커 클리어
-            new NRPlaces.Builder()
-                    .listener(this)
-                    .key("AIzaSyAocCFlcpTitCBLcc2Dtl8iY2mT7XrhvAk")
-                    .latlng(location.latitude, location.longitude)//현재 위치
-                    .radius(1500) // 1.5킬로미터 내에서 검색
-                    .type(PlaceType.BAKERY) //빵집
-                    .language("ko", "Kor")
-                    .build().execute();
-        }catch(NullPointerException e){
+        ConnectivityManager manager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo mNetwork = manager.getActiveNetworkInfo();
+        Log.d(TAG, "연결 성공");
+    if(mNetwork != null && mNetwork.isConnected()){
+        mGoogleMap.clear();//지도 클리어
+        if (previous_marker != null)
+            previous_marker.clear();//지역정보 마커 클리어
+        new NRPlaces.Builder()
+                .listener(this)
+                .key("AIzaSyAocCFlcpTitCBLcc2Dtl8iY2mT7XrhvAk")
+                .latlng(location.latitude, location.longitude)//현재 위치
+                .radius(1500) // 1.5킬로미터 내에서 검색
+                .type(PlaceType.BAKERY) //빵집
+                .language("ko", "Kor")
+                .build().execute();
+    }else{
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setTitle("네트워크 오류");
             builder.setMessage("네트워크에 연결되어 있지 않아 동기화를 진행할 수 없습니다. 통신 상태를 확인해주세요.");
@@ -366,7 +364,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         mGoogleMap.getUiSettings().setCompassEnabled(true); //나침반
         map.moveCamera(CameraUpdateFactory.newLatLng(DEFAULT_LOCATION));
 //mGoogleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-        mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+        mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(16));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 //API 23 이상이면 런타임 퍼미션 처리 필요
             int hasFineLocationPermission = ContextCompat.checkSelfPermission(getActivity(),
