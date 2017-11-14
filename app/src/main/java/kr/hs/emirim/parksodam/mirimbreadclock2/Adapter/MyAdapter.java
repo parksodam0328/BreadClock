@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import kr.hs.emirim.parksodam.mirimbreadclock2.R;
 import kr.hs.emirim.parksodam.mirimbreadclock2.model.BookmarkBakery;
 
-public class MyAdapter extends BaseAdapter {
+public class MyAdapter extends BaseAdapter{
     /* 아이템을 세트로 담기 위한 어레이 */
     private ArrayList<BookmarkBakery> mItems = new ArrayList<>();
 

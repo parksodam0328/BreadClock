@@ -21,16 +21,15 @@
     <android.support.design.widget.TabLayout
         android:id="@+id/tl_main"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_gravity="bottom"
-        android:background="@android:color/white"
-        app:tabTextColor="#666666"
-        app:tabSelectedTextColor="#ff8c00"
-        app:tabIndicatorColor="#ff8c00"
-        app:tabMode="fixed"
-        android:layout_below="@+id/my_toolbar"
+        android:layout_height="60dp"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:background="@android:color/white"
+        app:tabSelectedTextColor="@color/colorAccent"
+        app:tabTextColor="#666666"
+        app:tabMode="fixed"
+        app:tabGravity="fill"
+        android:layout_alignParentBottom="true" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_main"
@@ -38,7 +37,8 @@
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/tl_main">
+        android:layout_below="@+id/my_toolbar"
+        android:layout_above="@+id/tl_main">
 
 
     </android.support.v4.view.ViewPager>
@@ -47,10 +47,10 @@
         android:id="@+id/logo"
         android:layout_width="400dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="7dp"
-        android:layout_above="@+id/tl_main"
-        android:layout_alignParentTop="true"
-        app:srcCompat="@drawable/llogo"
+        android:layout_alignBottom="@+id/my_toolbar"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="7dp"
+        app:srcCompat="@drawable/llogo" />
 </RelativeLayout>
