@@ -7,11 +7,15 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:statusBarColor">#ff6f00</item>
-        <item name="android:windowContentOverlay">@null</item>
-    </style>
+</style>
 
     <style name="DeleteAlarmDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="colorAccent">#f38722</item>
+    </style>
+
+    <style name="CustomTabWidgetText"
+        parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:textSize">10sp</item>
     </style>
 
 </resources>

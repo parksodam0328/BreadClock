@@ -16,12 +16,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <Button
+            <ImageButton
                 android:id="@+id/button"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="32dp"
                 android:background="#ff8c00"
                 android:textColor="#ffffff"
+                android:src="@drawable/gps"
                 android:text="빵집찾기" />
         </FrameLayout>
 

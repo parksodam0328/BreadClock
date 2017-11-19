@@ -5,4 +5,4 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/tab"
     android:textColor="#666666"
-    android:textSize="10dp" />
+    android:textSize="6sp" />
