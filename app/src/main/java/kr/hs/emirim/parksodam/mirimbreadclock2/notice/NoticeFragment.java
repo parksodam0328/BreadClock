@@ -1,11 +1,9 @@
 package kr.hs.emirim.parksodam.mirimbreadclock2.notice;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import kr.hs.emirim.parksodam.mirimbreadclock2.BakeryInfo;
 import kr.hs.emirim.parksodam.mirimbreadclock2.BarActivity;
 import kr.hs.emirim.parksodam.mirimbreadclock2.BaseFragment;
 import kr.hs.emirim.parksodam.mirimbreadclock2.LoginActivity;
@@ -75,34 +74,39 @@ public class NoticeFragment extends BaseFragment {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+////
+////                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+////                builder.setTitle("알람");
+////                builder.setMessage("알람을 삭제하시겠습니까?");
+////                builder.setCancelable(true);
+////                builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+////
+////                    @Override
+////                    public void onClick(DialogInterface dialog, int id) {
+////                        BookmarkBakery bb = seachedBakeris.get(position);
+////                        DatabaseReference bookmarkRef = ((BarActivity) getActivity()).mDatabase.getReference("users/" + mAuth.getCurrentUser().getUid() + "/alarms/" + bb.uid);
+////                        Log.e(TAG, "알람 삭제 : " + bb.uid);
+////                        bookmarkRef.setValue(null);
+////
+////                        // FirebaseMessaging.getInstance().subscribeToTopic(place.getPlaceId());
+////                        //Log.e(TAG,bb.uid);
+////
+////                        Log.d(TAG, "이름 저장");
+////                        Log.d(TAG, "위치 저장");
+//                    }
+//                });
+//                builder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int id) {
+//                        dialog.cancel();
+//                    }
+//                });
+//                builder.create().show();
+//=====================================
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("알람");
-                builder.setMessage("알람을 삭제하시겠습니까?");
-                builder.setCancelable(true);
-                builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+                Intent intent = new Intent(getActivity(), BakeryInfo.class);
+                startActivity(intent);
 
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        BookmarkBakery bb = seachedBakeris.get(position);
-                        DatabaseReference bookmarkRef = ((BarActivity) getActivity()).mDatabase.getReference("users/" + mAuth.getCurrentUser().getUid() + "/alarms/" + bb.uid);
-                        Log.e(TAG, "알람 삭제 : " + bb.uid);
-                        bookmarkRef.setValue(null);
-
-                        // FirebaseMessaging.getInstance().subscribeToTopic(place.getPlaceId());
-                        //Log.e(TAG,bb.uid);
-
-                        Log.d(TAG, "이름 저장");
-                        Log.d(TAG, "위치 저장");
-                    }
-                });
-                builder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
-                builder.create().show();
             }
         });
         DatabaseReference userBookmarkRef = ((BarActivity) getActivity()).mDatabase.getReference("users/" + mAuth.getCurrentUser().getUid() + "/alarms");
