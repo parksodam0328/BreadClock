@@ -19,11 +19,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
-import com.iamhabib.easy_preference.EasyPreference;
 
 import java.util.ArrayList;
 
-import kr.hs.emirim.parksodam.mirimbreadclock2.Adapter.MyAdapter;
 import kr.hs.emirim.parksodam.mirimbreadclock2.BarActivity;
 import kr.hs.emirim.parksodam.mirimbreadclock2.BaseFragment;
 import kr.hs.emirim.parksodam.mirimbreadclock2.LoginActivity;
@@ -41,7 +39,7 @@ public class NoticeFragment extends BaseFragment {
     private static String name;
     private static String location;
     ArrayList<BookmarkBakery> seachedBakeris = new ArrayList<>();
-    MyAdapter mMyAdapter;
+    MyAlarmAdapter mMyAlarmAdapter;
     private ListView mListView;
     private FirebaseAuth mAuth;
     private String TAG = "where is uid??";
@@ -93,13 +91,6 @@ public class NoticeFragment extends BaseFragment {
 
                         // FirebaseMessaging.getInstance().subscribeToTopic(place.getPlaceId());
                         //Log.e(TAG,bb.uid);
-                        EasyPreference.with(getActivity())
-                                .addString(name, place.getName())
-                                .save();
-
-                        EasyPreference.with(getActivity())
-                                .addString(location, place.getVicinity())
-                                .save();
 
                         Log.d(TAG, "이름 저장");
                         Log.d(TAG, "위치 저장");
@@ -125,8 +116,8 @@ public class NoticeFragment extends BaseFragment {
                     seachedBakeris.add(bb);
                     Log.e(TAG, "알람 추가한 빵집 : " + bb.name);
                 }
-                mMyAdapter = new MyAdapter(seachedBakeris);
-                mListView.setAdapter(mMyAdapter);
+                mMyAlarmAdapter = new MyAlarmAdapter(seachedBakeris);
+                mListView.setAdapter(mMyAlarmAdapter);
                 //mListView.invalidate();
             }
 
@@ -143,7 +134,7 @@ public class NoticeFragment extends BaseFragment {
 //            @Override
 //            public void onItemClick(AdapterView parent, View v, int position, long id) {
 //                // get item
-//                MyItem item = (MyItem) parent.getItemAtPosition(position);
+//                MyAlarmItem item = (MyAlarmItem) parent.getItemAtPosition(position);
 //                Intent intent = new Intent(getActivity(), BookmarkInformation.class);
 //                String titleStr = item.getName();
 //                String descStr = item.getContents();
@@ -194,7 +185,7 @@ public class NoticeFragment extends BaseFragment {
 
 
         /* 리스트뷰에 어댑터 등록 */
-        mListView.setAdapter(mMyAdapter);
+        mListView.setAdapter(mMyAlarmAdapter);
 
     }
 

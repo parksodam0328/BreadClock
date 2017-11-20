@@ -1,4 +1,4 @@
-package kr.hs.emirim.parksodam.mirimbreadclock2.Adapter;
+package kr.hs.emirim.parksodam.mirimbreadclock2.bookmark;
 
 /**
  * Created by parksodam on 2017-09-03.
@@ -6,7 +6,7 @@ package kr.hs.emirim.parksodam.mirimbreadclock2.Adapter;
 
 import android.graphics.drawable.Drawable;
 
-public class MyItem {
+public class MyInfoItem {
 
     private Drawable icon;
     private String name;

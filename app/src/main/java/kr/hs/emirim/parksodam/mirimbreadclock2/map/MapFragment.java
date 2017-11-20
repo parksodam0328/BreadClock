@@ -59,7 +59,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import kr.hs.emirim.parksodam.mirimbreadclock2.Adapter.MyAdapter;
+import kr.hs.emirim.parksodam.mirimbreadclock2.bookmark.MyInfoAdapter;
 import kr.hs.emirim.parksodam.mirimbreadclock2.BarActivity;
 import kr.hs.emirim.parksodam.mirimbreadclock2.BaseFragment;
 import kr.hs.emirim.parksodam.mirimbreadclock2.LoginActivity;
@@ -100,6 +100,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
     private Marker currentMarker = null;
     private View view;
     private ListView mListView;
+    private boolean check;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mAuth = FirebaseAuth.getInstance();
@@ -135,8 +136,8 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
 
                                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                                builder.setTitle("즐겨찾기");
-                                builder.setMessage("즐겨찾기에 추가하시겠습니까?");
+                                builder.setTitle("알람");
+                                builder.setMessage("알람을 추가하시겠습니까?");
                                 builder.setCancelable(true);
                                 builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
 
@@ -145,7 +146,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                                         BookmarkBakery bb = seachedBakeris.get(position);
                                         //                                      Toast.makeText(getActivity(), "빵집 아이디 : "+bb.uid,
                                         //                                              Toast.LENGTH_SHORT).show();
-                                        DatabaseReference bookmarkRef = ((BarActivity) getActivity()).mDatabase.getReference("users/" + mAuth.getCurrentUser().getUid() + "/bookmarks/" + bb.uid);
+                                        DatabaseReference bookmarkRef = ((BarActivity) getActivity()).mDatabase.getReference("users/" + mAuth.getCurrentUser().getUid() + "/alarms/" + bb.uid);
                                         Log.e(TAG, "좋아하는 빵집 하나 추가요~ : " + bb.uid);
                                         bookmarkRef.setValue(bb);
                                         FirebaseMessaging.getInstance().subscribeToTopic(bb.uid);
@@ -199,9 +200,9 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                 //mMyAdapter.addItem(ContextCompat.getDrawable(getActivity(),R.mipmap.basicimg), m.getTitle(), m.getSnippet(),ContextCompat.getDrawable(getActivity(),R.drawable.star_select));
             }
 
-            MyAdapter mMyAdapter = new MyAdapter(seachedBakeris);
+            MyInfoAdapter mMyBookmarkAdapter = new MyInfoAdapter(seachedBakeris);
         /* 리스트뷰에 어댑터 등록 */
-            mListView.setAdapter(mMyAdapter);
+            mListView.setAdapter(mMyBookmarkAdapter);
         }catch(IndexOutOfBoundsException e){
             Log.e(TAG, "빵집 개수 : " + seachedBakeris.size());
             Toast.makeText(getActivity(), "네트워크에 연결되어 있지 않아 동기화를 진행할 수 없습니다. 통신 상태를 확인해주세요.",

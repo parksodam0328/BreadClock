@@ -23,7 +23,6 @@ import com.iamhabib.easy_preference.EasyPreference;
 
 import java.util.ArrayList;
 
-import kr.hs.emirim.parksodam.mirimbreadclock2.Adapter.MyAdapter;
 import kr.hs.emirim.parksodam.mirimbreadclock2.BarActivity;
 import kr.hs.emirim.parksodam.mirimbreadclock2.BaseFragment;
 import kr.hs.emirim.parksodam.mirimbreadclock2.LoginActivity;
@@ -41,7 +40,7 @@ public class BookmarkFragment extends BaseFragment {
     private static String name;
     private static String location;
     ArrayList<BookmarkBakery> seachedBakeris = new ArrayList<>();
-    MyAdapter mMyAdapter;
+    MyInfoAdapter mMyInfoAdapter;
     private ListView mListView;
     private FirebaseAuth mAuth;
     private String TAG = "where is uid??";
@@ -165,8 +164,8 @@ public class BookmarkFragment extends BaseFragment {
                     seachedBakeris.add(bb);
                     Log.e(TAG, "내가 좋아하는 빵집은요 : " + bb.name);
                 }
-                mMyAdapter = new MyAdapter(seachedBakeris);
-                mListView.setAdapter(mMyAdapter);
+                mMyInfoAdapter = new MyInfoAdapter(seachedBakeris);
+                mListView.setAdapter(mMyInfoAdapter);
                 //mListView.invalidate();
             }
 
@@ -183,7 +182,7 @@ public class BookmarkFragment extends BaseFragment {
 //            @Override
 //            public void onItemClick(AdapterView parent, View v, int position, long id) {
 //                // get item
-//                MyItem item = (MyItem) parent.getItemAtPosition(position);
+//                MyAlarmItem item = (MyAlarmItem) parent.getItemAtPosition(position);
 //                Intent intent = new Intent(getActivity(), BookmarkInformation.class);
 //                String titleStr = item.getName();
 //                String descStr = item.getContents();
@@ -234,7 +233,7 @@ public class BookmarkFragment extends BaseFragment {
 
 
         /* 리스트뷰에 어댑터 등록 */
-        mListView.setAdapter(mMyAdapter);
+        mListView.setAdapter(mMyInfoAdapter);
 
     }
 

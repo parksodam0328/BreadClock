@@ -1,4 +1,4 @@
-package kr.hs.emirim.parksodam.mirimbreadclock2.Adapter;
+package kr.hs.emirim.parksodam.mirimbreadclock2.notice;
 
 /**
  * Created by kim on 2017-09-25.
@@ -13,6 +13,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -20,11 +21,14 @@ import java.util.ArrayList;
 import kr.hs.emirim.parksodam.mirimbreadclock2.R;
 import kr.hs.emirim.parksodam.mirimbreadclock2.model.BookmarkBakery;
 
-public class MyAdapter extends BaseAdapter{
+public class MyAlarmAdapter extends BaseAdapter{
     /* 아이템을 세트로 담기 위한 어레이 */
     private ArrayList<BookmarkBakery> mItems = new ArrayList<>();
+    private boolean check=true;
+    ArrayList<BookmarkBakery> seachedBakeris = new ArrayList<>();
+    private FirebaseAuth mAuth;
 
-    public MyAdapter(ArrayList<BookmarkBakery> mItems) {
+    public MyAlarmAdapter(ArrayList<BookmarkBakery> mItems) {
         this.mItems = mItems;
     }
 
@@ -44,24 +48,25 @@ public class MyAdapter extends BaseAdapter{
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-
+    public View getView(final int position, View convertView, ViewGroup parent) {
+        final int pos = position;
         Context context = parent.getContext();
 
-        /* 'listview_custom' Layout을 inflate하여 convertView 참조 획득 */
+        /* 'listview_info_custom' Layout을 inflate하여 convertView 참조 획득 */
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.listview_custom, parent, false);
+            convertView = inflater.inflate(R.layout.listview_alarm_custom, parent, false);
         }
 
-        /* 'listview_custom'에 정의된 위젯에 대한 참조 획득 */
+        /* 'listview_info_custom'에 정의된 위젯에 대한 참조 획득 */
         ImageView iv_img = (ImageView) convertView.findViewById(R.id.iv_img);
         TextView tv_name = (TextView) convertView.findViewById(R.id.tv_name);
         TextView tv_contents = (TextView) convertView.findViewById(R.id.tv_contents);
+        final ImageView iv_image = (ImageView) convertView.findViewById(R.id.iv_image);
 
 
         /* 각 리스트에 뿌려줄 아이템을 받아오는데 mMyItem 재활용 */
-        BookmarkBakery bookmarkBakery = getItem(position);
+        final BookmarkBakery bookmarkBakery = getItem(position);
 
         /* 각 위젯에 세팅된 아이템을 뿌려준다 */
         try {
@@ -77,7 +82,20 @@ public class MyAdapter extends BaseAdapter{
         }
         tv_name.setText(bookmarkBakery.name);
         tv_contents.setText(bookmarkBakery.vicinity);
-        //iv_star.setImageDrawable(bookmarkBakery.getStar());
+
+        iv_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(check==true){
+
+                }
+                else {
+                    iv_image.setImageResource(R.mipmap.toggle_off);
+                    checked(bookmarkBakery, pos, false);
+                }
+            }
+        });
+
         /* (위젯에 대한 이벤트리스너를 지정하고 싶다면 여기에 작성하면된다) */
 //
 //        iv_star.
@@ -99,16 +117,18 @@ public class MyAdapter extends BaseAdapter{
 //    /* 아이템 데이터 추가를 위한 함수. 자신이 원하는대로 작성 */
 //    public void addItem(Drawable img, String name, String contents, Drawable star) {
 //
-//        MyItem mItem = new MyItem();
+//        MyAlarmItem mItem = new MyAlarmItem();
 //
 //        /* MyItem에 아이템을 setting한다. */
 //        mItem.setIcon(img);
 //        mItem.setName(name);
 //        mItem.setContents(contents);
 //        mItem.setStar(star);
-//
 //        /* mItems에 MyItem을 추가한다. */
 //        mItems.add(mItem);
 //
+    }
+    public void checked(BookmarkBakery bookmarkBakeries, int postion, boolean check){
+
     }
 }

@@ -6,7 +6,7 @@ package kr.hs.emirim.parksodam.mirimbreadclock2.notice;
 
 import android.graphics.drawable.Drawable;
 
-public class MyItem {
+public class MyAlarmItem {
 
     private Drawable icon;
     private String name;
