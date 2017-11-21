@@ -73,10 +73,9 @@ public class NoticeFragment extends BaseFragment {
         final Place place = new Place();
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
+
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-
-
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("알람");
                 builder.setMessage("알람을 삭제하시겠습니까?");

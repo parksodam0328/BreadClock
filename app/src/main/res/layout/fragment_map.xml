@@ -18,12 +18,12 @@
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.MapFragment"
         android:layout_width="match_parent"
-        android:layout_height="380dp" />
+        android:layout_height="370dp" />
 
     <ImageButton
         android:id="@+id/button"
         android:layout_width="match_parent"
-        android:layout_height="32dp"
+        android:layout_height="42dp"
         android:background="#ff8c00"
         android:src="@drawable/gps"
         android:text="빵집찾기"

@@ -13,9 +13,9 @@ import android.widget.TextView;
 public class BakeryInfo extends Activity{
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bakeryinfo);
+        setContentView(R.layout.activity_info_bakery);
 //
-        TextView tvName=(TextView)findViewById(R.id.tv_bname);
+        TextView tvName=(TextView)findViewById(R.id.bakery_name);
 //        TextView tvAdd=(TextView)findViewById(R.id.bakery_add);
 //
         Intent intent = getIntent(); //보내온 Intent 얻기
@@ -41,7 +41,7 @@ public class BakeryInfo extends Activity{
         //img.setImageResource(img);
         //TextView name=(TextView) findViewById(tv_bname);
         //name.setText("빵집이름");
-        TextView add=(TextView) findViewById(R.id.tv_badd);
+        TextView add=(TextView) findViewById(R.id.bakery_add);
         add.setText("빵집주소");
         TextView tell =(TextView) findViewById(R.id.bakery_call);
         tell.setText("02-6104-2658");

@@ -48,10 +48,6 @@ public class BakeryInfoActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String BakeryName = intent.getStringExtra("Title");
         String Address = intent.getStringExtra("Address");
-        breadname1 = (TextView) findViewById(R.id.breadname1);
-        breadname2 = (TextView) findViewById(R.id.breadname2);
-        breadname3 = (TextView) findViewById(R.id.breadname3);
-        breadname4 = (TextView) findViewById(R.id.breadname4);
         bakeryName = (TextView) findViewById(R.id.bakery_name);
         bakeryName.setText(BakeryName);
         tel = (TextView) findViewById(R.id.bakery_call);
@@ -78,7 +74,6 @@ public class BakeryInfoActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 BakeryInformation bb = dataSnapshot.getValue(BakeryInformation.class);
-                breadname1.setText(bb.getName());
                 Picasso.with(getApplication())
                         .load(bb.getImg())
                         .into(bread1);
@@ -94,7 +89,6 @@ public class BakeryInfoActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 BakeryInformation bb = dataSnapshot.getValue(BakeryInformation.class);
-                breadname2.setText(bb.getName());
                 Picasso.with(getApplication())
                         .load(bb.getImg())
                         .into(bread2);
@@ -110,7 +104,6 @@ public class BakeryInfoActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 BakeryInformation bb = dataSnapshot.getValue(BakeryInformation.class);
-                breadname3.setText(bb.getName());
                 Picasso.with(getApplication())
                         .load(bb.getImg())
                         .into(bread3);
@@ -126,7 +119,6 @@ public class BakeryInfoActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 BakeryInformation bb = dataSnapshot.getValue(BakeryInformation.class);
-                breadname4.setText(bb.getName());
                 Picasso.with(getApplication())
                         .load(bb.getImg())
                         .into(bread4);

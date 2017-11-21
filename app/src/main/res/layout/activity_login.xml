@@ -12,7 +12,7 @@
         android:layout_width="160dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="29dp"
+        android:layout_marginBottom="20dp"
         android:layout_alignBottom="@+id/imageView7"
         android:layout_centerHorizontal="true" />
 
@@ -23,7 +23,7 @@
         app:srcCompat="@drawable/whitelogo"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp" />
+        android:layout_marginTop="45dp" />
 
 
 </RelativeLayout>
