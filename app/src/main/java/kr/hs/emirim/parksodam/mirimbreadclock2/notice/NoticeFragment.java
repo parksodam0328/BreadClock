@@ -75,6 +75,44 @@ public class NoticeFragment extends BaseFragment {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+<<<<<<< HEAD
+////
+////                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+////                builder.setTitle("알람");
+////                builder.setMessage("알람을 삭제하시겠습니까?");
+////                builder.setCancelable(true);
+////                builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+////
+////                    @Override
+////                    public void onClick(DialogInterface dialog, int id) {
+////                        BookmarkBakery bb = seachedBakeris.get(position);
+////                        DatabaseReference bookmarkRef = ((BarActivity) getActivity()).mDatabase.getReference("users/" + mAuth.getCurrentUser().getUid() + "/alarms/" + bb.uid);
+////                        Log.e(TAG, "알람 삭제 : " + bb.uid);
+////                        bookmarkRef.setValue(null);
+////
+////                        // FirebaseMessaging.getInstance().subscribeToTopic(place.getPlaceId());
+////                        //Log.e(TAG,bb.uid);
+////
+////                        Log.d(TAG, "이름 저장");
+////                        Log.d(TAG, "위치 저장");
+//                    }
+//                });
+//                builder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int id) {
+//                        dialog.cancel();
+//                    }
+//                });
+//                builder.create().show();
+//=====================================
+
+                Intent intent = new Intent(getActivity(), BakeryInfo.class);
+                BookmarkBakery tmpBB = mMyAlarmAdapter.getItem( position );
+                Log.d( "AAA", tmpBB.name );
+                intent.putExtra( "Title", tmpBB.name );
+                intent.putExtra( "Address", tmpBB.vicinity );
+                startActivity(intent);
+=======
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("알람");
@@ -104,6 +142,7 @@ public class NoticeFragment extends BaseFragment {
                 });
                 builder.create().show();
 
+>>>>>>> origin/master
 
             }
         });

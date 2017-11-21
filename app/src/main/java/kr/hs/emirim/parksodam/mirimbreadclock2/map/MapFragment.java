@@ -165,6 +165,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
             for (Marker m : previous_marker) {
                 Log.e(TAG, "빵집 개수 : " + seachedBakeris.size());
                 Log.e(TAG, "빵집 추가 : " + m.getTitle() + "/ 빵 : ");
+
                 BookmarkBakery bb = new BookmarkBakery(mPlaces.get(i).getPlaceId(), m.getTitle(), m.getSnippet(), "@mipmap/star",true);
                 Log.e(TAG, "빵집 아이디 : " + mPlaces.get(i).getPlaceId());
                 seachedBakeris.add(bb);
