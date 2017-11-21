@@ -105,6 +105,10 @@ public class NoticeFragment extends BaseFragment {
 //=====================================
 
                 Intent intent = new Intent(getActivity(), BakeryInfo.class);
+                BookmarkBakery tmpBB = mMyAlarmAdapter.getItem( position );
+                Log.d( "AAA", tmpBB.name );
+                intent.putExtra( "Title", tmpBB.name );
+                intent.putExtra( "Address", tmpBB.vicinity );
                 startActivity(intent);
 
             }

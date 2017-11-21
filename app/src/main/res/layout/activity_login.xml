@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/loginbackimg"
+    android:background="@drawable/loginbackimg2"
     tools:context=".LoginActivity">
 
     <com.google.android.gms.common.SignInButton
@@ -13,7 +13,6 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginBottom="29dp"
-
         android:layout_alignBottom="@+id/imageView7"
         android:layout_centerHorizontal="true" />
 

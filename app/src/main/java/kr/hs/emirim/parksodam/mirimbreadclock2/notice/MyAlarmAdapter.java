@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
@@ -50,7 +51,7 @@ public class MyAlarmAdapter extends BaseAdapter{
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         final int pos = position;
-        Context context = parent.getContext();
+        final Context context = parent.getContext();
 
         /* 'listview_info_custom' Layout을 inflate하여 convertView 참조 획득 */
         if (convertView == null) {
@@ -83,18 +84,40 @@ public class MyAlarmAdapter extends BaseAdapter{
         tv_name.setText(bookmarkBakery.name);
         tv_contents.setText(bookmarkBakery.vicinity);
 
+        try {
+            Picasso.with(context)
+                    .load(bookmarkBakery.photo)
+                    .placeholder(R.mipmap.toggle_on)
+                    .error(R.mipmap.toggle_on)
+                    .resize(50, 50)
+                    .centerCrop()
+                    .into(iv_image);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         iv_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(check==true){
-
+                if(bookmarkBakery.isChecked==true){
+                    iv_image.setImageResource(R.mipmap.toggle_on);
                 }
                 else {
                     iv_image.setImageResource(R.mipmap.toggle_off);
-                    checked(bookmarkBakery, pos, false);
+
                 }
             }
         });
+
+
+
+
+        tv_name.setOnClickListener(new View.OnClickListener() {
+                                       @Override
+                                       public void onClick(View v) {
+                                           Toast.makeText(context, "이름 선택", Toast.LENGTH_SHORT).show();
+                                       }
+                                   });
 
         /* (위젯에 대한 이벤트리스너를 지정하고 싶다면 여기에 작성하면된다) */
 //

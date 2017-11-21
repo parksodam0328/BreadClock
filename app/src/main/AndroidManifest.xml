@@ -51,8 +51,7 @@
             android:name=".BarActivity"
             android:screenOrientation="sensorPortrait" />
 
-
-        <activvity
+        <activity
             android:name="BakeryInfo"
             android:screenOrientation="sensorPortrait" />
 

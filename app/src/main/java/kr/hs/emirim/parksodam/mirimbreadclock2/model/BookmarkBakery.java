@@ -9,14 +9,16 @@ public class BookmarkBakery {
     public String name;
     public String vicinity;
     public String photo;
+    public boolean isChecked;
 
     public BookmarkBakery() {
     }
 
-    public BookmarkBakery(String uid, String name, String vicinity, String photo) {
+    public BookmarkBakery(String uid, String name, String vicinity, String photo, boolean isChecked) {
         this.uid = uid;
         this.name = name;
         this.vicinity = vicinity;
         this.photo = photo;
+        this.isChecked = isChecked;
     }
 }
