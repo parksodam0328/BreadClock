@@ -85,33 +85,33 @@ public class MyAlarmAdapter extends BaseAdapter{
         tv_name.setText(bookmarkBakery.name);
         tv_contents.setText(bookmarkBakery.vicinity);
 
-<<<<<<< HEAD
-        try {
-            Picasso.with(context)
-                    .load(bookmarkBakery.photo)
-                    .placeholder(R.mipmap.toggle_on)
-                    .error(R.mipmap.toggle_on)
-                    .resize(50, 50)
-                    .centerCrop()
-                    .into(iv_image);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        iv_image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(bookmarkBakery.isChecked==true){
-                    iv_image.setImageResource(R.mipmap.toggle_on);
-                }
-                else {
-                    iv_image.setImageResource(R.mipmap.toggle_off);
-
-                }
-            }
-        });
-=======
->>>>>>> origin/master
+//<<<<<<< HEAD
+//        try {
+//            Picasso.with(context)
+//                    .load(bookmarkBakery.photo)
+//                    .placeholder(R.mipmap.toggle_on)
+//                    .error(R.mipmap.toggle_on)
+//                    .resize(50, 50)
+//                    .centerCrop()
+//                    .into(iv_image);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        iv_image.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if(bookmarkBakery.isChecked==true){
+//                    iv_image.setImageResource(R.mipmap.toggle_on);
+//                }
+//                else {
+//                    iv_image.setImageResource(R.mipmap.toggle_off);
+//
+//                }
+//            }
+//        });
+//=======
+//>>>>>>> origin/master
 
 
 

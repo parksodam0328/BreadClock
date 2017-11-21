@@ -44,19 +44,19 @@
             android:textSize="10sp" />
     </LinearLayout>
 
-    <!--<Switch-->
-        <!--android:id="@+id/switch1"-->
-        <!--android:layout_width="50dp"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:checked="true"-->
-        <!--/>-->
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:checked="true"
+        />
 
-    <ImageView
-        android:id="@+id/iv_image"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_gravity="center_vertical"
-        android:background="@mipmap/toggle_on" />
+    <!--<ImageView-->
+        <!--android:id="@+id/iv_image"-->
+        <!--android:layout_width="35dp"-->
+        <!--android:layout_height="35dp"-->
+        <!--android:layout_gravity="center_vertical"-->
+        <!--android:background="@mipmap/toggle_on" />-->
 
 
 </LinearLayout>

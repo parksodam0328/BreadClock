@@ -50,6 +50,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.iamhabib.easy_preference.EasyPreference;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -57,6 +59,7 @@ import java.util.List;
 import java.util.Locale;
 
 import kr.hs.emirim.parksodam.mirimbreadclock2.BakeryInfoActivity;
+import kr.hs.emirim.parksodam.mirimbreadclock2.BarActivity;
 import kr.hs.emirim.parksodam.mirimbreadclock2.BaseFragment;
 import kr.hs.emirim.parksodam.mirimbreadclock2.LoginActivity;
 import kr.hs.emirim.parksodam.mirimbreadclock2.R;
@@ -145,6 +148,49 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                                     }
 
                         });
+
+
+                        mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+                            @Override
+                            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+
+                                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                builder.setTitle("알람");
+                                builder.setMessage("알람을 추가하시겠습니까?");
+                                builder.setCancelable(true);
+                                builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        BookmarkBakery bb = seachedBakeris.get(position);
+                                        DatabaseReference bookmarkRef = ((BarActivity) getActivity()).mDatabase.getReference("users/" + mAuth.getCurrentUser().getUid() + "/alarms/" + bb.uid);
+                                        Log.e(TAG, "알람 추가 : " + bb.uid);
+                                        bookmarkRef.setValue(bb);
+
+                                        //FirebaseMessaging.getInstance().subscribeToTopic(place.getPlaceId());
+                                        //Log.e(TAG,bb.uid);
+                                        EasyPreference.with(getActivity())
+                                                .addString(name, place.getName())
+                                                .save();
+
+                                        EasyPreference.with(getActivity())
+                                                .addString(location, place.getVicinity())
+                                                .save();
+                                    }
+                                });
+                                builder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+                                builder.create().show();
+                                return true;
+                            }
+                        });
+
+
                     }
                     else{
                         Toast.makeText(getActivity(), "네트워크 오류", Toast.LENGTH_LONG).show();
