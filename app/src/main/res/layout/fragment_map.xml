@@ -6,26 +6,28 @@
     android:layout_height="match_parent"
     android:background="#ffffff">
 
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        android:name="com.google.android.gms.maps.MapFragment"
-        android:id="@+id/map"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"/>
     <FrameLayout
             android:id="@+id/fl_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageButton
-                android:id="@+id/button"
-                android:layout_width="match_parent"
-                android:layout_height="32dp"
-                android:background="#ff8c00"
-                android:textColor="#ffffff"
-                android:src="@drawable/gps"
-                android:text="빵집찾기" />
-        </FrameLayout>
+    </FrameLayout>
 
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.MapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="380dp" />
+
+    <ImageButton
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:background="#ff8c00"
+        android:src="@drawable/gps"
+        android:text="빵집찾기"
+        android:textColor="#ffffff" />
 
     <RelativeLayout
         android:id="@+id/rl_contents"

@@ -24,7 +24,6 @@ import kr.hs.emirim.parksodam.mirimbreadclock2.model.BookmarkBakery;
 public class MyAlarmAdapter extends BaseAdapter{
     /* 아이템을 세트로 담기 위한 어레이 */
     private ArrayList<BookmarkBakery> mItems = new ArrayList<>();
-    private boolean check=true;
     ArrayList<BookmarkBakery> seachedBakeris = new ArrayList<>();
     private FirebaseAuth mAuth;
 
@@ -46,7 +45,9 @@ public class MyAlarmAdapter extends BaseAdapter{
     public long getItemId(int position) {
         return 0;
     }
-
+    public boolean isChecked(int position) {
+        return seachedBakeris.get(position).checked;
+    }
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         final int pos = position;
@@ -62,7 +63,7 @@ public class MyAlarmAdapter extends BaseAdapter{
         ImageView iv_img = (ImageView) convertView.findViewById(R.id.iv_img);
         TextView tv_name = (TextView) convertView.findViewById(R.id.tv_name);
         TextView tv_contents = (TextView) convertView.findViewById(R.id.tv_contents);
-        final ImageView iv_image = (ImageView) convertView.findViewById(R.id.iv_image);
+        ImageView iv_image = (ImageView) convertView.findViewById(R.id.iv_image);
 
 
         /* 각 리스트에 뿌려줄 아이템을 받아오는데 mMyItem 재활용 */
@@ -83,18 +84,6 @@ public class MyAlarmAdapter extends BaseAdapter{
         tv_name.setText(bookmarkBakery.name);
         tv_contents.setText(bookmarkBakery.vicinity);
 
-        iv_image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(check==true){
-
-                }
-                else {
-                    iv_image.setImageResource(R.mipmap.toggle_off);
-                    checked(bookmarkBakery, pos, false);
-                }
-            }
-        });
 
         /* (위젯에 대한 이벤트리스너를 지정하고 싶다면 여기에 작성하면된다) */
 //
@@ -127,8 +116,5 @@ public class MyAlarmAdapter extends BaseAdapter{
 //        /* mItems에 MyItem을 추가한다. */
 //        mItems.add(mItem);
 //
-    }
-    public void checked(BookmarkBakery bookmarkBakeries, int postion, boolean check){
-
     }
 }

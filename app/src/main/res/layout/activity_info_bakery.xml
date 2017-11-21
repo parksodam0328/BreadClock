@@ -26,50 +26,51 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.88">
+                android:layout_height="wrap_content">
 
 
                 <ImageView
                     android:id="@+id/back_icon"
-                    android:layout_width="30dp"
-                    android:layout_height="45dp"
-                    android:layout_gravity="center"
-                    android:gravity="left"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="12dp"
                     app:srcCompat="@drawable/setback" />
 
-                <ImageView
-                    android:id="@+id/logo"
-                    android:layout_width="400dp"
-                    android:layout_height="60dp"
-                    android:layout_above="@+id/tl_main"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentTop="true"
-                    app:srcCompat="@drawable/llogo"/>
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="18dp"
+                    android:layout_marginLeft="23dp"
+                    android:layout_marginTop="17dp"
+                    android:text="상세정보"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="13sp" />
 
             </LinearLayout>
         </android.support.v7.widget.Toolbar>
     </LinearLayout>
 
     <TextView
-        android:id="@+id/tv_bname"
+        android:id="@+id/bakery_name"
         android:layout_width="335dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="5dp"
-        android:gravity="center"
+        android:layout_gravity="center"
         android:text="Bakery Name"
         android:textSize="20sp"
         android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/iv_bimg"
-        android:layout_width="match_parent"
+        android:layout_width="418dp"
         android:layout_height="170dp"
-        android:orientation="horizontal"
         android:layout_marginTop="5dp"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
         app:srcCompat="@drawable/bakeryimg" />
 
 
@@ -115,7 +116,7 @@
             app:srcCompat="@mipmap/info_add" />
 
         <TextView
-            android:id="@+id/tv_badd"
+            android:id="@+id/bakery_add"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -202,62 +203,99 @@
     </LinearLayout>
 
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:weightSum="1">
 
         <ImageView
             android:id="@+id/bread"
-            android:layout_width="100dp"
-            android:layout_height="80dp"
-            android:layout_marginEnd="46dp"
-            android:layout_marginRight="46dp"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="60dp"
             app:srcCompat="@mipmap/breadimg"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/bread2"
-            android:layout_toStartOf="@+id/bread2" />
+            android:layout_weight="0.12" />
 
         <ImageView
             android:id="@+id/bread2"
-            android:layout_width="100dp"
-            android:layout_height="80dp"
-            android:layout_marginEnd="64dp"
-            android:layout_marginRight="64dp"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
             app:srcCompat="@mipmap/breadimg2"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_weight="0.16" />
 
-    </RelativeLayout>
-
-
-    <RelativeLayout
+    </LinearLayout>
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/breadname1"
+            android:layout_width="120dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="60dp"
+            android:layout_weight="0.12" />
+
+        <TextView
+            android:id="@+id/breadname2"
+            android:layout_width="120dp"
+            android:layout_height="20dp"
+            android:layout_weight="0.16" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:layout_marginBottom="10dp">
 
         <ImageView
             android:id="@+id/bread3"
-            android:layout_width="100dp"
-            android:layout_height="80dp"
-            android:layout_marginEnd="46dp"
-            android:layout_marginRight="46dp"
-            app:srcCompat="@mipmap/breadimg3"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/bread4"
-            android:layout_toStartOf="@+id/bread4" />
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="60dp"
+            android:layout_weight="0.12"
+            app:srcCompat="@mipmap/breadimg3" />
 
         <ImageView
             android:id="@+id/bread4"
-            android:layout_width="100dp"
-            android:layout_height="80dp"
-            android:layout_marginEnd="64dp"
-            android:layout_marginRight="64dp"
-            app:srcCompat="@mipmap/breadimg4"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:layout_weight="0.16"
+            app:srcCompat="@mipmap/breadimg4" />
 
-    </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/breadname3"
+            android:layout_width="120dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="60dp"
+            android:layout_weight="0.12" />
+
+        <TextView
+            android:id="@+id/breadname4"
+            android:layout_width="120dp"
+            android:layout_height="20dp"
+            android:layout_weight="0.16" />
+
+    </LinearLayout>
 </LinearLayout>
 
 

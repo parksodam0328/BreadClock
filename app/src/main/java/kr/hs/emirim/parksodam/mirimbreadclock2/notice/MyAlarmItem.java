@@ -44,4 +44,5 @@ public class MyAlarmItem {
     public void setStar(Drawable star) {
         this.star = star;
     }
+
 }
