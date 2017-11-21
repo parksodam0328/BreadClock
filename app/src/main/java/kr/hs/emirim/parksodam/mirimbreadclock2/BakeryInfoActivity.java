@@ -24,8 +24,8 @@ import kr.hs.emirim.parksodam.mirimbreadclock2.model.BakeryInformation;
 
 public class BakeryInfoActivity extends AppCompatActivity {
 
-    private TextView breadname1, breadname2, breadname3, breadname4, bakeryName, tel, location, time, intro;
-    private ImageView bread1, bread2, bread3, bread4, telIcon, locationIcon, timeIcon, introIcon, picture;
+    private TextView  bakeryName, tel, location, time, intro;
+    private ImageView bread1, bread2, bread3, bread4,  picture;
     private DatabaseReference mDatabase;
     private DatabaseReference mDatabaseChild1, mDatabaseChild2, mDatabaseChild3, mDatabaseChild4;
     private Toolbar toolbar;
@@ -64,7 +64,7 @@ public class BakeryInfoActivity extends AppCompatActivity {
 
 
 
-        mDatabase= FirebaseDatabase.getInstance().getReference("BreadClockWeb/Bakeries/BasicInfo/" + "베이크팡" + "/DetailInfo");
+        mDatabase= FirebaseDatabase.getInstance().getReference("BreadClockWeb/Bakeries/BasicInfo/" + BakeryName + "/DetailInfo");
         mDatabaseChild1 = mDatabase.child("p_bread1");
         mDatabaseChild2 = mDatabase.child("p_bread2");
         mDatabaseChild3 = mDatabase.child("p_bread3");

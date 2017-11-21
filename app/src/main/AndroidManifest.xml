@@ -53,7 +53,8 @@
 
 
         <activity
-            android:name=".BakeryInfoActivity"/>
+            android:name=".BakeryInfoActivity"
+            android:screenOrientation="sensorPortrait"/>
 
 
         <activity
