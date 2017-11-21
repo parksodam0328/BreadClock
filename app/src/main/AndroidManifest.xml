@@ -51,8 +51,14 @@
             android:name=".BarActivity"
             android:screenOrientation="sensorPortrait" />
 
+<<<<<<< HEAD
         <activity
             android:name="BakeryInfo"
+=======
+
+        <activity
+            android:name=".BakeryInfoActivity"
+>>>>>>> origin/master
             android:screenOrientation="sensorPortrait" />
 
         <activity

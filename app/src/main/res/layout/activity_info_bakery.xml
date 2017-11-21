@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    tools:context=".Bakery"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/my_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="#ffffff"
+            android:minHeight="48dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:weightSum="1"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+                    android:id="@+id/back_icon"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="12dp"
+                    app:srcCompat="@drawable/setback" />
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="18dp"
+                    android:layout_marginLeft="23dp"
+                    android:layout_marginTop="17dp"
+                    android:text="상세정보"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+        </android.support.v7.widget.Toolbar>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/bakery_name"
+        android:layout_width="335dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center"
+        android:text="Bakery Name"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/iv_bimg"
+        android:layout_width="418dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        app:srcCompat="@drawable/bakeryimg" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="7dp"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <ImageView
+            android:id="@+id/call"
+            android:layout_width="25dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
+            app:srcCompat="@mipmap/info_call" />
+
+        <TextView
+            android:id="@+id/bakery_call"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Bakery tel..."
+            android:textColor="#000000"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="7dp"
+        android:weightSum="1">
+
+        <ImageView
+            android:id="@+id/add"
+            android:layout_width="25dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
+            app:srcCompat="@mipmap/info_add" />
+
+        <TextView
+            android:id="@+id/bakery_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Bakery add..."
+            android:textColor="#000000"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="7dp"
+        android:weightSum="1">
+
+        <ImageView
+            android:id="@+id/time"
+            android:layout_width="25dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
+            app:srcCompat="@mipmap/info_time" />
+
+        <TextView
+            android:id="@+id/bakery_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Bakery time..."
+            android:textColor="#000000"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="7dp"
+        android:weightSum="1">
+
+        <ImageView
+            android:id="@+id/info"
+            android:layout_width="25dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
+            app:srcCompat="@mipmap/info_homepage" />
+
+        <TextView
+            android:id="@+id/bakery_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Bakery info..."
+            android:textColor="#000000"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
+        android:weightSum="1">
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:weightSum="1">
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:weightSum="1">
+
+        <ImageView
+            android:id="@+id/bread"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="60dp"
+            app:srcCompat="@mipmap/breadimg"
+            android:layout_weight="0.12" />
+
+        <ImageView
+            android:id="@+id/bread2"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            app:srcCompat="@mipmap/breadimg2"
+            android:layout_weight="0.16" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/breadname1"
+            android:layout_width="120dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="60dp"
+            android:layout_weight="0.12" />
+
+        <TextView
+            android:id="@+id/breadname2"
+            android:layout_width="120dp"
+            android:layout_height="20dp"
+            android:layout_weight="0.16" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:layout_marginBottom="10dp">
+
+        <ImageView
+            android:id="@+id/bread3"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="60dp"
+            android:layout_weight="0.12"
+            app:srcCompat="@mipmap/breadimg3" />
+
+        <ImageView
+            android:id="@+id/bread4"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:layout_weight="0.16"
+            app:srcCompat="@mipmap/breadimg4" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/breadname3"
+            android:layout_width="120dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="60dp"
+            android:layout_weight="0.12" />
+
+        <TextView
+            android:id="@+id/breadname4"
+            android:layout_width="120dp"
+            android:layout_height="20dp"
+            android:layout_weight="0.16" />
+
+    </LinearLayout>
+</LinearLayout>
+
+

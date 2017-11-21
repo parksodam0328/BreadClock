@@ -50,20 +50,17 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.messaging.FirebaseMessaging;
-import com.iamhabib.easy_preference.EasyPreference;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import kr.hs.emirim.parksodam.mirimbreadclock2.bookmark.MyInfoAdapter;
-import kr.hs.emirim.parksodam.mirimbreadclock2.BarActivity;
+import kr.hs.emirim.parksodam.mirimbreadclock2.BakeryInfoActivity;
 import kr.hs.emirim.parksodam.mirimbreadclock2.BaseFragment;
 import kr.hs.emirim.parksodam.mirimbreadclock2.LoginActivity;
 import kr.hs.emirim.parksodam.mirimbreadclock2.R;
+import kr.hs.emirim.parksodam.mirimbreadclock2.bookmark.MyInfoAdapter;
 import kr.hs.emirim.parksodam.mirimbreadclock2.model.BookmarkBakery;
 import noman.googleplaces.NRPlaces;
 import noman.googleplaces.Place;
@@ -100,7 +97,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
     private Marker currentMarker = null;
     private View view;
     private ListView mListView;
-    private boolean check;
+    MyInfoAdapter mMyInfoAdapter;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mAuth = FirebaseAuth.getInstance();
@@ -134,43 +131,19 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                                Intent intent= new Intent(getActivity(), BakeryInfoActivity.class);
+                                BookmarkBakery bakery = mMyInfoAdapter.getItem(position);
+                                Log.e("오류",bakery.name);
+                                intent.putExtra("Title",bakery.name);
+                                intent.putExtra("Address",bakery.vicinity);
+                                startActivity(intent);
 
-                                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                                builder.setTitle("알람");
-                                builder.setMessage("알람을 추가하시겠습니까?");
-                                builder.setCancelable(true);
-                                builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
 
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        BookmarkBakery bb = seachedBakeris.get(position);
-                                        //                                      Toast.makeText(getActivity(), "빵집 아이디 : "+bb.uid,
-                                        //                                              Toast.LENGTH_SHORT).show();
-                                        DatabaseReference bookmarkRef = ((BarActivity) getActivity()).mDatabase.getReference("users/" + mAuth.getCurrentUser().getUid() + "/alarms/" + bb.uid);
-                                        Log.e(TAG, "좋아하는 빵집 하나 추가요~ : " + bb.uid);
-                                        bookmarkRef.setValue(bb);
-                                        FirebaseMessaging.getInstance().subscribeToTopic(bb.uid);
-                                        //Log.e(TAG,bb.uid);
-                                        EasyPreference.with(getActivity())
-                                                .addString(name, place.getName())
-                                                .save();
-
-                                        EasyPreference.with(getActivity())
-                                                .addString(location, place.getVicinity())
-                                                .save();
 
                                         Log.d(TAG, "이름 저장");
                                         Log.d(TAG, "위치 저장");
                                     }
-                                });
-                                builder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        dialog.cancel();
-                                    }
-                                });
-                                builder.create().show();
-                            }
+
                         });
                     }
                     else{
@@ -192,7 +165,8 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
             for (Marker m : previous_marker) {
                 Log.e(TAG, "빵집 개수 : " + seachedBakeris.size());
                 Log.e(TAG, "빵집 추가 : " + m.getTitle() + "/ 빵 : ");
-                BookmarkBakery bb = new BookmarkBakery(mPlaces.get(i).getPlaceId(), m.getTitle(), m.getSnippet(), "@mipmap/star", true);
+
+                BookmarkBakery bb = new BookmarkBakery(mPlaces.get(i).getPlaceId(), m.getTitle(), m.getSnippet(), "@mipmap/star",true);
                 Log.e(TAG, "빵집 아이디 : " + mPlaces.get(i).getPlaceId());
                 seachedBakeris.add(bb);
                 Log.e(TAG, "빵집 개수 : " + seachedBakeris.size());
@@ -200,9 +174,9 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                 //mMyAdapter.addItem(ContextCompat.getDrawable(getActivity(),R.mipmap.basicimg), m.getTitle(), m.getSnippet(),ContextCompat.getDrawable(getActivity(),R.drawable.star_select));
             }
 
-            MyInfoAdapter mMyBookmarkAdapter = new MyInfoAdapter(seachedBakeris);
+            mMyInfoAdapter = new MyInfoAdapter(seachedBakeris);
         /* 리스트뷰에 어댑터 등록 */
-            mListView.setAdapter(mMyBookmarkAdapter);
+            mListView.setAdapter(mMyInfoAdapter);
         }catch(IndexOutOfBoundsException e){
             Log.e(TAG, "빵집 개수 : " + seachedBakeris.size());
             Toast.makeText(getActivity(), "네트워크에 연결되어 있지 않아 동기화를 진행할 수 없습니다. 통신 상태를 확인해주세요.",
