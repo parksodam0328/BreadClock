@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -16,14 +17,18 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+
 import kr.hs.emirim.parksodam.mirimbreadclock2.model.BakeryInformation;
+import kr.hs.emirim.parksodam.mirimbreadclock2.model.BookmarkBakery;
 
 /**
  * Created by kim on 2017-11-16.
  */
 
 public class BakeryInfoActivity extends AppCompatActivity {
-
+    ArrayList<BookmarkBakery> seachedBakeris = new ArrayList<>();
+    private FirebaseAuth mAuth;
     private TextView  bakeryName, tel, location, time, intro;
     private ImageView bread1, bread2, bread3, bread4,  picture;
     private DatabaseReference mDatabase;
@@ -38,6 +43,7 @@ public class BakeryInfoActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar); //툴바를 액션바와 같게 만들어 준다.getSupportActionBar().setTitle("지도");
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        final ImageView bookmark = (ImageView) findViewById(R.id.favorite);
         ImageView backimg = (ImageView) findViewById(R.id.back_icon);
         backimg.setOnClickListener(new View.OnClickListener() {
             @Override

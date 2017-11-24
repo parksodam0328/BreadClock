@@ -51,6 +51,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.iamhabib.easy_preference.EasyPreference;
 
 import java.io.IOException;
@@ -167,8 +168,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                                         DatabaseReference bookmarkRef = ((BarActivity) getActivity()).mDatabase.getReference("users/" + mAuth.getCurrentUser().getUid() + "/alarms/" + bb.uid);
                                         Log.e(TAG, "알람 추가 : " + bb.uid);
                                         bookmarkRef.setValue(bb);
-
-                                        //FirebaseMessaging.getInstance().subscribeToTopic(place.getPlaceId());
+                                        FirebaseMessaging.getInstance().subscribeToTopic(bb.uid);
                                         //Log.e(TAG,bb.uid);
                                         EasyPreference.with(getActivity())
                                                 .addString(name, place.getName())

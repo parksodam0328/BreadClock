@@ -40,11 +40,11 @@
             android:textSize="10sp" />
     </LinearLayout>
 
-    <Switch
-        android:id="@+id/switch1"
+    <ImageView
+        android:id="@+id/toggle_on"
         android:layout_width="50dp"
         android:layout_height="match_parent"
-        android:checked="true"
+        app:srcCompat="@mipmap/toggle_on"
         />
 
     <!--<ImageView-->

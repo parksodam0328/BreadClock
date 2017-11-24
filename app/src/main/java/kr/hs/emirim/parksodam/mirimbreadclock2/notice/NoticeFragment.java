@@ -36,21 +36,20 @@ import noman.googleplaces.Place;
 
 
 public class NoticeFragment extends BaseFragment {
-    private static String name;
-    private static String location;
+
     ArrayList<BookmarkBakery> seachedBakeris = new ArrayList<>();
     MyAlarmAdapter mMyAlarmAdapter;
     private ListView mListView;
     private FirebaseAuth mAuth;
     private String TAG = "where is uid??";
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private String bakery;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         View view = inflater.inflate(R.layout.fragment_notice, container, false);
         Log.e(TAG, "성공");
+        
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -72,7 +71,6 @@ public class NoticeFragment extends BaseFragment {
         mListView = (ListView) view.findViewById(R.id.listView);
         final Place place = new Place();
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
@@ -103,48 +101,11 @@ public class NoticeFragment extends BaseFragment {
                     }
                 });
                 builder.create().show();
-//=====================================
-//
-//                Intent intent = new Intent(getActivity(), BakeryInfo.class);
-//                BookmarkBakery tmpBB = mMyAlarmAdapter.getItem( position );
-//                Log.d( "AAA", tmpBB.name );
-//                intent.putExtra( "Title", tmpBB.name );
-//                intent.putExtra( "Address", tmpBB.vicinity );
-//                startActivity(intent);
-////=======
-//
-//                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-//                builder.setTitle("알람");
-//                builder.setMessage("알람을 삭제하시겠습니까?");
-//                builder.setCancelable(true);
-//                builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
-//
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int id) {
-//                        BookmarkBakery bb = seachedBakeris.get(position);
-//                        DatabaseReference bookmarkRef = ((BarActivity) getActivity()).mDatabase.getReference("users/" + mAuth.getCurrentUser().getUid() + "/alarms/" + bb.uid);
-//                        Log.e(TAG, "알람 삭제 : " + bb.uid);
-//                        bookmarkRef.setValue(null);
-//
-//                        // FirebaseMessaging.getInstance().subscribeToTopic(place.getPlaceId());
-//                        //Log.e(TAG,bb.uid);
-//
-//                        Log.d(TAG, "이름 저장");
-//                        Log.d(TAG, "위치 저장");
-//                    }
-//                });
-//                builder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int id) {
-//                        dialog.cancel();
-//                    }
-//                });
-//                builder.create().show();
 
-//>>>>>>> origin/master
 
             }
         });
+
         DatabaseReference userBookmarkRef = ((BarActivity) getActivity()).mDatabase.getReference("users/" + mAuth.getCurrentUser().getUid() + "/alarms");
         ValueEventListener userBookmarkListener = new ValueEventListener() {
             @Override
@@ -168,21 +129,7 @@ public class NoticeFragment extends BaseFragment {
         };
         userBookmarkRef.addValueEventListener(userBookmarkListener);
 
-        // dataSetting();
-//
-//        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView parent, View v, int position, long id) {
-//                // get item
-//                MyAlarmItem item = (MyAlarmItem) parent.getItemAtPosition(position);
-//                Intent intent = new Intent(getActivity(), BookmarkInformation.class);
-//                String titleStr = item.getName();
-//                String descStr = item.getContents();
-//                Drawable iconDrawable = item.getIcon();
-//
-//                startActivity(intent);
-//            }
-//        }) ;
+
         return view;
     }
 

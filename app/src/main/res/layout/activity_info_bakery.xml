@@ -45,7 +45,7 @@
                     android:layout_height="35dp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="225dp"
-                    app:srcCompat="@drawable/bookmark_on" />
+                    app:srcCompat="@drawable/bookmark_off" />
 
         </android.support.v7.widget.Toolbar>
 
