@@ -1,6 +1,7 @@
 package kr.hs.emirim.parksodam.mirimbreadclock2.set;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -22,45 +23,22 @@ public class SetFragment extends BaseFragment {
             public void onClick(View v) {
                 switch (v.getId()) {
                     case R.id.button3:
-                        Intent intent = new Intent(getActivity(), NoticeActivity.class);
-                        startActivity(intent);
-                        break;
-                    case R.id.button4:
-                        Intent intent2 = new Intent(getActivity(), VersionActivity.class);
-                        startActivity(intent2);
-                        break;
-                    case R.id.button5:
                         Intent intent3 = new Intent(getActivity(), HowToUseActivity.class);
                         startActivity(intent3);
                         break;
-                    case R.id.button6:
-                        Intent intent4 = new Intent(getActivity(), FAQActivity.class);
+                    case R.id.button4:
+                        Intent intent4 = new Intent(Intent.ACTION_VIEW);
+                        Uri url = Uri.parse("https://play.google.com/store/apps/details?id=kr.hs.emirim.parksodam.mirimbreadclock2");
+                        intent4.setData(url);
                         startActivity(intent4);
-                        break;
-                    case R.id.button7:
-                        Intent intent5 = new Intent(getActivity(), ContactUsActivity.class);
-                        startActivity(intent5);
-                        break;
-                    case R.id.button8:
-                        Intent intent6 = new Intent(getActivity(), IntroduceActivity.class);
-                        startActivity(intent6);
                         break;
                 }
             }
         };
-        Button button1 = (Button) view.findViewById(R.id.button3);
-        button1.setOnClickListener(onClickListener);
-        Button button2 = (Button) view.findViewById(R.id.button4);
-        button2.setOnClickListener(onClickListener);
-        Button button3 = (Button) view.findViewById(R.id.button5);
+        Button button3 = (Button) view.findViewById(R.id.button3);
         button3.setOnClickListener(onClickListener);
-        Button button4 = (Button) view.findViewById(R.id.button6);
+        Button button4 = (Button) view.findViewById(R.id.button4);
         button4.setOnClickListener(onClickListener);
-        Button button5 = (Button) view.findViewById(R.id.button7);
-        button5.setOnClickListener(onClickListener);
-        Button button6 = (Button) view.findViewById(R.id.button8);
-        button6.setOnClickListener(onClickListener);
-
         return view;
     }
 

@@ -1,83 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffff"
-    tools:context=".set.FAQActivity">
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/my_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:background="#ffffff"
-        android:minHeight="48dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-            <ImageView
-                android:id="@+id/back_icon"
-                android:layout_width="30dp"
-                android:layout_height="45dp"
-                android:layout_gravity="center"
-
-                android:gravity="left"
-                app:srcCompat="@drawable/setback" />
-
-            <ImageView
-                android:id="@+id/logo"
-                android:layout_width="400dp"
-                android:layout_height="60dp"
-                android:layout_above="@+id/tl_main"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                app:srcCompat="@drawable/llogo" />
-        </LinearLayout>
-    </android.support.v7.widget.Toolbar>
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/my_toolbar"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="26dp"
-        android:text="
-자주묻는 질문"
-        android:textColor="#f38722"
-        android:textSize="20dp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="
-Q. 빵클락은 어떤 서비스인가요?\n
-A. 빵클락은 생활 속 문제점을 개선하고 일상에 작은 행복을 담기 위한 앱으로, 식은 빵만 먹는 생활 속 문제점을 개선하고자 만든 빵 나오는 시간 알림앱입니다.\n\n
-
-Q. 빵클락 앱은 무료인가요?\n
-A. 네. 무료로 사용하실 수 있습니다.\n\n
-
-Q. 앱을 사용하기 위해서 꼭 GPS가 필요한가요?\n
-A. 사용자 주변의 빵집을 조회하기위해서 GPS 권한 허용이 필요합니다.\n\n
-"
-        android:layout_below="@+id/textView"
-        android:layout_alignLeft="@+id/textView"
-        android:layout_alignStart="@+id/textView" />
-
-
-</RelativeLayout>
+    tools:context=".Bakery">
+</LinearLayout>
