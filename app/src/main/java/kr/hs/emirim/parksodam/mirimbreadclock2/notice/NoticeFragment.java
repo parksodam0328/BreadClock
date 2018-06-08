@@ -56,8 +56,6 @@ public class NoticeFragment extends BaseFragment {
 
                 // Write a message to the database
                 if (mAuth != null) {
-
-
                 } else {
                     Intent intent = new Intent(getActivity(), LoginActivity.class);
                     startActivity(intent);
@@ -117,7 +115,7 @@ public class NoticeFragment extends BaseFragment {
                     seachedBakeris.add(bb);
                     Log.e(TAG, "알람 추가한 빵집 : " + bb.name);
                 }
-                mMyAlarmAdapter = new MyAlarmAdapter(seachedBakeris);
+                mMyAlarmAdapter = new MyAlarmAdapter(getActivity(),seachedBakeris);
                 mListView.setAdapter(mMyAlarmAdapter);
                 //mListView.invalidate();
             }
@@ -128,7 +126,6 @@ public class NoticeFragment extends BaseFragment {
             }
         };
         userBookmarkRef.addValueEventListener(userBookmarkListener);
-
 
         return view;
     }
@@ -147,16 +144,13 @@ public class NoticeFragment extends BaseFragment {
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }
+        // mMyAlarmAdapter.notifyDataSetChanged();
     }
 
     private void updateUI(FirebaseUser user) {
         if (user != null) {
             Log.e(TAG, "현재 uid : " + user.getUid());
             mAuth = FirebaseAuth.getInstance();
-//            FirebaseDatabase database = FirebaseDatabase.getInstance();
-//            bakery = "베이크팡";
-//            DatabaseReference myRef = database.getReference("BreadClockWeb/Bakeries/BasicInfo/"+bakery+"/Favorites/"+user.getUid());
-//            myRef.setValue(user.getEmail());
         } else {
             Intent intent = new Intent(getActivity(), LoginActivity.class);
             startActivity(intent);

@@ -58,22 +58,10 @@
 
 
         <activity
-            android:name=".set.VersionActivity"
-            android:screenOrientation="sensorPortrait" />
-        <activity
             android:name=".set.FAQActivity"
             android:screenOrientation="sensorPortrait" />
         <activity
-            android:name=".set.ContactUsActivity"
-            android:screenOrientation="sensorPortrait" />
-        <activity
             android:name=".set.HowToUseActivity"
-            android:screenOrientation="sensorPortrait" />
-        <activity
-            android:name=".set.IntroduceActivity"
-            android:screenOrientation="sensorPortrait" />
-        <activity
-            android:name=".set.NoticeActivity"
             android:screenOrientation="sensorPortrait" />
         <!--<activity
             android:name=".notice.AlarmLandingPageActivity"

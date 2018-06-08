@@ -1,6 +1,7 @@
 package kr.hs.emirim.parksodam.mirimbreadclock2;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -32,6 +33,7 @@ public class LoginActivity extends AppCompatActivity implements
     private static final int RC_SIGN_IN = 9001;
     private GoogleApiClient mGoogleApiClient;
     private FirebaseAuth mAuth;
+    SharedPreferences sp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.e(TAG, "들어옴");
@@ -108,7 +110,12 @@ public class LoginActivity extends AppCompatActivity implements
                             updateUI(user);
                             Intent intent = new Intent(LoginActivity.this, BarActivity.class);
                             startActivity(intent);
+                            sp = getSharedPreferences("login",MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sp.edit();
 
+                            editor.putString("login", String.valueOf(mGoogleApiClient));
+                            Log.e( "adegeooo1!!!!",String.valueOf(mGoogleApiClient));
+                            editor.commit();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
@@ -117,6 +124,7 @@ public class LoginActivity extends AppCompatActivity implements
                             updateUI(null);
                         }
 
+                        sp.getBoolean("logged",false);
                         // [START_EXCLUDE]
                         //hideProgressDialog();
                         // [END_EXCLUDE]
