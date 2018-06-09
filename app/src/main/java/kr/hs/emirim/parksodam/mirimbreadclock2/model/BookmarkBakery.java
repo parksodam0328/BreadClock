@@ -11,7 +11,6 @@ public class BookmarkBakery {
     public String photo;
     public boolean checked ;
     public BookmarkBakery() {
-        this.checked=true;
     }
 
     public BookmarkBakery(String uid, String name, String vicinity, String photo, boolean checked) {
@@ -19,7 +18,5 @@ public class BookmarkBakery {
         this.name = name;
         this.vicinity = vicinity;
         this.photo = photo;
-
-        this.checked=true;
     }
 }

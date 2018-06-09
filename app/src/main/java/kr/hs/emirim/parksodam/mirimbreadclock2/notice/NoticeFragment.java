@@ -49,7 +49,7 @@ public class NoticeFragment extends BaseFragment {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         View view = inflater.inflate(R.layout.fragment_notice, container, false);
         Log.e(TAG, "성공");
-        
+
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -113,6 +113,7 @@ public class NoticeFragment extends BaseFragment {
                 for (DataSnapshot bookmarkBakerySnapshot : dataSnapshot.getChildren()) {
                     BookmarkBakery bb = bookmarkBakerySnapshot.getValue(BookmarkBakery.class);
                     seachedBakeris.add(bb);
+
                     Log.e(TAG, "알람 추가한 빵집 : " + bb.name);
                 }
                 mMyAlarmAdapter = new MyAlarmAdapter(getActivity(),seachedBakeris);

@@ -51,8 +51,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.messaging.FirebaseMessaging;
-import com.iamhabib.easy_preference.EasyPreference;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -86,8 +84,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 2002;
     private static final int UPDATE_INTERVAL_MS = 1000; // 3분
     private static final int FASTEST_UPDATE_INTERVAL_MS = 500; // 3분
-    private static String name;
-    private static String location;
+
     public ViewPager vp;
     ArrayList<Place> mPlaces = new ArrayList<Place>();
     LatLng currentPosition = null;
@@ -167,16 +164,9 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                                         BookmarkBakery bb = seachedBakeris.get(position);
                                         DatabaseReference bookmarkRef = ((BarActivity) getActivity()).mDatabase.getReference("users/" + mAuth.getCurrentUser().getUid() + "/alarms/" + bb.uid);
                                         Log.e(TAG, "알람 추가 : " + bb.uid);
+                                        Log.e(TAG, "알람 확인 : " + bb.checked);
                                         bookmarkRef.setValue(bb);
-                                        FirebaseMessaging.getInstance().subscribeToTopic(bb.uid);
-                                        //Log.e(TAG,bb.uid);
-                                        EasyPreference.with(getActivity())
-                                                .addString(name, place.getName())
-                                                .save();
 
-                                        EasyPreference.with(getActivity())
-                                                .addString(location, place.getVicinity())
-                                                .save();
                                     }
                                 });
                                 builder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
