@@ -26,6 +26,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+
+//http://seungdong.tistory.com/1?category=779889 사이트 참고
 public class LoginActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener,
         View.OnClickListener {
@@ -33,7 +35,9 @@ public class LoginActivity extends AppCompatActivity implements
     private static final int RC_SIGN_IN = 9001;
     private GoogleApiClient mGoogleApiClient;
     private FirebaseAuth mAuth;
+    String uId;
     SharedPreferences sp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.e(TAG, "들어옴");
@@ -53,22 +57,33 @@ public class LoginActivity extends AppCompatActivity implements
 
         mAuth = FirebaseAuth.getInstance();
 
-        SignInButton button = (SignInButton) findViewById(R.id.login_button);
-        button.setOnClickListener(this);
+            if (FirebaseAuth.getInstance().getCurrentUser() == null) {
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-                startActivityForResult(signInIntent, RC_SIGN_IN);
-            }
-        });
+
+                SignInButton button = (SignInButton) findViewById(R.id.login_button);
+                button.setOnClickListener(this);
+
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+                        startActivityForResult(signInIntent, RC_SIGN_IN);
+
+                    }
+                });
+        }
+        else {
+            Intent intent = new Intent(LoginActivity.this, BarActivity.class);
+            startActivity(intent);
+            //로그인 화면 없이 바로 BarActivity로 이동
+        }
 
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
 
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
@@ -78,6 +93,10 @@ public class LoginActivity extends AppCompatActivity implements
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
+
+//                SharedPreferences.Editor editor = sp.edit();
+//                editor.putString("login", String.valueOf(mGoogleApiClient));
+
 
             } else {
                 Log.e(TAG, "실패" + result.getStatus());
@@ -92,6 +111,7 @@ public class LoginActivity extends AppCompatActivity implements
     // [END onactivityresult]
 
     // [START auth_with_google]
+    // Firebase에 사용자 인증 정보를 넘겨주는 부분
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
         // [START_EXCLUDE silent]
@@ -107,14 +127,27 @@ public class LoginActivity extends AppCompatActivity implements
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            uId = mAuth.getCurrentUser().getUid();
+                            Log.e(TAG, "으유증말 이거 으으응" + uId);
+
+                            sp = getSharedPreferences("login",MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sp.edit();
+
+                            editor.putString("login2", String.valueOf(uId));
+                            editor.commit();
+
+                            SharedPreferences.Editor editor1 = sp.edit();
+                            sp.getString("login2",null);
+
                             updateUI(user);
                             Intent intent = new Intent(LoginActivity.this, BarActivity.class);
                             startActivity(intent);
                             sp = getSharedPreferences("login",MODE_PRIVATE);
-                            SharedPreferences.Editor editor = sp.edit();
+
 
                             editor.putString("login", String.valueOf(mGoogleApiClient));
                             Log.e( "adegeooo1!!!!",String.valueOf(mGoogleApiClient));
+                            Log.e( "이건 핸드폰 고유 uuid인듯",String.valueOf(mGoogleApiClient));
                             editor.commit();
                         } else {
                             // If sign in fails, display a message to the user.

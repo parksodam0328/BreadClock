@@ -33,6 +33,7 @@ public class SetFragment extends BaseFragment {
                         startActivity(intent4);
                         break;
                 }
+
             }
         };
         Button button3 = (Button) view.findViewById(R.id.button3);
