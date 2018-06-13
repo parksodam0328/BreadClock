@@ -17,7 +17,7 @@
         app:srcCompat="@mipmap/ic_launcher" />
 
     <LinearLayout
-        android:layout_width="259dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 

@@ -43,7 +43,6 @@ public class BakeryInfoActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar); //툴바를 액션바와 같게 만들어 준다.getSupportActionBar().setTitle("지도");
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        final ImageView bookmark = (ImageView) findViewById(R.id.favorite);
         ImageView backimg = (ImageView) findViewById(R.id.back_icon);
         backimg.setOnClickListener(new View.OnClickListener() {
             @Override
