@@ -67,8 +67,8 @@ public class MyInfoAdapter extends BaseAdapter{
         try {
             Picasso.with(context)
                     .load(bookmarkBakery.photo)
-                    .placeholder(R.drawable.bakeryimg2)
-                    .error(R.drawable.bakeryimg2)
+                    .placeholder(R.drawable.bakeryimg)
+                    .error(R.drawable.bakeryimg)
                     .resize(50, 50)
                     .centerCrop()
                     .into(iv_img);
