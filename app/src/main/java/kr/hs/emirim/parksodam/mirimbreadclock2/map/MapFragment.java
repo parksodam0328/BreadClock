@@ -33,6 +33,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -373,7 +374,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
 //지도의 초기위치를 서울로 이동
         setCurrentLocation(null, "위치정보 가져올 수 없음", "위치 퍼미션과 GPS 활성 요부 확인하세요");
         mGoogleMap.getUiSettings().setCompassEnabled(true); //나침반
-        map.moveCamera(CameraUpdateFactory.newLatLng(DEFAULT_LOCATION));
+ //       map.moveCamera(CameraUpdateFactory.newLatLng(DEFAULT_LOCATION));
 //mGoogleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(16));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -400,6 +401,34 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
             }
             mGoogleMap.setMyLocationEnabled(true);
         }
+
+
+
+        mGoogleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                Log.e(TAG, "마커 클릭시 넘어가는 값" + marker.getPosition().latitude+marker.getPosition().longitude+marker.getId()+marker.getSnippet());
+                String text = "[마커 클릭 이벤트] latitude ="
+                        + marker.getPosition().latitude + ", longitude ="
+                        + marker.getPosition().longitude;
+
+                Intent intent= new Intent(getActivity(), BakeryInfoActivity.class);
+                //BookmarkBakery bakery = mMyInfoAdapter.getItem();
+               // Log.e("오류",bakery.name);
+               // intent.putExtra("Title",bakery.name);
+                intent.putExtra("Title",marker.getTitle());
+                intent.putExtra("Address",marker.getSnippet());
+
+                Log.e("Title",marker.getTitle());
+                Log.e("Address",marker.getSnippet());
+
+
+                //          intent.putExtra("Address",bakery.vicinity);
+                startActivity(intent);
+
+            }
+        });
+
     }
 
     protected synchronized void buildGoogleApiClient() {
@@ -434,7 +463,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
                     .requestLocationUpdates(mGoogleApiClient, locationRequest, this);
             mGoogleMap.getUiSettings().setCompassEnabled(true);
 //mGoogleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-            mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+//            mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
         }
     }
 
@@ -534,7 +563,7 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         markerOptions.draggable(true);
         markerOptions.icon(BitmapDescriptorFactory.fromResource(R.mipmap.yellowmarkers));
         currentMarker = mGoogleMap.addMarker(markerOptions);
-        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(DEFAULT_LOCATION));
+//        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(DEFAULT_LOCATION));
         return;
     }
 
@@ -696,3 +725,6 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         }
     }
 }
+
+
+
